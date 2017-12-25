@@ -1,0 +1,26 @@
+[
+    {
+        "base_attack": "1656",
+        "base_hp": "2266",
+        "class": "saber",
+        "cost": "16",
+        "growth_curve": "s",
+        "id": "91",
+        "max_attack": "10721",
+        "max_hp": "15453",
+        "name": "Ryougi Shiki",
+        "rarity": "5"
+    },
+    {
+        "base_attack": "1758",
+        "base_hp": "2174",
+        "class": "lancer",
+        "cost": "16",
+        "growth_curve": "linear",
+        "id": "70",
+        "max_attack": "11375",
+        "max_hp": "14825",
+        "name": "Scáthach",
+        "rarity": "5"
+    }
+]

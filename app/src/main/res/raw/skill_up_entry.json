@@ -1,0 +1,170 @@
+[
+    {
+        "count": "1",
+        "dest_skill_level": "10",
+        "material_name": "cyrstallized_lore",
+        "servant_id": "91"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "2",
+        "material_name": "gem_of_saber",
+        "servant_id": "91"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "3",
+        "material_name": "gem_of_saber",
+        "servant_id": "91"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "4",
+        "material_name": "magic_gem_of_saber",
+        "servant_id": "91"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "5",
+        "material_name": "magic_gem_of_saber",
+        "servant_id": "91"
+    },
+    {
+        "count": "4",
+        "dest_skill_level": "5",
+        "material_name": "phoenix_feather",
+        "servant_id": "91"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "6",
+        "material_name": "secret_gem_of_saber",
+        "servant_id": "91"
+    },
+    {
+        "count": "8",
+        "dest_skill_level": "6",
+        "material_name": "phoenix_feather",
+        "servant_id": "91"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "7",
+        "material_name": "secret_gem_of_saber",
+        "servant_id": "91"
+    },
+    {
+        "count": "10",
+        "dest_skill_level": "7",
+        "material_name": "void_dust",
+        "servant_id": "91"
+    },
+    {
+        "count": "20",
+        "dest_skill_level": "8",
+        "material_name": "void_dust",
+        "servant_id": "91"
+    },
+    {
+        "count": "6",
+        "dest_skill_level": "8",
+        "material_name": "octuplet_crystal",
+        "servant_id": "91"
+    },
+    {
+        "count": "18",
+        "dest_skill_level": "9",
+        "material_name": "octuplet_crystal",
+        "servant_id": "91"
+    },
+    {
+        "count": "24",
+        "dest_skill_level": "9",
+        "material_name": "ghost_lantern",
+        "servant_id": "91"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "2",
+        "material_name": "gem_of_lancer",
+        "servant_id": "70"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "3",
+        "material_name": "gem_of_lancer",
+        "servant_id": "70"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "4",
+        "material_name": "magic_gem_of_lancer",
+        "servant_id": "70"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "5",
+        "material_name": "magic_gem_of_lancer",
+        "servant_id": "70"
+    },
+    {
+        "count": "10",
+        "dest_skill_level": "5",
+        "material_name": "void_dust",
+        "servant_id": "70"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "6",
+        "material_name": "secret_gem_of_lancer",
+        "servant_id": "70"
+    },
+    {
+        "count": "20",
+        "dest_skill_level": "6",
+        "material_name": "void_dust",
+        "servant_id": "70"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "7",
+        "material_name": "secret_gem_of_lancer",
+        "servant_id": "70"
+    },
+    {
+        "count": "15",
+        "dest_skill_level": "7",
+        "material_name": "evil_bone",
+        "servant_id": "70"
+    },
+    {
+        "count": "29",
+        "dest_skill_level": "8",
+        "material_name": "evil_bone",
+        "servant_id": "70"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "8",
+        "material_name": "phoenix_feather",
+        "servant_id": "70"
+    },
+    {
+        "count": "15",
+        "dest_skill_level": "9",
+        "material_name": "phoenix_feather",
+        "servant_id": "70"
+    },
+    {
+        "count": "10",
+        "dest_skill_level": "9",
+        "material_name": "heart",
+        "servant_id": "70"
+    },
+    {
+        "count": "1",
+        "dest_skill_level": "10",
+        "material_name": "cyrstallized_lore",
+        "servant_id": "70"
+    }
+]

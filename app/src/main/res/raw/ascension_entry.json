@@ -1,0 +1,110 @@
+[
+    {
+        "ascension_number": "1",
+        "count": "5",
+        "material_name": "saber_piece",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "2",
+        "count": "12",
+        "material_name": "saber_piece",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "2",
+        "count": "5",
+        "material_name": "void_dust",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "3",
+        "count": "5",
+        "material_name": "saber_monument",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "3",
+        "count": "8",
+        "material_name": "phoenix_feather",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "3",
+        "count": "3",
+        "material_name": "claw_of_chaos",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "4",
+        "count": "12",
+        "material_name": "saber_monument",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "4",
+        "count": "6",
+        "material_name": "claw_of_chaos",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "4",
+        "count": "5",
+        "material_name": "heart",
+        "servant_id": "91"
+    },
+    {
+        "ascension_number": "1",
+        "count": "5",
+        "material_name": "lancer_piece",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "2",
+        "count": "12",
+        "material_name": "lancer_piece",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "2",
+        "count": "22",
+        "material_name": "evil_bone",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "3",
+        "count": "5",
+        "material_name": "lancer_monument",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "3",
+        "count": "20",
+        "material_name": "void_dust",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "3",
+        "count": "3",
+        "material_name": "claw_of_chaos",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "4",
+        "count": "12",
+        "material_name": "lancer_monument",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "4",
+        "count": "6",
+        "material_name": "claw_of_chaos",
+        "servant_id": "70"
+    },
+    {
+        "ascension_number": "4",
+        "count": "5",
+        "material_name": "heart",
+        "servant_id": "70"
+    }
+]
