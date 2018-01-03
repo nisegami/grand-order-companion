@@ -5,6 +5,11 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
+
 public class ServantInfo implements Parcelable {
 
     @SerializedName("base_attack")
@@ -37,6 +42,11 @@ public class ServantInfo implements Parcelable {
     @SerializedName("rarity")
     @Expose
     private int rarity;
+
+
+    private List<AscensionEntry> ascensionEntries = new ArrayList<>();
+    private List<SkillUpEntry> skillUpEntries = new ArrayList<>();
+
     public final static Parcelable.Creator<ServantInfo> CREATOR = new Creator<ServantInfo>() {
 
 
@@ -164,5 +174,29 @@ public class ServantInfo implements Parcelable {
 
     public int describeContents() {
         return  0;
+    }
+
+    public String getThumbnailURL() {
+        return String.format("img/servants/%d_thumb.png", id);
+    }
+
+    public String getFullImageURL() {
+        return String.format("img/servants/%d_full.png", id);
+    }
+
+    public List<AscensionEntry> getAscensionEntries() {
+        if (ascensionEntries.isEmpty()) {
+            ascensionEntries.addAll(DomainDataSingleton.getInstance().getAscensionEntries(id));
+        }
+
+        return ascensionEntries;
+    }
+
+    public List<SkillUpEntry> getSkillUpEntries() {
+        if (skillUpEntries.isEmpty()) {
+            skillUpEntries.addAll(DomainDataSingleton.getInstance().getSkillUpEntries(id));
+        }
+
+        return skillUpEntries;
     }
 }

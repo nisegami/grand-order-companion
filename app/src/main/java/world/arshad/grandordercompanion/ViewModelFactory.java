@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.VisibleForTesting;
 
-import world.arshad.grandordercompanion.servant_info_list.ServantInfoViewModel;
+import world.arshad.grandordercompanion.servant_info_list.ServantInfoListViewModel;
 
 /**
  * A creator is used to inject the product ID into the ViewModel
@@ -44,9 +44,9 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(ServantInfoViewModel.class)) {
+        if (modelClass.isAssignableFrom(ServantInfoListViewModel.class)) {
             //noinspection unchecked
-            return (T) new ServantInfoViewModel(mApplication);
+            return (T) new ServantInfoListViewModel(mApplication);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

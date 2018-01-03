@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SkillUpEntry implements Parcelable
+public class SkillUpEntry extends Entry implements Parcelable
 {
 
     @SerializedName("count")
@@ -14,9 +14,9 @@ public class SkillUpEntry implements Parcelable
     @SerializedName("dest_skill_level")
     @Expose
     private int destSkillLevel;
-    @SerializedName("material_name")
+    @SerializedName("material_id")
     @Expose
-    private String materialName;
+    private Material material;
     @SerializedName("servant_id")
     @Expose
     private int servantId;
@@ -40,7 +40,7 @@ public class SkillUpEntry implements Parcelable
     protected SkillUpEntry(Parcel in) {
         this.count = in.readInt();
         this.destSkillLevel = in.readInt();
-        this.materialName = ((String) in.readValue((String.class.getClassLoader())));
+        this.material = ((Material) in.readSerializable());
         this.servantId = in.readInt();
     }
 
@@ -63,12 +63,12 @@ public class SkillUpEntry implements Parcelable
         this.destSkillLevel = destSkillLevel;
     }
 
-    public String getMaterialName() {
-        return materialName;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setMaterialName(String materialName) {
-        this.materialName = materialName;
+    public void setMaterial(Material materialName) {
+        this.material = materialName;
     }
 
     public int getServantId() {
@@ -82,7 +82,7 @@ public class SkillUpEntry implements Parcelable
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(count);
         dest.writeInt(destSkillLevel);
-        dest.writeString(materialName);
+        dest.writeSerializable(material);
         dest.writeInt(servantId);
     }
 

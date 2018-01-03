@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Grand Order Companion</string>
+    <string name="image_url_base">https://arshbox.xyz/fgo/img/</string>
+    <string name="waiting_message">Please wait....</string>
 </resources>

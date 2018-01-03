@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_toEndOf="@id/thumbnail"
-                android:textSize="35sp" />
+                android:textSize="20sp" />
 
         </RelativeLayout>
 

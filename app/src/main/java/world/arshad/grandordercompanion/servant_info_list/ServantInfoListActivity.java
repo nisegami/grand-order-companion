@@ -12,7 +12,7 @@ import world.arshad.grandordercompanion.R;
 public class ServantInfoListActivity extends AppCompatActivity {
 
     @BindView(R.id.servant_info_list) RecyclerView servantInfoList;
-    private ServantInfoViewModel mViewModel;
+    private ServantInfoListViewModel mViewModel;
     private RecyclerView.LayoutManager layoutManager;
     private ServantInfoAdapter adapter;
 
@@ -21,9 +21,9 @@ public class ServantInfoListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servant_info_list);
         ButterKnife.bind(this);
-        mViewModel = ViewModelProviders.of(this).get(ServantInfoViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ServantInfoListViewModel.class);
 
-        adapter = new ServantInfoAdapter(mViewModel.getServants());
+        adapter = new ServantInfoAdapter(mViewModel.getServants(), this);
         servantInfoList.setAdapter(adapter);
         servantInfoList.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);

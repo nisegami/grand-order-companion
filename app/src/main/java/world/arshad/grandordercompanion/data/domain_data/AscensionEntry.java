@@ -5,21 +5,25 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AscensionEntry implements Parcelable
+public class AscensionEntry extends Entry implements Parcelable
 {
 
     @SerializedName("ascension_number")
     @Expose
     private int ascensionNumber;
+
     @SerializedName("count")
     @Expose
     private int count;
-    @SerializedName("material_name")
+
+    @SerializedName("material_id")
     @Expose
-    private String materialName;
+    private Material material;
+
     @SerializedName("servant_id")
     @Expose
     private int servantId;
+
     public final static Parcelable.Creator<AscensionEntry> CREATOR = new Creator<AscensionEntry>() {
 
 
@@ -40,7 +44,7 @@ public class AscensionEntry implements Parcelable
     protected AscensionEntry(Parcel in) {
         this.ascensionNumber = in.readInt();
         this.count =  in.readInt();
-        this.materialName = ((String) in.readValue((String.class.getClassLoader())));
+        this.material = ((Material) in.readSerializable());
         this.servantId = in.readInt();
     }
 
@@ -63,12 +67,12 @@ public class AscensionEntry implements Parcelable
         this.count = count;
     }
 
-    public String getMaterialName() {
-        return materialName;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setMaterialName(String materialName) {
-        this.materialName = materialName;
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public int getServantId() {
@@ -82,7 +86,7 @@ public class AscensionEntry implements Parcelable
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(ascensionNumber);
         dest.writeInt(count);
-        dest.writeString(materialName);
+        dest.writeSerializable(material);
         dest.writeInt(servantId);
     }
 
