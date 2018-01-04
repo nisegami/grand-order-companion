@@ -19,18 +19,18 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/thumbnail"
+                android:id="@+id/servant_info_entry_thumbnail"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginEnd="16dp"
                 />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/servant_info_entry_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_toEndOf="@id/thumbnail"
+                android:layout_toEndOf="@id/servant_info_entry_thumbnail"
                 android:textSize="35sp" />
 
         </RelativeLayout>

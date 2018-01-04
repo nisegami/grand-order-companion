@@ -29,8 +29,8 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
     private final Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.name) TextView name;
-        @BindView(R.id.thumbnail) ImageView thumbnail;
+        @BindView(R.id.servant_info_entry_name) TextView name;
+        @BindView(R.id.servant_info_entry_thumbnail) ImageView thumbnail;
 
         public ViewHolder(View view) {
             super(view);

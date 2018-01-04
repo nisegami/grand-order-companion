@@ -16,7 +16,7 @@ import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingl
  * Created by arsha on 03/01/2018.
  */
 
-public class App extends Application {
+public class GrandOrderCompanionApp extends Application {
 
     @Override
     public void onCreate() {

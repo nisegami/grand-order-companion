@@ -4,7 +4,7 @@
     android:background="#dbdbda">
 
     <TextView
-        android:id="@+id/entry_number_label"
+        android:id="@+id/skill_or_ascension_parent_number_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +30,7 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
     private final LayoutInflater mInflater;
 
     public static class EntryParentViewHolder extends GroupViewHolder {
-        @BindView(R.id.entry_number_label) TextView entryNumberLabel;
+        @BindView(R.id.skill_or_ascension_parent_number_label) TextView entryNumberLabel;
 
         public EntryParentViewHolder(View view) {
             super(view);
@@ -40,9 +39,9 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
     }
 
     public static class EntryChildViewHolder extends ChildViewHolder {
-        @BindView(R.id.name) TextView name;
-        @BindView(R.id.count) TextView count;
-        @BindView(R.id.thumbnail) ImageView thumbnail;
+        @BindView(R.id.skill_or_ascension_child_name) TextView name;
+        @BindView(R.id.skill_or_ascension_child_count) TextView count;
+        @BindView(R.id.skill_or_ascension_child_thumbnail) ImageView thumbnail;
 
         public EntryChildViewHolder(View view) {
             super(view);

@@ -48,5 +48,5 @@ ext {
 
     // Architecture Components dependencies
     roomVersion = "1.0.0"
-    archLifecycleVersion = "1.0.0-rc1"
+    archLifecycleVersion = "1.0.0"
 }

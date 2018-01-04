@@ -22,25 +22,25 @@ import world.arshad.grandordercompanion.utils.Utilities;
 
 public class ServantInfoActivity extends AppCompatActivity {
 
-    @BindView(R.id.servant_name)
+    @BindView(R.id.servant_info_name)
     TextView servantName;
 
-    @BindView(R.id.attack_value)
+    @BindView(R.id.servant_info_attack_value)
     TextView attackValue;
 
-    @BindView(R.id.hp_value)
+    @BindView(R.id.servant_info_hp_value)
     TextView hpValue;
 
-    @BindView(R.id.servant_image)
+    @BindView(R.id.servant_info_image)
     ImageView servantImage;
 
-    @BindView(R.id.class_image)
+    @BindView(R.id.servant_info_class_image)
     ImageView classImage;
 
-    @BindView(R.id.ascension_entries)
+    @BindView(R.id.servant_info_ascension_entries)
     RecyclerView ascensionEntryList;
 
-    @BindView(R.id.skill_up_entries)
+    @BindView(R.id.servant_info_skill_up_entries)
     RecyclerView skillUpEntryList;
 
 

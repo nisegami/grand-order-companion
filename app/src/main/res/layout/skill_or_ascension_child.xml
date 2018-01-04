@@ -6,26 +6,26 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/thumbnail"
+        android:id="@+id/skill_or_ascension_child_thumbnail"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="16dp" />
 
     <TextView
-        android:id="@+id/count"
+        android:id="@+id/skill_or_ascension_child_count"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_toEndOf="@id/thumbnail"
+        android:layout_toEndOf="@id/skill_or_ascension_child_thumbnail"
         android:textSize="20sp"
         android:layout_margin="5sp"/>
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/skill_or_ascension_child_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="end"
-        android:layout_toEndOf="@id/count"
+        android:layout_toEndOf="@id/skill_or_ascension_child_count"
         android:textSize="20sp"
         android:layout_margin="5sp" />
 
