@@ -6,7 +6,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="16dp" >
 
@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/attack_label"
-            android:text="Attack: "
+            android:text="@string/attack_label"
             android:layout_width="100sp"
             android:layout_height="wrap_content"
             android:layout_below="@id/class_image"
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/hp_label"
-            android:text="HP: "
+            android:text="@string/hp_label"
             android:layout_width="100sp"
             android:layout_height="wrap_content"
             android:layout_below="@id/attack_value"
@@ -70,11 +70,13 @@
 
         <TextView
             android:id="@+id/ascension_label"
-            android:text="Ascension Materials:"
-            android:layout_width="100sp"
+            android:text="@string/ascension_materials_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hp_value"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/ascension_entries"
@@ -85,18 +87,21 @@
 
         <TextView
             android:id="@+id/skill_up_label"
-            android:text="Skill Up Materials:"
-            android:layout_width="100sp"
+            android:text="@string/skill_up_materials_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ascension_entries"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/skill_up_entries"
             android:layout_below="@id/skill_up_label"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50sp"/>
 
     </RelativeLayout>
 </ScrollView>

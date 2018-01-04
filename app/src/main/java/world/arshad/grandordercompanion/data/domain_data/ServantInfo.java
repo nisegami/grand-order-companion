@@ -2,11 +2,16 @@ package world.arshad.grandordercompanion.data.domain_data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.SparseArray;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
 
@@ -43,9 +48,8 @@ public class ServantInfo implements Parcelable {
     @Expose
     private int rarity;
 
-
-    private List<AscensionEntry> ascensionEntries = new ArrayList<>();
-    private List<SkillUpEntry> skillUpEntries = new ArrayList<>();
+    private List<List<AscensionEntry>> ascensionEntries = null;
+    private List<List<SkillUpEntry>> skillUpEntries = null;
 
     public final static Parcelable.Creator<ServantInfo> CREATOR = new Creator<ServantInfo>() {
 
@@ -184,17 +188,38 @@ public class ServantInfo implements Parcelable {
         return String.format("img/servants/%d_full.png", id);
     }
 
-    public List<AscensionEntry> getAscensionEntries() {
-        if (ascensionEntries.isEmpty()) {
-            ascensionEntries.addAll(DomainDataSingleton.getInstance().getAscensionEntries(id));
+    public List<List<AscensionEntry>> getAscensionEntries() {
+        if (ascensionEntries == null) {
+            ascensionEntries = new ArrayList<>();
+            ascensionEntries.add(new ArrayList<AscensionEntry>());
+            ascensionEntries.add(new ArrayList<AscensionEntry>());
+            ascensionEntries.add(new ArrayList<AscensionEntry>());
+            ascensionEntries.add(new ArrayList<AscensionEntry>());
+
+            for (AscensionEntry entry : DomainDataSingleton.getInstance().getAscensionEntries(id)) {
+                ascensionEntries.get(entry.getAscensionNumber() - 1).add(entry);
+            }
         }
 
         return ascensionEntries;
     }
 
-    public List<SkillUpEntry> getSkillUpEntries() {
-        if (skillUpEntries.isEmpty()) {
-            skillUpEntries.addAll(DomainDataSingleton.getInstance().getSkillUpEntries(id));
+    public List<List<SkillUpEntry>> getSkillUpEntries() {
+        if (skillUpEntries == null) {
+            skillUpEntries = new ArrayList<>();
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+
+            for (SkillUpEntry entry : DomainDataSingleton.getInstance().getSkillUpEntries(id)) {
+                skillUpEntries.get(entry.getDestSkillLevel() - 2).add(entry);
+            }
         }
 
         return skillUpEntries;

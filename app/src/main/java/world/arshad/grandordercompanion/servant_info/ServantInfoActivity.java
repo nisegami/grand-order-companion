@@ -8,10 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
+import world.arshad.grandordercompanion.data.domain_data.AscensionEntry;
+import world.arshad.grandordercompanion.data.domain_data.Entry;
 import world.arshad.grandordercompanion.data.domain_data.ServantInfo;
+import world.arshad.grandordercompanion.data.domain_data.SkillUpEntry;
 import world.arshad.grandordercompanion.utils.Utilities;
 
 public class ServantInfoActivity extends AppCompatActivity {
@@ -61,13 +67,41 @@ public class ServantInfoActivity extends AppCompatActivity {
         attackValue.setText(String.format("%d / %d", mViewModel.getServant().getBaseAttack(), mViewModel.getServant().getMaxAttack()));
         hpValue.setText(String.format("%d / %d", mViewModel.getServant().getBaseHp(), mViewModel.getServant().getMaxHp()));
 
-        ascensionAdapter = new EntryAdapter(mViewModel.getServant().getAscensionEntries(), this);
+
+        List<EntryAdapter.EntryParent> ascensionParents = new ArrayList<>();
+        List<List<AscensionEntry>> ascensionEntries = mViewModel.getServant().getAscensionEntries();
+
+        for (int i = 0; i < 4; i++) {
+            List<Entry> objects = new ArrayList<>();
+
+            for (Entry entry : ascensionEntries.get(i)) {
+                objects.add(entry);
+            }
+
+            ascensionParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Ascension", i + 1), objects));
+        }
+
+        ascensionAdapter = new EntryAdapter(this, ascensionParents);
         ascensionEntryList.setAdapter(ascensionAdapter);
-        ascensionEntryList.setHasFixedSize(true);
         layoutManager1 = new LinearLayoutManager(this);
         ascensionEntryList.setLayoutManager(layoutManager1);
 
-        skillUpAdapter = new EntryAdapter(mViewModel.getServant().getSkillUpEntries(), this);
+
+
+        List<EntryAdapter.EntryParent> skillParents = new ArrayList<>();
+        List<List<SkillUpEntry>> skillEntries = mViewModel.getServant().getSkillUpEntries();
+
+        for (int i = 0; i < 9; i++) {
+            List<Entry> objects = new ArrayList<>();
+
+            for (Entry entry : skillEntries.get(i)) {
+                objects.add(entry);
+            }
+
+            skillParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Skill Up", i + 2), objects));
+        }
+
+        skillUpAdapter = new EntryAdapter(this, skillParents);
         skillUpEntryList.setAdapter(skillUpAdapter);
         skillUpEntryList.setHasFixedSize(true);
         layoutManager2 = new LinearLayoutManager(this);
