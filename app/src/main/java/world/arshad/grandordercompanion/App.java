@@ -1,10 +1,7 @@
-package world.arshad.grandordercompanion.startup;
+package world.arshad.grandordercompanion;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.app.Application;
 import android.util.Log;
-import android.widget.ProgressBar;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,35 +10,23 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
-import world.arshad.grandordercompanion.servant_info_list.ServantInfoListActivity;
 
-public class StartUpActivity extends AppCompatActivity {
+/**
+ * Created by arsha on 03/01/2018.
+ */
 
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
+public class App extends Application {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_up);
-        ButterKnife.bind(this);
+    public void onCreate() {
+        super.onCreate();
 
-        unzip(R.raw.fgodb);
 
-        DomainDataSingleton.getInstance().loadDomainData(this);
+        // Try to unzip database
 
-        Intent intent = new Intent(this, ServantInfoListActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
-    public void unzip(int resourceId) {
         try {
-            InputStream in = getResources().openRawResource(resourceId);
+            InputStream in = getResources().openRawResource(R.raw.fgodb);
             ZipInputStream zin = new ZipInputStream(in);
             ZipEntry ze;
 
@@ -68,5 +53,8 @@ public class StartUpActivity extends AppCompatActivity {
             Log.e("Updating Database", "Failed to unzip db.", e);
         }
 
+        // Populate read only data into singleton
+
+        DomainDataSingleton.getInstance().loadDomainData(this);
     }
 }
