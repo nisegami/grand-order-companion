@@ -8,8 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
+import world.arshad.grandordercompanion.SidebarActivity;
 
-public class ServantInfoListActivity extends AppCompatActivity {
+public class ServantInfoListActivity extends SidebarActivity {
 
     @BindView(R.id.servant_info_list) RecyclerView servantInfoList;
     private ServantInfoListViewModel mViewModel;
@@ -20,6 +21,9 @@ public class ServantInfoListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servant_info_list);
+
+        super.setUpSidebar();
+
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(ServantInfoListViewModel.class);
 

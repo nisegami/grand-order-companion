@@ -9,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
+import world.arshad.grandordercompanion.SidebarActivity;
 
-public class NeededAscensionMaterialsActivity extends AppCompatActivity {
+public class NeededAscensionMaterialsActivity extends SidebarActivity {
 
     @BindView(R.id.needed_materials_list) RecyclerView materialList;
     private NeededAscensionMaterialViewModel mViewModel;
@@ -21,6 +22,9 @@ public class NeededAscensionMaterialsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_needed_ascension_materials);
+
+        super.setUpSidebar();
+
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(NeededAscensionMaterialViewModel.class);
 

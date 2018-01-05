@@ -14,13 +14,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
+import world.arshad.grandordercompanion.SidebarActivity;
 import world.arshad.grandordercompanion.data.domain_data.AscensionEntry;
 import world.arshad.grandordercompanion.data.domain_data.Entry;
 import world.arshad.grandordercompanion.data.domain_data.ServantInfo;
 import world.arshad.grandordercompanion.data.domain_data.SkillUpEntry;
 import world.arshad.grandordercompanion.utils.Utilities;
 
-public class ServantInfoActivity extends AppCompatActivity {
+public class ServantInfoActivity extends SidebarActivity {
 
     @BindView(R.id.servant_info_name)
     TextView servantName;
@@ -55,6 +56,9 @@ public class ServantInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servant_info);
+
+        super.setUpSidebar();
+
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(ServantInfoViewModel.class);
 
