@@ -93,7 +93,11 @@ public class DomainDataSingleton {
         }
     }
 
-    public List<AscensionEntry> getAscensionEntries(int id) {
+    public List<AscensionEntry> getAscensionEntries() {
+        return ascensionEntries;
+    }
+
+    public List<AscensionEntry> getServantAscensionEntries(int id) {
         List<AscensionEntry> entries = new ArrayList<>();
 
         for (AscensionEntry entry : ascensionEntries) {
@@ -109,6 +113,9 @@ public class DomainDataSingleton {
         this.ascensionEntries = ascensionEntries;
     }
 
+
+
+
     public List<ExperienceAtLevel> getExperienceAtLevels() {
         return experienceAtLevels;
     }
@@ -117,23 +124,41 @@ public class DomainDataSingleton {
         this.experienceAtLevels = experienceAtLevels;
     }
 
+
+
     public List<Material> getMaterials() {
         return materials;
     }
 
-    public void setMaterials(List<Material> materials) {
-        this.materials = materials;
-    }
+
+
 
     public List<ServantInfo> getServantInfos() {
         return servantInfos;
+    }
+
+    public ServantInfo getServantInfo(int servantId) {
+        for (ServantInfo servantInfo : servantInfos) {
+            if (servantInfo.getId() == servantId) {
+                return servantInfo;
+            }
+        }
+
+        return new ServantInfo();
     }
 
     public void setServantInfos(List<ServantInfo> servantInfos) {
         this.servantInfos = servantInfos;
     }
 
-    public List<SkillUpEntry> getSkillUpEntries(int id) {
+
+
+
+    public List<SkillUpEntry> getSkillUpEntries() {
+        return skillUpEntries;
+    }
+
+    public List<SkillUpEntry> getServantSkillUpEntries(int id) {
         List<SkillUpEntry> entries = new ArrayList<>();
 
         for (SkillUpEntry entry : skillUpEntries) {
@@ -148,6 +173,10 @@ public class DomainDataSingleton {
     public void setSkillUpEntries(List<SkillUpEntry> skillUpEntries) {
         this.skillUpEntries = skillUpEntries;
     }
+
+
+
+
 
     public List<StatIncrease> getStatIncreases() {
         return statIncreases;

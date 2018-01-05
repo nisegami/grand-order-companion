@@ -25,13 +25,16 @@
                 android:layout_marginEnd="16dp"
                 />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/servant_info_entry_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_toEndOf="@id/servant_info_entry_thumbnail"
-                android:textSize="35sp" />
+                android:textSize="35sp"
+                android:maxLines="1"
+                android:layout_marginEnd="16dp">
+            </me.grantland.widget.AutofitTextView>
 
         </RelativeLayout>
 

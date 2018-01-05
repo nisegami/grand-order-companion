@@ -196,7 +196,7 @@ public class ServantInfo implements Parcelable {
             ascensionEntries.add(new ArrayList<AscensionEntry>());
             ascensionEntries.add(new ArrayList<AscensionEntry>());
 
-            for (AscensionEntry entry : DomainDataSingleton.getInstance().getAscensionEntries(id)) {
+            for (AscensionEntry entry : DomainDataSingleton.getInstance().getServantAscensionEntries(id)) {
                 ascensionEntries.get(entry.getAscensionNumber() - 1).add(entry);
             }
         }
@@ -217,7 +217,7 @@ public class ServantInfo implements Parcelable {
             skillUpEntries.add(new ArrayList<SkillUpEntry>());
             skillUpEntries.add(new ArrayList<SkillUpEntry>());
 
-            for (SkillUpEntry entry : DomainDataSingleton.getInstance().getSkillUpEntries(id)) {
+            for (SkillUpEntry entry : DomainDataSingleton.getInstance().getServantSkillUpEntries(id)) {
                 skillUpEntries.get(entry.getDestSkillLevel() - 2).add(entry);
             }
         }
