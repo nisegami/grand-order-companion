@@ -7,6 +7,7 @@ import android.util.SparseArray;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -181,11 +182,15 @@ public class ServantInfo implements Parcelable {
     }
 
     public String getThumbnailURL() {
-        return String.format("img/servants/%d_thumb.png", id);
+        return String.format("img/servants/thumb/%d_thumb.png", id);
+    }
+
+    public String getDefaultThumbnail() {
+        return "img/servants/thumb/0_thumb.png";
     }
 
     public String getFullImageURL() {
-        return String.format("img/servants/%d_full.png", id);
+        return String.format("img/servants/%d_full_4.png", id);
     }
 
     public List<List<AscensionEntry>> getAscensionEntries() {

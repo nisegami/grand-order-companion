@@ -24,11 +24,10 @@ public class UserDataSingleton {
         trackedAscensions.add(new TrackedAscension(91, 2));
         trackedAscensions.add(new TrackedAscension(91, 3));
         trackedAscensions.add(new TrackedAscension(91, 4));
-        trackedAscensions.add(new TrackedAscension(86, 1));
-        trackedAscensions.add(new TrackedAscension(86, 2));
-        trackedAscensions.add(new TrackedAscension(86, 3));
-        trackedAscensions.add(new TrackedAscension(86, 4));
-        trackedAscensions.add(new TrackedAscension(3, 4));
+        trackedAscensions.add(new TrackedAscension(52, 4));
+        trackedAscensions.add(new TrackedAscension(47, 3));
+        trackedAscensions.add(new TrackedAscension(47, 4));
+        trackedAscensions.add(new TrackedAscension(65, 3));
     }
 
     public List<TrackedAscension> getTrackedAscensions() {

@@ -19,7 +19,7 @@ public enum Material {
     @SerializedName("dragon_fang") DRAGON_FANG("Dragon Fang", "dragon_fang"),
     @SerializedName("meteor_horseshoe") METEOR_HORSESHOE("Meteor Horseshoe", "meteor_horseshoe"),
     @SerializedName("homunculus_baby") HOMUNCULUS_BABY("Homunculus Baby ", "homunculus_baby"),
-    @SerializedName("octuplet_crystals") OCTUPLET_CRYSTALS("Octuplet Crystals", "octuplet_crystals"),
+    @SerializedName("octuplet_twin_crystals") OCTUPLET_TWIN_CRYSTALS("Octuplet Twin Crystals", "octuplet_twin_crystals"),
     @SerializedName("evil_bone") EVIL_BONE("Evil Bone", "evil_bone"),
     @SerializedName("heart_of_the_foreign_god") HEART_OF_THE_FOREIGN_GOD("Heart of the Foreign God", "heart_of_the_foreign_god"),
     @SerializedName("tearstone_of_blood") TEARSTONE_OF_BLOOD("Tearstone of Blood", "tearstone_of_blood"),
@@ -70,7 +70,7 @@ public enum Material {
     @SerializedName("secret_gem_of_rider") SECRET_GEM_OF_RIDER("Secret Gem of Rider", "secret_gem_of_rider"),
     @SerializedName("secret_gem_of_caster") SECRET_GEM_OF_CASTER("Secret Gem of Caster", "secret_gem_of_caster"),
     @SerializedName("secret_gem_of_assassin") SECRET_GEM_OF_ASSASSIN("Secret Gem of Assassin", "secret_gem_of_assassin"),
-    @SerializedName("secret_gem_of__berserker") SECRET_GEM_OF__BERSERKER("Secret Gem of Berserker", "secret_gem_of__berserker");
+    @SerializedName("secret_gem_of__berserker") SECRET_GEM_OF_BERSERKER("Secret Gem of Berserker", "secret_gem_of_berserker");
 
     private String name;
     private String id;

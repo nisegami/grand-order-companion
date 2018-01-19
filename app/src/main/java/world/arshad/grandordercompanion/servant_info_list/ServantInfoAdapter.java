@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +65,15 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
         final ServantInfo servant = servants.get(position);
 
         holder.name.setText(servant.getName());
-        holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + servant.getThumbnailURL()));
+
+        String thumbnailPath = context.getFilesDir() + servant.getThumbnailURL();
+
+        File thumbnail = new File(thumbnailPath);
+        if (thumbnail.exists()) {
+            holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(thumbnailPath));
+        } else {
+            holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + servant.getDefaultThumbnail()));
+        }
     }
 
     @Override
