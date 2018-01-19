@@ -1,6 +1,8 @@
 package world.arshad.grandordercompanion.needed_ascension_materials;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,24 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
     private final List<NeededMaterialEntry> entries = new ArrayList<>();
     private final Context context;
 
+    private final View.OnClickListener servantOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //What is the Law of Demeter?
+            String message = Joiner.on("\n").join(entries.get(((NeededAscensionMaterialsActivity) context).materialList.getChildAdapterPosition(view)).getServantNames());
+            AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+            alertDialog.setTitle("Materials needed for...");
+            alertDialog.setMessage(message);
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Dismiss",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
+    };
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.needed_material_child_name)
         TextView name;
@@ -52,14 +72,7 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View servantInfoView = inflater.inflate(R.layout.needed_material_entry, parent, false);
-        servantInfoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //What is the Law of Demeter?
-                String message = String.format("Needed for:\n%s", Joiner.on("\n").join(entries.get(((NeededAscensionMaterialsActivity) context).materialList.getChildAdapterPosition(view)).getServantNames()));
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-            }
-        });
+        servantInfoView.setOnClickListener(servantOnClickListener);
         return new ViewHolder(servantInfoView);
     }
 
