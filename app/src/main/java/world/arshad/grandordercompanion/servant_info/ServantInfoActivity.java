@@ -45,7 +45,6 @@ public class ServantInfoActivity extends SidebarActivity {
     RecyclerView skillUpEntryList;
 
 
-    private RecyclerView.LayoutManager layoutManager1;
     private RecyclerView.LayoutManager layoutManager2;
     private EntryAdapter ascensionAdapter;
     private EntryAdapter skillUpAdapter;
@@ -64,7 +63,7 @@ public class ServantInfoActivity extends SidebarActivity {
 
         mViewModel.setServant((ServantInfo) (getIntent().getExtras().getParcelable("servant")));
 
-        servantImage.setImageBitmap(Utilities.loadImageFromStorage(getFilesDir() + mViewModel.getServant().getFullImageURL()));
+        servantImage.setImageBitmap(Utilities.loadImageFromStorage(getFilesDir() + mViewModel.getServant().getFullImageURL(4)));
         classImage.setImageBitmap(Utilities.loadImageFromStorage(getFilesDir() + mViewModel.getServant().getServantClass().getIconURL()));
 
         servantName.setText(mViewModel.getServant().getName());
@@ -87,7 +86,7 @@ public class ServantInfoActivity extends SidebarActivity {
 
         ascensionAdapter = new EntryAdapter(this, ascensionParents);
         ascensionEntryList.setAdapter(ascensionAdapter);
-        layoutManager1 = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this);
         ascensionEntryList.setLayoutManager(layoutManager1);
 
 

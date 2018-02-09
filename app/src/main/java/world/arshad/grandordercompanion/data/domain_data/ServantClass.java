@@ -3,7 +3,7 @@ package world.arshad.grandordercompanion.data.domain_data;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by arsha on 22/12/2017.
+ * Created by arshad on 22/12/2017.
  */
 
 public enum ServantClass {
@@ -15,7 +15,7 @@ public enum ServantClass {
     @SerializedName("rider") RIDER("Rider"),
     @SerializedName("caster") CASTER("Caster"),
     @SerializedName("assassin") ASSASSIN("Assassin"),
-    @SerializedName("beserker") BESERKER("Beserker"),
+    @SerializedName("berserker") BERSERKER("Berserker"),
     @SerializedName("ruler") RULER("Ruler"),
     @SerializedName("avenger") AVENGER("Avenger"),
     @SerializedName("alter_ego") ALTER_EGO("Alter Ego"),

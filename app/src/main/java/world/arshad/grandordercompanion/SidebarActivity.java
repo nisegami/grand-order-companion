@@ -19,7 +19,7 @@ import world.arshad.grandordercompanion.servant_info_list.ServantInfoListActivit
 
 
 /**
- * Created by arsha on 04/01/2018.
+ * Created by arshad on 04/01/2018.
  */
 
 public class SidebarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

@@ -3,7 +3,7 @@ package world.arshad.grandordercompanion.data.domain_data;
 import android.os.Parcelable;
 
 /**
- * Created by arsha on 02/01/2018.
+ * Created by arshad on 02/01/2018.
  */
 
 public abstract class Entry implements Parcelable {

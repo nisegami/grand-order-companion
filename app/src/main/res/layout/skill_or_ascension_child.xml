@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/cardview_light_background">
@@ -21,7 +22,7 @@
         android:textColor="@color/cardview_light_background"
         android:background="@color/cardview_dark_background"/>
 
-    <me.grantland.widget.AutofitTextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/skill_or_ascension_child_name"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
@@ -30,7 +31,8 @@
         android:textSize="30sp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="8dp"
-        android:maxLines="1">
-    </me.grantland.widget.AutofitTextView>
+        android:maxLines="1"
+        app:autoSizeTextType="uniform" >
+    </android.support.v7.widget.AppCompatTextView>
 
 </RelativeLayout>

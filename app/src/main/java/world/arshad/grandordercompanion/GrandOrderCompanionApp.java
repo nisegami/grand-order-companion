@@ -13,7 +13,7 @@ import java.util.zip.ZipInputStream;
 import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
 
 /**
- * Created by arsha on 03/01/2018.
+ * Created by arshad on 03/01/2018.
  */
 
 public class GrandOrderCompanionApp extends Application {

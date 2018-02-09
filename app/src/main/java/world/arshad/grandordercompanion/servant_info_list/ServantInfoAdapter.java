@@ -21,7 +21,7 @@ import world.arshad.grandordercompanion.servant_info.ServantInfoActivity;
 import world.arshad.grandordercompanion.utils.Utilities;
 
 /**
- * Created by arsha on 25/12/2017.
+ * Created by arshad on 25/12/2017.
  */
 
 public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.ViewHolder> {
@@ -65,15 +65,7 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
         final ServantInfo servant = servants.get(position);
 
         holder.name.setText(servant.getName());
-
-        String thumbnailPath = context.getFilesDir() + servant.getThumbnailURL();
-
-        File thumbnail = new File(thumbnailPath);
-        if (thumbnail.exists()) {
-            holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(thumbnailPath));
-        } else {
-            holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + servant.getDefaultThumbnail()));
-        }
+        holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + servant.getThumbnailURL(1)));
     }
 
     @Override

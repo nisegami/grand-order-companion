@@ -16,7 +16,7 @@ import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
 import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
 
 /**
- * Created by arsha on 04/01/2018.
+ * Created by arshad on 04/01/2018.
  */
 
 public class NeededAscensionMaterialViewModel extends AndroidViewModel {

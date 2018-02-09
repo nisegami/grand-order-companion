@@ -181,16 +181,12 @@ public class ServantInfo implements Parcelable {
         return  0;
     }
 
-    public String getThumbnailURL() {
-        return String.format("img/servants/thumb/%d_thumb.png", id);
+    public String getThumbnailURL(int i) {
+        return String.format("img/servants/thumb/%d_full_%d.png", id, i);
     }
 
-    public String getDefaultThumbnail() {
-        return "img/servants/thumb/0_thumb.png";
-    }
-
-    public String getFullImageURL() {
-        return String.format("img/servants/%d_full_4.png", id);
+    public String getFullImageURL(int i) {
+        return String.format("img/servants/%d_full_%d.png", id, i);
     }
 
     public List<List<AscensionEntry>> getAscensionEntries() {

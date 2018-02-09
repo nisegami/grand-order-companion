@@ -4,7 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Created by arsha on 29/12/2017.
+ * Created by arshad on 29/12/2017.
  */
 
 public class SummonedServant {

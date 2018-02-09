@@ -22,7 +22,7 @@ import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.utils.Utilities;
 
 /**
- * Created by arsha on 04/01/2018.
+ * Created by arshad on 04/01/2018.
  */
 
 public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAdapter.ViewHolder> {

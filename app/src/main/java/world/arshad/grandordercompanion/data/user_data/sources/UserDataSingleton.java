@@ -6,7 +6,7 @@ import java.util.List;
 import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
 
 /**
- * Created by arsha on 04/01/2018.
+ * Created by arshad on 04/01/2018.
  */
 
 public class UserDataSingleton {

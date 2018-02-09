@@ -24,7 +24,7 @@ import world.arshad.grandordercompanion.data.domain_data.SkillUpEntry;
 import world.arshad.grandordercompanion.data.domain_data.StatIncrease;
 
 /**
- * Created by arsha on 29/12/2017.
+ * Created by arshad on 29/12/2017.
  */
 
 public class DomainDataSingleton {

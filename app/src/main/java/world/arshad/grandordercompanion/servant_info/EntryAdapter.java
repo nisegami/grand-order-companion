@@ -21,7 +21,7 @@ import world.arshad.grandordercompanion.data.domain_data.Entry;
 import world.arshad.grandordercompanion.utils.Utilities;
 
 /**
- * Created by arsha on 02/01/2018.
+ * Created by arshad on 02/01/2018.
  */
 
 public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.EntryParentViewHolder, EntryAdapter.EntryChildViewHolder> {

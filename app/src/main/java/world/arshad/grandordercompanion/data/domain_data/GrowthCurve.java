@@ -3,7 +3,7 @@ package world.arshad.grandordercompanion.data.domain_data;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by arsha on 22/12/2017.
+ * Created by arshad on 22/12/2017.
  */
 
 public enum GrowthCurve {

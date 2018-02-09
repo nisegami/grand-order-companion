@@ -10,7 +10,7 @@ import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingl
 import world.arshad.grandordercompanion.data.domain_data.ServantInfo;
 
 /**
- * Created by arsha on 22/12/2017.
+ * Created by arshad on 22/12/2017.
  */
 
 public class ServantInfoListViewModel extends AndroidViewModel {

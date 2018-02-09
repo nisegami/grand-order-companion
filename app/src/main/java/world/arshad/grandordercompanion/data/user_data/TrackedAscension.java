@@ -1,7 +1,7 @@
 package world.arshad.grandordercompanion.data.user_data;
 
 /**
- * Created by arsha on 04/01/2018.
+ * Created by arshad on 04/01/2018.
  */
 
 public class TrackedAscension {
