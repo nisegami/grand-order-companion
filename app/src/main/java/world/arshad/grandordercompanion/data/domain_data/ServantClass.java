@@ -32,4 +32,9 @@ public enum ServantClass {
     public String getIconURL() {
         return String.format("img/class_icons/%s.png", name.toLowerCase());
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -130,9 +130,6 @@ public class DomainDataSingleton {
         return materials;
     }
 
-
-
-
     public List<ServantInfo> getServantInfos() {
         return servantInfos;
     }

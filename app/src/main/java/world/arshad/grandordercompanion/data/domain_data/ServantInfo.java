@@ -205,6 +205,14 @@ public class ServantInfo implements Parcelable {
         return ascensionEntries;
     }
 
+    public List<AscensionEntry> getAscensionEntries(int ascensionNumber) {
+        if (ascensionEntries == null) {
+            getAscensionEntries();
+        }
+        return ascensionEntries.get(ascensionNumber);
+
+    }
+
     public List<List<SkillUpEntry>> getSkillUpEntries() {
         if (skillUpEntries == null) {
             skillUpEntries = new ArrayList<>();
@@ -224,5 +232,18 @@ public class ServantInfo implements Parcelable {
         }
 
         return skillUpEntries;
+    }
+
+    public List<SkillUpEntry> getSkillUpEntries(int skillDestLevel) {
+        if (skillUpEntries == null) {
+            getSkillUpEntries();
+        }
+
+        return skillUpEntries.get(skillDestLevel);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s (%s)", name, servantClass.toString());
     }
 }

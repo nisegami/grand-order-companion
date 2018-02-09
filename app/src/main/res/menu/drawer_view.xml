@@ -9,5 +9,9 @@
             android:id="@+id/nav_needed_materials"
             android:icon="@drawable/ic_check_box_black_24dp"
             android:title="Needed Materials" />
+        <item
+            android:id="@+id/nav_tracked_acensions"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Tracked Ascensions" />
     </group>
 </menu>

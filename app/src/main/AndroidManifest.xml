@@ -12,18 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".servant_info_list.ServantInfoListActivity"
-            android:launchMode="singleTask" >
+        <activity
+            android:name=".servant_info_list.ServantInfoListActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".servant_info.ServantInfoActivity"
+        <activity
+            android:name=".servant_info.ServantInfoActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".needed_ascension_materials.NeededAscensionMaterialsActivity"
+        <activity
+            android:name=".needed_ascension_materials.NeededAscensionMaterialsActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".tracked_ascension_management.TrackedAscensionsActivity"></activity>
     </application>
 
 </manifest>

@@ -14,8 +14,10 @@ import android.view.MenuItem;
 
 import java.util.Map;
 
+import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
 import world.arshad.grandordercompanion.needed_ascension_materials.NeededAscensionMaterialsActivity;
 import world.arshad.grandordercompanion.servant_info_list.ServantInfoListActivity;
+import world.arshad.grandordercompanion.tracked_ascension_management.TrackedAscensionsActivity;
 
 
 /**
@@ -89,6 +91,9 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_needed_materials) {
             showScreen(NeededAscensionMaterialsActivity.class);
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_tracked_acensions) {
+            showScreen(TrackedAscensionsActivity.class);
+            drawer.closeDrawer(GravityCompat.START);
         } else {
             drawer.closeDrawer(GravityCompat.START);
         }
@@ -100,7 +105,7 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
      * Switch to another activity
      * @param cls The class of the activity to be displayed
      */
-    protected void showScreen(Class cls) {
+    public void showScreen(Class cls) {
         Intent in = new Intent(this, cls);
         startActivity(in);
     }
@@ -111,7 +116,7 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
      * @param arg_key the key of an argument to be passed along to the new activity
      * @param arg_value the value of an argument to be passed along to the new activity
      */
-    protected void showScreen(Class cls, String arg_key, String arg_value) {
+    public void showScreen(Class cls, String arg_key, String arg_value) {
         Intent in = new Intent(this, cls);
         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         in.putExtra(arg_key, arg_value);
@@ -124,7 +129,7 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
      * @param arg_key the key of an argument to be passed along to the new activity
      * @param arg_value the value of an argument to be passed along to the new activity
      */
-    protected void showScreen(Class cls, String arg_key, Parcelable arg_value) {
+    public void showScreen(Class cls, String arg_key, Parcelable arg_value) {
         Intent in = new Intent(this, cls);
         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         in.putExtra(arg_key, arg_value);
@@ -136,7 +141,7 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
      * @param cls The class of the activity to be displayed
      * @param args a mapping of labels to values to be passed in as extras
      */
-    protected void showScreen(Class cls, Map<String, String> args) {
+    public void showScreen(Class cls, Map<String, String> args) {
         Intent in = new Intent(this, cls);
         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         for(String key : args.keySet()) {

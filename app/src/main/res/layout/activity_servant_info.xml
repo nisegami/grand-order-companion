@@ -6,158 +6,160 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/linearLayout"
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include
-                android:id="@+id/include"
-                layout="@layout/toolbar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/servant_info_name"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:gravity="center"
-                android:textSize="45sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/include"/>
+                <TextView
+                    android:id="@+id/servant_info_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="45sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-            <ImageView
-                android:id="@+id/servant_info_class_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/servant_info_image"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_attack_value"
-                app:layout_constraintBottom_toTopOf="@id/servant_info_hp_label" />
+                <ImageView
+                    android:id="@+id/servant_info_class_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_attack_value"
+                    app:layout_constraintBottom_toTopOf="@id/servant_info_hp_label" />
 
-            <ImageView
-                android:id="@+id/servant_info_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="fitStart"
-                android:adjustViewBounds="true"
-                app:layout_constraintEnd_toStartOf="@id/servant_info_attack_value"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_name"/>
+                <ImageView
+                    android:id="@+id/servant_info_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="fitStart"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintEnd_toStartOf="@id/servant_info_attack_value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_name"/>
 
-            <TextView
-                android:id="@+id/servant_info_attack_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/attack_label"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/servant_info_image"
-                app:layout_constraintBottom_toTopOf="@id/servant_info_attack_value" />
+                <TextView
+                    android:id="@+id/servant_info_attack_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attack_label"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
+                    app:layout_constraintBottom_toTopOf="@id/servant_info_attack_value" />
 
-            <TextView
-                android:id="@+id/servant_info_attack_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:textSize="20sp"
-                android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_attack_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/servant_info_image"
-                app:layout_constraintBottom_toTopOf="@id/servant_info_attack_value"/>
+                <TextView
+                    android:id="@+id/servant_info_attack_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_attack_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
+                    app:layout_constraintBottom_toTopOf="@id/servant_info_attack_value"/>
 
-            <TextView
-                android:id="@+id/servant_info_hp_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/hp_label"
-                android:textSize="20sp"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_class_image"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/servant_info_image"
-                app:layout_constraintBottom_toTopOf="@id/servant_info_hp_value"/>
+                <TextView
+                    android:id="@+id/servant_info_hp_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hp_label"
+                    android:textSize="20sp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_class_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
+                    app:layout_constraintBottom_toTopOf="@id/servant_info_hp_value"/>
 
-            <TextView
-                android:id="@+id/servant_info_hp_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_hp_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/servant_info_image"
-                app:layout_constraintBaseline_toBaselineOf="@id/servant_info_image"/>
+                <TextView
+                    android:id="@+id/servant_info_hp_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_hp_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
+                    app:layout_constraintBaseline_toBaselineOf="@id/servant_info_image"/>
 
-            <TextView
-                android:id="@+id/servant_info_ascension_materials_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/ascension_materials_label"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_image" />
+                <TextView
+                    android:id="@+id/servant_info_ascension_materials_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/ascension_materials_label"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_image" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/servant_info_ascension_entries"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:scrollbars="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_ascension_materials_label" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/servant_info_ascension_entries"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_ascension_materials_label" />
 
-            <TextView
-                android:id="@+id/servant_info_skill_up_materials_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/skill_up_materials_label"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/servant_info_ascension_entries"/>
+                <TextView
+                    android:id="@+id/servant_info_skill_up_materials_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/skill_up_materials_label"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_ascension_entries"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/servant_info_skill_up_entries"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:scrollbars="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/servant_info_skill_up_materials_label" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/servant_info_skill_up_entries"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/servant_info_skill_up_materials_label" />
 
 
-        </android.support.constraint.ConstraintLayout>
+            </android.support.constraint.ConstraintLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
 
 
     <android.support.design.widget.NavigationView

@@ -32,7 +32,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="8dp"
         android:maxLines="1"
-        app:autoSizeTextType="uniform" >
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="35sp" >
     </android.support.v7.widget.AppCompatTextView>
 
 </RelativeLayout>

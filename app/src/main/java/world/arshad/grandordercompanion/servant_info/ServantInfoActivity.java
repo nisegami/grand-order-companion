@@ -45,7 +45,6 @@ public class ServantInfoActivity extends SidebarActivity {
     RecyclerView skillUpEntryList;
 
 
-    private RecyclerView.LayoutManager layoutManager2;
     private EntryAdapter ascensionAdapter;
     private EntryAdapter skillUpAdapter;
 
@@ -61,7 +60,7 @@ public class ServantInfoActivity extends SidebarActivity {
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(ServantInfoViewModel.class);
 
-        mViewModel.setServant((ServantInfo) (getIntent().getExtras().getParcelable("servant")));
+        mViewModel.setServant((getIntent().getExtras().getParcelable("servant")));
 
         servantImage.setImageBitmap(Utilities.loadImageFromStorage(getFilesDir() + mViewModel.getServant().getFullImageURL(4)));
         classImage.setImageBitmap(Utilities.loadImageFromStorage(getFilesDir() + mViewModel.getServant().getServantClass().getIconURL()));
@@ -81,7 +80,7 @@ public class ServantInfoActivity extends SidebarActivity {
                 objects.add(entry);
             }
 
-            ascensionParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Ascension", i + 1), objects));
+            ascensionParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Ascension", i + 1), objects, mViewModel.getServant().getId(), i));
         }
 
         ascensionAdapter = new EntryAdapter(this, ascensionParents);
@@ -101,13 +100,13 @@ public class ServantInfoActivity extends SidebarActivity {
                 objects.add(entry);
             }
 
-            skillParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Skill Up", i + 2), objects));
+            skillParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Skill Up", i + 2), objects, mViewModel.getServant().getId(), i));
         }
 
         skillUpAdapter = new EntryAdapter(this, skillParents);
         skillUpEntryList.setAdapter(skillUpAdapter);
         skillUpEntryList.setHasFixedSize(true);
-        layoutManager2 = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this);
         skillUpEntryList.setLayoutManager(layoutManager2);
     }
 }

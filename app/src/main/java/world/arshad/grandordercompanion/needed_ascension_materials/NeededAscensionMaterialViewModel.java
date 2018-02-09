@@ -38,7 +38,7 @@ public class NeededAscensionMaterialViewModel extends AndroidViewModel {
             Map<Material, List<String>> servants = new HashMap<>();
 
             List<AscensionEntry> ascensionEntries = DomainDataSingleton.getInstance().getAscensionEntries();
-            List<TrackedAscension> trackedAscensions = UserDataSingleton.getInstance().getTrackedAscensions();
+            List<TrackedAscension> trackedAscensions = UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().getAll();
 
             for (AscensionEntry entry : ascensionEntries) {
                 if (trackedAscensions.contains(new TrackedAscension(entry.getServantId(), entry.getAscensionNumber()))) {
