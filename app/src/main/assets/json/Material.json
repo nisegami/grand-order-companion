@@ -1,0 +1,270 @@
+[
+    {
+        "id": "holy_grail",
+        "name": "Holy Grail"
+    },
+    {
+        "id": "crystallized_lore",
+        "name": "Crystallized Lore"
+    },
+    {
+        "id": "phoenix_feather",
+        "name": "Phoenix Feather"
+    },
+    {
+        "id": "seed_of_yggdrassil",
+        "name": "Seed of Yggdrassil"
+    },
+    {
+        "id": "proof_of_hero",
+        "name": "Proof of Hero"
+    },
+    {
+        "id": "voids_dust",
+        "name": "Void's Dust"
+    },
+    {
+        "id": "dragons_reverse_scale",
+        "name": "Dragon's Reverse Scale"
+    },
+    {
+        "id": "claw_of_chaos",
+        "name": "Claw of Chaos"
+    },
+    {
+        "id": "ghost_lantern",
+        "name": "Ghost Lantern"
+    },
+    {
+        "id": "serpent_jewel",
+        "name": "Serpent Jewel"
+    },
+    {
+        "id": "eternal_gear",
+        "name": "Eternal Gear"
+    },
+    {
+        "id": "forbidden_page",
+        "name": "Forbidden Page"
+    },
+    {
+        "id": "dragon_fang",
+        "name": "Dragon Fang"
+    },
+    {
+        "id": "meteor_horseshoe",
+        "name": "Meteor Horseshoe"
+    },
+    {
+        "id": "homunculus_baby",
+        "name": "Homunculus Baby "
+    },
+    {
+        "id": "octuplet_twin_crystals",
+        "name": "Octuplet Twin Crystals"
+    },
+    {
+        "id": "evil_bone",
+        "name": "Evil Bone"
+    },
+    {
+        "id": "heart_of_the_foreign_god",
+        "name": "Heart of the Foreign God"
+    },
+    {
+        "id": "tearstone_of_blood",
+        "name": "Tearstone of Blood"
+    },
+    {
+        "id": "black_tallow",
+        "name": "Black Tallow"
+    },
+    {
+        "id": "spirit_root",
+        "name": "Spirit Root"
+    },
+    {
+        "id": "war_horses_small_horn",
+        "name": "War Horse's Small Horn"
+    },
+    {
+        "id": "chain_of_fools",
+        "name": "Chain of Fools"
+    },
+    {
+        "id": "great_knight_medal",
+        "name": "Great Knight Medal"
+    },
+    {
+        "id": "lamp_of_sealed_evil",
+        "name": "Lamp of Sealed Evil"
+    },
+    {
+        "id": "scarab_of_wisdom",
+        "name": "Scarab of Wisdom"
+    },
+    {
+        "id": "shell_of_recollection",
+        "name": "Shell of Recollection"
+    },
+    {
+        "id": "cursed_beast_gallstone",
+        "name": "Cursed Beast Gallstone"
+    },
+    {
+        "id": "primordial_lanugo",
+        "name": "Primordial Lanugo"
+    },
+    {
+        "id": "deadly_poison_stinger",
+        "name": "Deadly Poison Stinger"
+    },
+    {
+        "id": "magic_cerebrospinal_fluid",
+        "name": "Magic Cerebrospinal Fluid"
+    },
+    {
+        "id": "chichi_divine_wine",
+        "name": "Chichi Divine Wine"
+    },
+    {
+        "id": "saber_piece",
+        "name": "Saber Piece"
+    },
+    {
+        "id": "archer_piece",
+        "name": "Archer Piece"
+    },
+    {
+        "id": "lancer_piece",
+        "name": "Lancer Piece"
+    },
+    {
+        "id": "rider_piece",
+        "name": "Rider Piece "
+    },
+    {
+        "id": "caster_piece",
+        "name": "Caster Piece"
+    },
+    {
+        "id": "assassin_piece",
+        "name": "Assassin Piece"
+    },
+    {
+        "id": "berserker_piece",
+        "name": "Berserker Piece "
+    },
+    {
+        "id": "saber_monument",
+        "name": "Saber Monument"
+    },
+    {
+        "id": "archer_monument",
+        "name": "Archer Monument"
+    },
+    {
+        "id": "lancer_monument",
+        "name": "Lancer Monument"
+    },
+    {
+        "id": "rider_monument",
+        "name": "Rider Monument"
+    },
+    {
+        "id": "caster_monument",
+        "name": "Caster Monument"
+    },
+    {
+        "id": "assassin_monument",
+        "name": "Assassin Monument"
+    },
+    {
+        "id": "berserker_monument",
+        "name": "Berserker Monument"
+    },
+    {
+        "id": "gem_of_saber",
+        "name": "Gem of Saber"
+    },
+    {
+        "id": "gem_of_archer",
+        "name": "Gem of Archer"
+    },
+    {
+        "id": "gem_of_lancer",
+        "name": "Gem of Lancer"
+    },
+    {
+        "id": "gem_of_rider",
+        "name": "Gem of Rider"
+    },
+    {
+        "id": "gem_of_caster",
+        "name": "Gem of Caster"
+    },
+    {
+        "id": "gem_of_assassin",
+        "name": "Gem of Assassin"
+    },
+    {
+        "id": "gem_of_berserker",
+        "name": "Gem of Berserker"
+    },
+    {
+        "id": "magic_gem_of_saber",
+        "name": "Magic Gem of Saber"
+    },
+    {
+        "id": "magic_gem_of_archer",
+        "name": "Magic Gem of Archer"
+    },
+    {
+        "id": "magic_gem_of_lancer",
+        "name": "Magic Gem of Lancer"
+    },
+    {
+        "id": "magic_gem_of_rider",
+        "name": "Magic Gem of Rider"
+    },
+    {
+        "id": "magic_gem_of_caster",
+        "name": "Magic Gem of Caster"
+    },
+    {
+        "id": "magic_gem_of_assassin",
+        "name": "Magic Gem of Assassin"
+    },
+    {
+        "id": "magic_gem_of_berserker",
+        "name": "Magic Gem of Berserker"
+    },
+    {
+        "id": "secret_gem_of_saber",
+        "name": "Secret Gem of Saber"
+    },
+    {
+        "id": "secret_gem_of_archer",
+        "name": "Secret Gem of Archer"
+    },
+    {
+        "id": "secret_gem_of_lancer",
+        "name": "Secret Gem of Lancer"
+    },
+    {
+        "id": "secret_gem_of_rider",
+        "name": "Secret Gem of Rider"
+    },
+    {
+        "id": "secret_gem_of_caster",
+        "name": "Secret Gem of Caster"
+    },
+    {
+        "id": "secret_gem_of_assassin",
+        "name": "Secret Gem of Assassin"
+    },
+    {
+        "id": "secret_gem_of_berserker",
+        "name": "Secret Gem of Berserker"
+    }
+]

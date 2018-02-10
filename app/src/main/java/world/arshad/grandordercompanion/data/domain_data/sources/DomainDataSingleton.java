@@ -6,9 +6,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -44,31 +43,27 @@ public class DomainDataSingleton {
     private DomainDataSingleton() {
     }
 
-    public void loadDomainData(Context context) {
-
-        String jsonText;
-        Gson gson = new Gson();
-
-        jsonText = readJSON(new File(context.getFilesDir() + "json/ServantInfo.json"));
-        DomainDataSingleton.getInstance().setServantInfos(Arrays.asList(gson.fromJson(jsonText, ServantInfo[].class)));
-
-        jsonText = readJSON(new File(context.getFilesDir() + "json/AscensionEntry.json"));
-        DomainDataSingleton.getInstance().setAscensionEntries(Arrays.asList(gson.fromJson(jsonText, AscensionEntry[].class)));
-
-        jsonText = readJSON(new File(context.getFilesDir() + "json/SkillUpEntry.json"));
-        DomainDataSingleton.getInstance().setSkillUpEntries(Arrays.asList(gson.fromJson(jsonText, SkillUpEntry[].class)));
-    }
-
-    private static String readJSON(File file) {
-
-        FileInputStream resourceReader;
+    public static void loadDomainData(Context context) {
 
         try {
-            resourceReader = new FileInputStream(file);
+            String jsonText;
+            Gson gson = new Gson();
+
+            jsonText = readJSON(context.getAssets().open("json/ServantInfo.json"));
+            DomainDataSingleton.getInstance().setServantInfos(Arrays.asList(gson.fromJson(jsonText, ServantInfo[].class)));
+
+            jsonText = readJSON(context.getAssets().open("json/AscensionEntry.json"));
+            DomainDataSingleton.getInstance().setAscensionEntries(Arrays.asList(gson.fromJson(jsonText, AscensionEntry[].class)));
+
+            jsonText = readJSON(context.getAssets().open("json/SkillUpEntry.json"));
+            DomainDataSingleton.getInstance().setSkillUpEntries(Arrays.asList(gson.fromJson(jsonText, SkillUpEntry[].class)));
+
         } catch (IOException e) {
-            Log.e("JSON ERROR", "Could not open file", e);
-            return "[]";
+            Log.e("JSON ERROR", "Could not open json file", e);
         }
+    }
+
+    private static String readJSON(InputStream resourceReader) throws IOException {
 
         Writer writer = new StringWriter();
 

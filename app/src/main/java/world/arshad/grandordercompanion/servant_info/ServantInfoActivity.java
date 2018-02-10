@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,17 +15,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
-import world.arshad.grandordercompanion.SidebarActivity;
 import world.arshad.grandordercompanion.data.domain_data.AscensionEntry;
 import world.arshad.grandordercompanion.data.domain_data.Entry;
-import world.arshad.grandordercompanion.data.domain_data.ServantInfo;
 import world.arshad.grandordercompanion.data.domain_data.SkillUpEntry;
 import world.arshad.grandordercompanion.utils.Utilities;
 
-public class ServantInfoActivity extends SidebarActivity {
+public class ServantInfoActivity extends AppCompatActivity {
 
     @BindView(R.id.servant_info_name)
-    TextView servantName;
+    Toolbar servantName;
 
     @BindView(R.id.servant_info_attack_value)
     TextView attackValue;
@@ -44,7 +43,6 @@ public class ServantInfoActivity extends SidebarActivity {
     @BindView(R.id.servant_info_skill_up_entries)
     RecyclerView skillUpEntryList;
 
-
     private EntryAdapter ascensionAdapter;
     private EntryAdapter skillUpAdapter;
 
@@ -55,17 +53,15 @@ public class ServantInfoActivity extends SidebarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servant_info);
 
-        super.setUpSidebar();
-
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(ServantInfoViewModel.class);
 
         mViewModel.setServant((getIntent().getExtras().getParcelable("servant")));
 
-        servantImage.setImageBitmap(Utilities.loadImageFromStorage(getFilesDir() + mViewModel.getServant().getFullImageURL(4)));
-        classImage.setImageBitmap(Utilities.loadImageFromStorage(getFilesDir() + mViewModel.getServant().getServantClass().getIconURL()));
+        servantImage.setImageDrawable(Utilities.loadImageFromStorage(mViewModel.getServant().getFullImageURL(4), this));
+        classImage.setImageDrawable(Utilities.loadImageFromStorage(mViewModel.getServant().getServantClass().getIconURL(), this));
 
-        servantName.setText(mViewModel.getServant().getName());
+        servantName.setTitle(mViewModel.getServant().getName());
         attackValue.setText(String.format("%d / %d", mViewModel.getServant().getBaseAttack(), mViewModel.getServant().getMaxAttack()));
         hpValue.setText(String.format("%d / %d", mViewModel.getServant().getBaseHp(), mViewModel.getServant().getMaxHp()));
 
@@ -76,11 +72,9 @@ public class ServantInfoActivity extends SidebarActivity {
         for (int i = 0; i < 4; i++) {
             List<Entry> objects = new ArrayList<>();
 
-            for (Entry entry : ascensionEntries.get(i)) {
-                objects.add(entry);
-            }
+            objects.addAll(ascensionEntries.get(i));
 
-            ascensionParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Ascension", i + 1), objects, mViewModel.getServant().getId(), i));
+            ascensionParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Ascension", i + 1), objects));
         }
 
         ascensionAdapter = new EntryAdapter(this, ascensionParents);
@@ -88,19 +82,15 @@ public class ServantInfoActivity extends SidebarActivity {
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this);
         ascensionEntryList.setLayoutManager(layoutManager1);
 
-
-
         List<EntryAdapter.EntryParent> skillParents = new ArrayList<>();
         List<List<SkillUpEntry>> skillEntries = mViewModel.getServant().getSkillUpEntries();
 
         for (int i = 0; i < 9; i++) {
             List<Entry> objects = new ArrayList<>();
 
-            for (Entry entry : skillEntries.get(i)) {
-                objects.add(entry);
-            }
+            objects.addAll(skillEntries.get(i));
 
-            skillParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Skill Up", i + 2), objects, mViewModel.getServant().getId(), i));
+            skillParents.add(i, new EntryAdapter.EntryParent(String.format("%s : %d", "Skill Up", i + 2), objects));
         }
 
         skillUpAdapter = new EntryAdapter(this, skillParents);
@@ -108,5 +98,8 @@ public class ServantInfoActivity extends SidebarActivity {
         skillUpEntryList.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this);
         skillUpEntryList.setLayoutManager(layoutManager2);
+
+        setSupportActionBar(servantName);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 }

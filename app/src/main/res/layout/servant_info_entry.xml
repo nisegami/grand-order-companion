@@ -2,10 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="85dp">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -16,14 +15,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:id="@+id/servant_info_entry_thumbnail"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="16dp" />
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitStart"/>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/servant_info_entry_name"
@@ -35,7 +36,7 @@
                 android:layout_marginEnd="16dp"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="30sp"
-                app:autoSizeMaxTextSize="40sp">
+                app:autoSizeMaxTextSize="38sp">
             </android.support.v7.widget.AppCompatTextView>
 
         </RelativeLayout>

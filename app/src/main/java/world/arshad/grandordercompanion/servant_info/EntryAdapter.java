@@ -1,15 +1,13 @@
 package world.arshad.grandordercompanion.servant_info;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
@@ -22,8 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.data.domain_data.Entry;
-import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
-import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
 import world.arshad.grandordercompanion.utils.Utilities;
 
 /**
@@ -36,7 +32,9 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
     private final LayoutInflater mInflater;
 
     public static class EntryParentViewHolder extends GroupViewHolder {
-        @BindView(R.id.skill_or_ascension_parent_number_label) TextView entryNumberLabel;
+        @BindView(R.id.skill_or_ascension_parent_label) TextView entryNumberLabel;
+
+        @BindView(R.id.skill_or_ascension_parent_button) ImageButton entryButton;
 
         public EntryParentViewHolder(View view) {
             super(view);
@@ -56,13 +54,8 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
     }
 
     public static class EntryParent extends ExpandableGroup<Entry> {
-        private final int servantId;
-        private final int number;
-
-        EntryParent(String title, List<Entry> items, int servantId, int number) {
+        EntryParent(String title, List<Entry> items) {
             super(title, items);
-            this.servantId = servantId;
-            this.number = number;
         }
     }
 
@@ -87,16 +80,14 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
     @Override
     public void onBindGroupViewHolder(EntryAdapter.EntryParentViewHolder holder, int position, ExpandableGroup group) {
         holder.entryNumberLabel.setText(group.getTitle());
-        holder.entryNumberLabel.setOnLongClickListener(view -> {
-            new AlertDialog.Builder(context)
-                    .setTitle("Confirmation")
-                    .setMessage(String.format("Do you really want to track %s?", group.getTitle()))
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    //TODO somehow handle ascensions vs skills
-                    .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().insert(new TrackedAscension((((EntryParent) group).servantId), ((EntryParent) group).number)))
-                    .setNegativeButton(android.R.string.no, null).show();
-            return true;
-        });
+
+        holder.entryButton.setOnClickListener(view -> new AlertDialog.Builder(context)
+                .setTitle("Track Entry?")
+                .setIcon(R.drawable.ic_warning_black_24dp)
+                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> ((Entry) group.getItems().get(0)).trackThisEntry())
+                .setNegativeButton(android.R.string.no, null).show());
+
+        holder.entryButton.setBackgroundResource(R.drawable.ic_eye_black_24dp);
 
     }
 
@@ -104,6 +95,6 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
         Entry entry = ((EntryParent) group).getItems().get(childIndex);
         holder.name.setText(entry.getMaterial().getName());
         holder.count.setText(String.valueOf(entry.getCount()));
-        holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + entry.getMaterial().getIconURL()));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context));
     }
 }

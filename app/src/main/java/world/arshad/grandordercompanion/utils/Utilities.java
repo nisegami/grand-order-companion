@@ -1,12 +1,10 @@
 package world.arshad.grandordercompanion.utils;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Created by arshad on 29/12/2017.
@@ -14,18 +12,14 @@ import java.io.FileNotFoundException;
 
 public class Utilities {
 
-    public static Bitmap loadImageFromStorage(String filename) {
-
+    public static Drawable loadImageFromStorage(String filename, Context context) {
         try {
-            File f = new File(filename);
-            return BitmapFactory.decodeStream(new FileInputStream(f));
-        }
-        catch (FileNotFoundException e)
-        {
-            Log.e("IMAGE LOADING", "Failed to load image: " + filename);
+            return Drawable.createFromStream(context.getAssets().open(filename), null);
+        } catch (IOException e) {
+            Log.e("IMAGE LOADING", "Failed to load image: " + filename, e);
         }
 
-        return Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        return null;
     }
 
 }

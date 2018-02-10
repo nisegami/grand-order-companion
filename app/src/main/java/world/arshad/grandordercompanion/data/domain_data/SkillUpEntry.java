@@ -90,4 +90,11 @@ public class SkillUpEntry extends Entry implements Parcelable
         return  0;
     }
 
+
+
+    public void trackThisEntry() {
+        return;
+//        UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().insert(new TrackedAscension(servantId, ascensionNumber));
+    }
+
 }

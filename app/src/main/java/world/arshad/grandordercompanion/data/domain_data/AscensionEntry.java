@@ -5,6 +5,9 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
+import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
+
 public class AscensionEntry extends Entry implements Parcelable
 {
 
@@ -92,6 +95,10 @@ public class AscensionEntry extends Entry implements Parcelable
 
     public int describeContents() {
         return  0;
+    }
+
+    public void trackThisEntry() {
+        UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().insert(new TrackedAscension(servantId, ascensionNumber));
     }
 
 }

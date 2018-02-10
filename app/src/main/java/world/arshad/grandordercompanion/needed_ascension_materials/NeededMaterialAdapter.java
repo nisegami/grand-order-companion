@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.common.base.Joiner;
 
@@ -20,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.utils.Utilities;
+
+import static android.content.DialogInterface.BUTTON_NEUTRAL;
 
 /**
  * Created by arshad on 04/01/2018.
@@ -38,12 +39,8 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
             AlertDialog alertDialog = new AlertDialog.Builder(context).create();
             alertDialog.setTitle("Materials needed for...");
             alertDialog.setMessage(message);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Dismiss",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
+            alertDialog.setButton(BUTTON_NEUTRAL, "Dismiss",
+                    (dialog, which) -> dialog.dismiss());
             alertDialog.show();
         }
     };
@@ -82,7 +79,7 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
 
         holder.name.setText(entry.getMaterial().getName());
         holder.count.setText(String.valueOf(entry.getCount()));
-        holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + entry.getMaterial().getIconURL()));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context));
     }
 
     @Override

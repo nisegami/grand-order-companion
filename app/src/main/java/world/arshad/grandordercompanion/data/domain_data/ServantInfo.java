@@ -2,17 +2,12 @@ package world.arshad.grandordercompanion.data.domain_data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.SparseArray;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
 
@@ -182,7 +177,7 @@ public class ServantInfo implements Parcelable {
     }
 
     public String getThumbnailURL(int i) {
-        return String.format("img/servants/thumb/%d_full_%d.png", id, i);
+        return String.format("img/servants/thumb/%d_thumb_%d.png", id, i);
     }
 
     public String getFullImageURL(int i) {
@@ -192,10 +187,10 @@ public class ServantInfo implements Parcelable {
     public List<List<AscensionEntry>> getAscensionEntries() {
         if (ascensionEntries == null) {
             ascensionEntries = new ArrayList<>();
-            ascensionEntries.add(new ArrayList<AscensionEntry>());
-            ascensionEntries.add(new ArrayList<AscensionEntry>());
-            ascensionEntries.add(new ArrayList<AscensionEntry>());
-            ascensionEntries.add(new ArrayList<AscensionEntry>());
+            ascensionEntries.add(new ArrayList<>());
+            ascensionEntries.add(new ArrayList<>());
+            ascensionEntries.add(new ArrayList<>());
+            ascensionEntries.add(new ArrayList<>());
 
             for (AscensionEntry entry : DomainDataSingleton.getInstance().getServantAscensionEntries(id)) {
                 ascensionEntries.get(entry.getAscensionNumber() - 1).add(entry);
@@ -209,22 +204,22 @@ public class ServantInfo implements Parcelable {
         if (ascensionEntries == null) {
             getAscensionEntries();
         }
-        return ascensionEntries.get(ascensionNumber);
+        return ascensionEntries.get(ascensionNumber - 1);
 
     }
 
     public List<List<SkillUpEntry>> getSkillUpEntries() {
         if (skillUpEntries == null) {
             skillUpEntries = new ArrayList<>();
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
-            skillUpEntries.add(new ArrayList<SkillUpEntry>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
+            skillUpEntries.add(new ArrayList<>());
 
             for (SkillUpEntry entry : DomainDataSingleton.getInstance().getServantSkillUpEntries(id)) {
                 skillUpEntries.get(entry.getDestSkillLevel() - 2).add(entry);
@@ -239,7 +234,7 @@ public class ServantInfo implements Parcelable {
             getSkillUpEntries();
         }
 
-        return skillUpEntries.get(skillDestLevel);
+        return skillUpEntries.get(skillDestLevel - 2);
     }
 
     @Override

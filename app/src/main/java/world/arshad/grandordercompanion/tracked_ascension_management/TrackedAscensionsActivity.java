@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.SidebarActivity;
-import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
 import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
 
 public class TrackedAscensionsActivity extends SidebarActivity {
@@ -20,6 +20,9 @@ public class TrackedAscensionsActivity extends SidebarActivity {
 
     @BindView(R.id.tracked_ascensions_recycler_view)
     RecyclerView trackedAscensionRecyclerView;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private TrackedAscensionsViewModel mViewModel;
     private TrackedAscensionAdapter trackedAscensionAdapter;
@@ -33,7 +36,17 @@ public class TrackedAscensionsActivity extends SidebarActivity {
 
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(TrackedAscensionsViewModel.class);
+        refreshData();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshData();
+        toolbar.setTitle("Tracked Ascensions");
+    }
+
+    void refreshData() {
         List<TrackedAscensionAdapter.TrackedAscensionParent> trackedAscensionParents = new ArrayList<>();
         List<TrackedAscension> trackedAscensions = mViewModel.getTrackedAscensions();
 

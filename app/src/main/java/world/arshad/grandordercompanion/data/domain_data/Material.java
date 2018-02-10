@@ -70,7 +70,7 @@ public enum Material {
     @SerializedName("secret_gem_of_rider") SECRET_GEM_OF_RIDER("Secret Gem of Rider", "secret_gem_of_rider"),
     @SerializedName("secret_gem_of_caster") SECRET_GEM_OF_CASTER("Secret Gem of Caster", "secret_gem_of_caster"),
     @SerializedName("secret_gem_of_assassin") SECRET_GEM_OF_ASSASSIN("Secret Gem of Assassin", "secret_gem_of_assassin"),
-    @SerializedName("secret_gem_of__berserker") SECRET_GEM_OF_BERSERKER("Secret Gem of Berserker", "secret_gem_of_berserker");
+    @SerializedName("secret_gem_of_berserker") SECRET_GEM_OF_BERSERKER("Secret Gem of Berserker", "secret_gem_of_berserker");
 
     private String name;
     private String id;

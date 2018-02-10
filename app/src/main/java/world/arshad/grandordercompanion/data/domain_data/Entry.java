@@ -18,4 +18,9 @@ public abstract class Entry implements Parcelable {
     public abstract int getServantId();
 
     public abstract void setServantId(int servantId);
+
+    /**
+     * This is a doozy. It adds the relevant ascension or skill up entry to the database.
+     */
+    public abstract void trackThisEntry();
 }

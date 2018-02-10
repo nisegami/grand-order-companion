@@ -1,40 +1,46 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:background="@color/cardview_light_background">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/skill_or_ascension_child_thumbnail"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:scaleType="fitStart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/skill_or_ascension_child_count"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:gravity="center"
-        android:layout_toEndOf="@id/skill_or_ascension_child_thumbnail"
         android:textSize="25sp"
-        android:layout_marginEnd="5dp"
         android:textColor="@color/cardview_light_background"
-        android:background="@color/cardview_dark_background"/>
+        android:background="@color/cardview_dark_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/skill_or_ascension_child_thumbnail" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/skill_or_ascension_child_name"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:layout_toEndOf="@id/skill_or_ascension_child_count"
-        android:textSize="30sp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="8dp"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:maxLines="1"
         app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="20sp"
-        app:autoSizeMaxTextSize="35sp" >
+        app:autoSizeMinTextSize="15sp"
+        app:autoSizeMaxTextSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/skill_or_ascension_child_count">
     </android.support.v7.widget.AppCompatTextView>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

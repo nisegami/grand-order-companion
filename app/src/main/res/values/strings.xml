@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Grand Order Companion</string>
-    <string name="image_url_base">https://arshbox.xyz/fgo/img/</string>
-    <string name="waiting_message">Please wait....</string>
     <string name="skill_up_materials_label">Skill Up Materials:</string>
     <string name="ascension_materials_label">Ascension Materials:</string>
     <string name="attack_label">Attack</string>

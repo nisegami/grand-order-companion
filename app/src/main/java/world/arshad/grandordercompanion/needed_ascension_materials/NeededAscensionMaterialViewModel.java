@@ -30,36 +30,28 @@ public class NeededAscensionMaterialViewModel extends AndroidViewModel {
     }
 
     public List<NeededMaterialEntry> getEntries() {
-        if (entries == null) {
+        entries = new ArrayList<>();
 
-            entries = new ArrayList<>();
+        Map<Material, Integer> counts = new HashMap<>();
+        Map<Material, List<String>> servants = new HashMap<>();
 
-            Map<Material, Integer> counts = new HashMap<>();
-            Map<Material, List<String>> servants = new HashMap<>();
-
-            List<AscensionEntry> ascensionEntries = DomainDataSingleton.getInstance().getAscensionEntries();
-            List<TrackedAscension> trackedAscensions = UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().getAll();
-
-            for (AscensionEntry entry : ascensionEntries) {
-                if (trackedAscensions.contains(new TrackedAscension(entry.getServantId(), entry.getAscensionNumber()))) {
-                    // We care about this entry
-                    if (counts.containsKey(entry.getMaterial())) {
-                        // Update
-                        counts.put(entry.getMaterial(), entry.getCount() + counts.get(entry.getMaterial()));
-                    } else {
-                        // Add
-                        counts.put(entry.getMaterial(), entry.getCount());
-                        servants.put(entry.getMaterial(), new ArrayList<String>());
-                    }
-                    servants.get(entry.getMaterial()).add(String.format("%s | #%d | %d", DomainDataSingleton.getInstance().getServantInfo(entry.getServantId()).getName(), entry.getAscensionNumber(), entry.getCount()));
+        for (TrackedAscension trackedAscension : UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().getAll()) {
+            for (AscensionEntry entry : DomainDataSingleton.getInstance().getServantInfo(trackedAscension.getServantId()).getAscensionEntries(trackedAscension.getAscensionNumber())) {
+                if (counts.containsKey(entry.getMaterial())) {
+                    // Update
+                    counts.put(entry.getMaterial(), entry.getCount() + counts.get(entry.getMaterial()));
+                } else {
+                    // Add
+                    counts.put(entry.getMaterial(), entry.getCount());
+                    servants.put(entry.getMaterial(), new ArrayList<>());
                 }
-
+                servants.get(entry.getMaterial()).add(String.format("%s | #%d | %d", DomainDataSingleton.getInstance().getServantInfo(entry.getServantId()).getName(), entry.getAscensionNumber(), entry.getCount()));
             }
+        }
 
-            for (Material material : counts.keySet()) {
-                entries.add(new NeededMaterialEntry(material, counts.get(material), servants.get(material)));
-            }
 
+        for (Material material : counts.keySet()) {
+            entries.add(new NeededMaterialEntry(material, counts.get(material), servants.get(material)));
         }
 
         return entries;

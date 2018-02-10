@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,13 +48,10 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View servantInfoView = inflater.inflate(R.layout.servant_info_entry, parent, false);
-        servantInfoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ServantInfoActivity.class);
-                intent.putExtra("servant", servants.get(((ServantInfoListActivity) context).servantInfoList.getChildAdapterPosition(view)));
-                context.startActivity(intent);
-            }
+        servantInfoView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ServantInfoActivity.class);
+            intent.putExtra("servant", servants.get(((ServantInfoListActivity) context).servantInfoList.getChildAdapterPosition(view)));
+            context.startActivity(intent);
         });
         return new ViewHolder(servantInfoView);
     }
@@ -65,7 +61,7 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
         final ServantInfo servant = servants.get(position);
 
         holder.name.setText(servant.getName());
-        holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + servant.getThumbnailURL(1)));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(servant.getThumbnailURL(1), context));
     }
 
     @Override

@@ -2,10 +2,10 @@ package world.arshad.grandordercompanion.tracked_ascension_management;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +23,7 @@ import world.arshad.grandordercompanion.data.domain_data.AscensionEntry;
 import world.arshad.grandordercompanion.data.domain_data.Entry;
 import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
 import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
+import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
 import world.arshad.grandordercompanion.utils.Utilities;
 
 /**
@@ -33,10 +34,14 @@ public class TrackedAscensionAdapter extends ExpandableRecyclerViewAdapter<Track
 
     private final Context context;
     private final LayoutInflater mInflater;
+    private View.OnClickListener buttonListener;
 
     public static class TrackedAscensionParentViewHolder extends GroupViewHolder {
-        @BindView(R.id.skill_or_ascension_parent_number_label)
+        @BindView(R.id.skill_or_ascension_parent_label)
         TextView entryNumberLabel;
+
+        @BindView(R.id.skill_or_ascension_parent_button)
+        ImageButton entryButton;
 
         public TrackedAscensionParentViewHolder(View view) {
             super(view);
@@ -60,9 +65,11 @@ public class TrackedAscensionAdapter extends ExpandableRecyclerViewAdapter<Track
 
     public static class TrackedAscensionParent extends ExpandableGroup<AscensionEntry> {
         private final TrackedAscension trackedAscension;
+
         TrackedAscensionParent(TrackedAscension trackedAscension) {
-            super(String.format("%s : Ascension # %d", DomainDataSingleton.getInstance().getServantInfo(trackedAscension.getServantId()).toString(), trackedAscension.getAscensionNumber()), DomainDataSingleton.getInstance().getServantInfo(trackedAscension.getServantId()).getAscensionEntries(trackedAscension.getAscensionNumber()));
+            super(String.format("%s :\nAscension # %d", DomainDataSingleton.getInstance().getServantInfo(trackedAscension.getServantId()).toString(), trackedAscension.getAscensionNumber()), DomainDataSingleton.getInstance().getServantInfo(trackedAscension.getServantId()).getAscensionEntries(trackedAscension.getAscensionNumber()));
             this.trackedAscension = trackedAscension;
+            this.trackedAscension.setAscensionNumber(this.trackedAscension.getAscensionNumber());
         }
     }
 
@@ -87,27 +94,24 @@ public class TrackedAscensionAdapter extends ExpandableRecyclerViewAdapter<Track
     @Override
     public void onBindGroupViewHolder(TrackedAscensionAdapter.TrackedAscensionParentViewHolder holder, int position, ExpandableGroup group) {
         holder.entryNumberLabel.setText(group.getTitle());
-        //TODO delete tracked entries
-//        holder.entryNumberLabel.setOnLongClickListener(view -> {
-//            new AlertDialog.Builder(context)
-//                    .setTitle("Confirmation")
-//                    .setMessage(String.format("Do you really want to stop tracking %s?", group.getTitle()))
-//                    .setIcon(android.R.drawable.ic_dialog_alert)
-//                    .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-//                        UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().delete((((TrackedAscensionParent) group).trackedAscension));
-//                        ((TrackedAscensionsActivity) context).showScreen(TrackedAscensionsActivity.class);
-//                        ((TrackedAscensionsActivity) context).finish();
-//                    })
-//                    .setNegativeButton(android.R.string.no, null).show();
-//            return false;
-//        });
+
+        holder.entryButton.setOnClickListener(view -> new AlertDialog.Builder(context)
+            .setTitle("Delete Entry?")
+            .setIcon(R.drawable.ic_warning_black_24dp)
+            .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+                UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().delete((((TrackedAscensionParent) group).trackedAscension));
+                ((TrackedAscensionsActivity) context).refreshData();
+            })
+            .setNegativeButton(android.R.string.no, null).show());
+
+        holder.entryButton.setBackgroundResource(R.drawable.ic_delete_black_24dp);
     }
 
     public void onBindChildViewHolder(TrackedAscensionAdapter.TrackedAscensionChildViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
         Entry entry = ((TrackedAscensionAdapter.TrackedAscensionParent) group).getItems().get(childIndex);
         holder.name.setText(entry.getMaterial().getName());
         holder.count.setText(String.valueOf(entry.getCount()));
-        holder.thumbnail.setImageBitmap(Utilities.loadImageFromStorage(context.getFilesDir() + entry.getMaterial().getIconURL()));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context));
     }
 
 }
