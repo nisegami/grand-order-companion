@@ -11,8 +11,10 @@ import java.util.Map;
 
 import world.arshad.grandordercompanion.data.domain_data.AscensionEntry;
 import world.arshad.grandordercompanion.data.domain_data.Material;
+import world.arshad.grandordercompanion.data.domain_data.SkillUpEntry;
 import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
 import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
+import world.arshad.grandordercompanion.data.user_data.TrackedSkillUp;
 import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
 
 /**
@@ -46,6 +48,20 @@ public class NeededAscensionMaterialViewModel extends AndroidViewModel {
                     servants.put(entry.getMaterial(), new ArrayList<>());
                 }
                 servants.get(entry.getMaterial()).add(String.format("%s | #%d | %d", DomainDataSingleton.getInstance().getServantInfo(entry.getServantId()).getName(), entry.getAscensionNumber(), entry.getCount()));
+            }
+        }
+
+        for (TrackedSkillUp trackedSkillUp : UserDataSingleton.getInstance().getRoomDB().trackedSkillUpDao().getAll()) {
+            for (SkillUpEntry entry : DomainDataSingleton.getInstance().getServantInfo(trackedSkillUp.getServantId()).getSkillUpEntries(trackedSkillUp.getSkillDestLevel())) {
+                if (counts.containsKey(entry.getMaterial())) {
+                    // Update
+                    counts.put(entry.getMaterial(), entry.getCount() + counts.get(entry.getMaterial()));
+                } else {
+                    // Add
+                    counts.put(entry.getMaterial(), entry.getCount());
+                    servants.put(entry.getMaterial(), new ArrayList<>());
+                }
+                servants.get(entry.getMaterial()).add(String.format("%s | Lvl %d | %d", DomainDataSingleton.getInstance().getServantInfo(entry.getServantId()).getName(), entry.getDestSkillLevel(), entry.getCount()));
             }
         }
 

@@ -1,9 +1,19 @@
 package world.arshad.grandordercompanion.data.domain_data;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import world.arshad.grandordercompanion.R;
+import world.arshad.grandordercompanion.data.user_data.TrackedSkillUp;
+import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
 
 public class SkillUpEntry extends Entry implements Parcelable
 {
@@ -90,11 +100,29 @@ public class SkillUpEntry extends Entry implements Parcelable
         return  0;
     }
 
-
-
-    public void trackThisEntry() {
-        return;
-//        UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().insert(new TrackedAscension(servantId, ascensionNumber));
+    @Override
+    public void trackThisEntry(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Select A Skill Number");
+        builder.setIcon(R.drawable.ic_warning_black_24dp);
+        builder.setItems(new CharSequence[]{"1", "2", "3"}, new MyOnClickListener(context));
+        builder.create().show();
     }
 
+    private class MyOnClickListener implements DialogInterface.OnClickListener {
+        private final Context context;
+
+        public MyOnClickListener(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            try {
+                UserDataSingleton.getInstance().getRoomDB().trackedSkillUpDao().insert(new TrackedSkillUp(servantId, destSkillLevel, i + 1));
+            } catch (SQLiteConstraintException e) {
+                Toast.makeText(context, "That skill up is already tracked.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

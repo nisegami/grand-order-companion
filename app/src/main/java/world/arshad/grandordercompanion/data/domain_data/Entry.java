@@ -1,5 +1,6 @@
 package world.arshad.grandordercompanion.data.domain_data;
 
+import android.content.Context;
 import android.os.Parcelable;
 
 /**
@@ -22,5 +23,5 @@ public abstract class Entry implements Parcelable {
     /**
      * This is a doozy. It adds the relevant ascension or skill up entry to the database.
      */
-    public abstract void trackThisEntry();
+    public abstract void trackThisEntry(Context context);
 }

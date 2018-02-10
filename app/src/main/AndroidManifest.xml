@@ -29,6 +29,8 @@
             android:launchMode="singleTask" />
         <activity android:name=".tracked_ascension_management.TrackedAscensionsActivity"
             android:launchMode="singleTask"  />
+        <activity android:name=".tracked_skill_up_management.TrackedSkillUpsActivity"
+            android:launchMode="singleTask"  />
     </application>
 
 </manifest>

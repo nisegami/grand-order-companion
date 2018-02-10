@@ -13,5 +13,9 @@
             android:id="@+id/nav_tracked_ascensions"
             android:icon="@drawable/ic_eye_black_24dp"
             android:title="Tracked Ascensions" />
+        <item
+            android:id="@+id/nav_tracked_skill_ups"
+            android:icon="@drawable/ic_arrow_upward_black_24dp"
+            android:title="Tracked Skill Ups" />
     </group>
 </menu>

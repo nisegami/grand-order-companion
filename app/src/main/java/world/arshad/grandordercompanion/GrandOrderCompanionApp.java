@@ -18,12 +18,13 @@ public class GrandOrderCompanionApp extends Application {
         super.onCreate();
 
         // Populate read only data into singleton
-
         DomainDataSingleton.getInstance().loadDomainData(this);
 
-        // TODO: dont run db on main thread
+        // Get an instance of the room database
+        // TODO: don't run db on main thread
         UserDataSingleton.getInstance().setRoomDB(Room.databaseBuilder(getApplicationContext(),
-                UserDataDatabase.class, "goc_user_data").allowMainThreadQueries().build());
+                UserDataDatabase.class, "goc_user_data").allowMainThreadQueries()
+                .fallbackToDestructiveMigration().build());
 
     }
 }

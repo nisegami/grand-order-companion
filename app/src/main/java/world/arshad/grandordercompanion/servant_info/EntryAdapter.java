@@ -84,7 +84,7 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
         holder.entryButton.setOnClickListener(view -> new AlertDialog.Builder(context)
                 .setTitle("Track Entry?")
                 .setIcon(R.drawable.ic_warning_black_24dp)
-                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> ((Entry) group.getItems().get(0)).trackThisEntry())
+                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> ((Entry) group.getItems().get(0)).trackThisEntry(context))
                 .setNegativeButton(android.R.string.no, null).show());
 
         holder.entryButton.setBackgroundResource(R.drawable.ic_eye_black_24dp);

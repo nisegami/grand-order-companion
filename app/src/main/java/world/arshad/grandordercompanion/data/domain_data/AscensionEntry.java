@@ -1,5 +1,6 @@
 package world.arshad.grandordercompanion.data.domain_data;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
@@ -97,7 +98,8 @@ public class AscensionEntry extends Entry implements Parcelable
         return  0;
     }
 
-    public void trackThisEntry() {
+    @Override
+    public void trackThisEntry(Context context) {
         UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().insert(new TrackedAscension(servantId, ascensionNumber));
     }
 
