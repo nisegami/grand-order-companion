@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import java.util.Map;
 
+import world.arshad.grandordercompanion.exp_calc.ExpActivity;
 import world.arshad.grandordercompanion.needed_ascension_materials.NeededAscensionMaterialsActivity;
 import world.arshad.grandordercompanion.servant_info_list.ServantInfoListActivity;
 import world.arshad.grandordercompanion.tracked_ascension_management.TrackedAscensionsActivity;
@@ -95,6 +96,9 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_tracked_skill_ups) {
             showScreen(TrackedSkillUpsActivity.class);
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_exp_calculator) {
+            showScreen(ExpActivity.class);
             drawer.closeDrawer(GravityCompat.START);
         } else {
             drawer.closeDrawer(GravityCompat.START);
