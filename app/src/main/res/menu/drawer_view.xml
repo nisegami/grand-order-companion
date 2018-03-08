@@ -11,7 +11,7 @@
             android:title="Needed Materials" />
         <item
             android:id="@+id/nav_tracked_ascensions"
-            android:icon="@drawable/ic_eye_black_24dp"
+            android:icon="@drawable/ic_stairs"
             android:title="Tracked Ascensions" />
         <item
             android:id="@+id/nav_tracked_skill_ups"

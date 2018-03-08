@@ -79,9 +79,10 @@ public class ExpActivity extends SidebarActivity {
 
                 int needed = DomainDataSingleton.getInstance().getExpEntries().get(end - 1).getTotalExp() - DomainDataSingleton.getInstance().getExpEntries().get(start - 1).getTotalExp();
 
-                int allCardsNeeded = (int) Math.ceil(needed / 33000);
+                int allCardsNeeded = (int) Math.ceil(needed / 32400);
+                int generalCardsNeeded = (int) Math.ceil(needed / 27000);
 
-                Toast.makeText(c, String.valueOf(allCardsNeeded), Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, String.valueOf(allCardsNeeded) + " / " + String.valueOf(generalCardsNeeded) , Toast.LENGTH_SHORT).show();
             }
         });
 

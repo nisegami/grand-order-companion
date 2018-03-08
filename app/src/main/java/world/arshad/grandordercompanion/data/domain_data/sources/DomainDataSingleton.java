@@ -39,6 +39,7 @@ public class DomainDataSingleton {
     private List<ServantInfo> servantInfos;
     private List<SkillUpEntry> skillUpEntries;
     private List<StatIncrease> statIncreases;
+    private List<ExperienceAtLevel> expEntries;
 
     private DomainDataSingleton() {
     }
@@ -57,6 +58,9 @@ public class DomainDataSingleton {
 
             jsonText = readJSON(context.getAssets().open("json/SkillUpEntry.json"));
             DomainDataSingleton.getInstance().setSkillUpEntries(Arrays.asList(gson.fromJson(jsonText, SkillUpEntry[].class)));
+
+            jsonText = readJSON(context.getAssets().open("json/ExperienceAtLevel.json"));
+            DomainDataSingleton.getInstance().setExpEntries(Arrays.asList(gson.fromJson(jsonText, ExperienceAtLevel[].class)));
 
         } catch (IOException e) {
             Log.e("JSON ERROR", "Could not open json file", e);
@@ -108,9 +112,6 @@ public class DomainDataSingleton {
         this.ascensionEntries = ascensionEntries;
     }
 
-
-
-
     public List<ExperienceAtLevel> getExperienceAtLevels() {
         return experienceAtLevels;
     }
@@ -118,8 +119,6 @@ public class DomainDataSingleton {
     public void setExperienceAtLevels(List<ExperienceAtLevel> experienceAtLevels) {
         this.experienceAtLevels = experienceAtLevels;
     }
-
-
 
     public List<Material> getMaterials() {
         return materials;
@@ -143,9 +142,6 @@ public class DomainDataSingleton {
         this.servantInfos = servantInfos;
     }
 
-
-
-
     public List<SkillUpEntry> getSkillUpEntries() {
         return skillUpEntries;
     }
@@ -166,15 +162,19 @@ public class DomainDataSingleton {
         this.skillUpEntries = skillUpEntries;
     }
 
-
-
-
-
     public List<StatIncrease> getStatIncreases() {
         return statIncreases;
     }
 
     public void setStatIncreases(List<StatIncrease> statIncreases) {
         this.statIncreases = statIncreases;
+    }
+
+    public List<ExperienceAtLevel> getExpEntries() {
+        return expEntries;
+    }
+
+    public void setExpEntries(List<ExperienceAtLevel> expEntries) {
+        this.expEntries = expEntries;
     }
 }

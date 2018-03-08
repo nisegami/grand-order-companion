@@ -97,10 +97,4 @@ public class AscensionEntry extends Entry implements Parcelable
     public int describeContents() {
         return  0;
     }
-
-    @Override
-    public void trackThisEntry(Context context) {
-        UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().insert(new TrackedAscension(servantId, ascensionNumber));
-    }
-
 }

@@ -7,16 +7,17 @@
     <application
         android:name=".GrandOrderCompanionApp"
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".servant_info_list.ServantInfoListActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,10 +28,13 @@
         <activity
             android:name=".needed_ascension_materials.NeededAscensionMaterialsActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".tracked_ascension_management.TrackedAscensionsActivity"
-            android:launchMode="singleTask"  />
-        <activity android:name=".tracked_skill_up_management.TrackedSkillUpsActivity"
-            android:launchMode="singleTask"  />
+        <activity
+            android:name=".tracked_ascension_management.TrackedAscensionsActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".tracked_skill_up_management.TrackedSkillUpsActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".exp_calc.ExpActivity"></activity>
     </application>
 
 </manifest>
