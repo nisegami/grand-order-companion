@@ -181,7 +181,7 @@ public class ServantInfo implements Parcelable {
     }
 
     public String getFullImageURL(int i) {
-        return String.format("img/servants/%d_full_%d.png", id, i);
+        return String.format("img/servants/full/%d_full_%d.png", id, i);
     }
 
     public List<List<AscensionEntry>> getAscensionEntries() {
