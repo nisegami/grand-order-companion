@@ -3298,5 +3298,143 @@
         "dest_skill_level": "10",
         "material_id": "crystallized_lore",
         "servant_id": "92"
+    },
+    {
+        "count": "10",
+        "dest_skill_level": "2",
+        "material_id": "proof_of_hero",
+        "servant_id": "96"
+    },
+    {
+        "count": "10",
+        "dest_skill_level": "3",
+        "material_id": "seed_of_yggdrassil",
+        "servant_id": "96"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "4",
+        "material_id": "dragon_fang",
+        "servant_id": "96"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "5",
+        "material_id": "ghost_lantern",
+        "servant_id": "96"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "6",
+        "material_id": "meteor_horseshoe",
+        "servant_id": "96"
+    },
+    {
+        "count": "15",
+        "dest_skill_level": "7",
+        "material_id": "homunculus_baby",
+        "servant_id": "96"
+    },
+    {
+        "count": "15",
+        "dest_skill_level": "8",
+        "material_id": "claw_of_chaos",
+        "servant_id": "96"
+    },
+    {
+        "count": "15",
+        "dest_skill_level": "9",
+        "material_id": "dragons_reverse_scale",
+        "servant_id": "96"
+    },
+    {
+        "count": "1",
+        "dest_skill_level": "10",
+        "material_id": "crystallized_lore",
+        "servant_id": "96"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "2",
+        "material_id": "gem_of_saber",
+        "servant_id": "90"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "3",
+        "material_id": "gem_of_saber",
+        "servant_id": "90"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "4",
+        "material_id": "magic_gem_of_saber",
+        "servant_id": "90"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "5",
+        "material_id": "magic_gem_of_saber",
+        "servant_id": "90"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "5",
+        "material_id": "ghost_lantern",
+        "servant_id": "90"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "6",
+        "material_id": "secret_gem_of_saber",
+        "servant_id": "90"
+    },
+    {
+        "count": "10",
+        "dest_skill_level": "6",
+        "material_id": "ghost_lantern",
+        "servant_id": "90"
+    },
+    {
+        "count": "12",
+        "dest_skill_level": "7",
+        "material_id": "secret_gem_of_saber",
+        "servant_id": "90"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "7",
+        "material_id": "octuplet_twin_crystals",
+        "servant_id": "90"
+    },
+    {
+        "count": "10",
+        "dest_skill_level": "8",
+        "material_id": "octuplet_twin_crystals",
+        "servant_id": "90"
+    },
+    {
+        "count": "5",
+        "dest_skill_level": "8",
+        "material_id": "serpent_jewel",
+        "servant_id": "90"
+    },
+    {
+        "count": "15",
+        "dest_skill_level": "9",
+        "material_id": "serpent_jewel",
+        "servant_id": "90"
+    },
+    {
+        "count": "24",
+        "dest_skill_level": "9",
+        "material_id": "eternal_gear",
+        "servant_id": "90"
+    },
+    {
+        "count": "1",
+        "dest_skill_level": "10",
+        "material_id": "crystallized_lore",
+        "servant_id": "90"
     }
 ]

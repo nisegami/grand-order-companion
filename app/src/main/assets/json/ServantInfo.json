@@ -432,6 +432,18 @@
         "rarity": "5"
     },
     {
+        "base_attack": "1793",
+        "base_hp": "2089",
+        "class": "saber",
+        "cost": "16",
+        "growth_curve": "semi_s",
+        "id": "90",
+        "max_attack": "11607",
+        "max_hp": "14284",
+        "name": "Nero Claudius (Bride)",
+        "rarity": "5"
+    },
+    {
         "base_attack": "1656",
         "base_hp": "2266",
         "class": "saber",
@@ -466,5 +478,17 @@
         "max_hp": "11172",
         "name": "Astolfo",
         "rarity": "4"
+    },
+    {
+        "base_attack": "1953",
+        "base_hp": "1785",
+        "class": "avenger",
+        "cost": "16",
+        "growth_curve": "s",
+        "id": "96",
+        "max_attack": "12641",
+        "max_hp": "12177",
+        "name": "Edmond Dantes",
+        "rarity": "5"
     }
 ]

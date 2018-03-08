@@ -1864,5 +1864,107 @@
         "count": "7",
         "material_id": "phoenix_feather",
         "servant_id": "94"
+    },
+    {
+        "ascension_number": "1",
+        "count": "10",
+        "material_id": "evil_bone",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "1",
+        "count": "10",
+        "material_id": "octuplet_twin_crystals",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "2",
+        "count": "10",
+        "material_id": "serpent_jewel",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "2",
+        "count": "10",
+        "material_id": "forbidden_page",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "3",
+        "count": "10",
+        "material_id": "voids_dust",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "3",
+        "count": "10",
+        "material_id": "eternal_gear",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "4",
+        "count": "10",
+        "material_id": "phoenix_feather",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "4",
+        "count": "10",
+        "material_id": "heart_of_the_foreign_god",
+        "servant_id": "96"
+    },
+    {
+        "ascension_number": "1",
+        "count": "5",
+        "material_id": "saber_piece",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "2",
+        "count": "12",
+        "material_id": "saber_piece",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "2",
+        "count": "8",
+        "material_id": "octuplet_twin_crystals",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "3",
+        "count": "5",
+        "material_id": "saber_monument",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "3",
+        "count": "4",
+        "material_id": "phoenix_feather",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "3",
+        "count": "10",
+        "material_id": "ghost_lantern",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "4",
+        "count": "12",
+        "material_id": "saber_monument",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "4",
+        "count": "15",
+        "material_id": "seed_of_yggdrassil",
+        "servant_id": "90"
+    },
+    {
+        "ascension_number": "4",
+        "count": "8",
+        "material_id": "phoenix_feather",
+        "servant_id": "90"
     }
 ]
