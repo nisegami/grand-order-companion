@@ -19,7 +19,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                <android.support.constraint.Guideline
+                    android:id="@+id/image_separator"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.6"/>
+
+                <android.support.v7.widget.Toolbar
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/servant_info_name"
                     android:layout_width="match_parent"
@@ -28,7 +36,7 @@
                     android:fitsSystemWindows="true"
                     android:minHeight="?attr/actionBarSize"
                     app:navigationIcon="?homeAsUpIndicator"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"></android.support.v7.widget.Toolbar>
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
                 <ImageView
                     android:id="@+id/servant_info_class_image"
@@ -42,28 +50,28 @@
 
                 <ImageView
                     android:id="@+id/servant_info_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="250dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitStart"
-                    app:layout_constraintEnd_toStartOf="@id/servant_info_attack_value"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/servant_info_name" />
+                    app:layout_constraintEnd_toStartOf="@id/image_separator"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_name"/>
 
                 <TextView
                     android:id="@+id/servant_info_attack_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="100dp"
                     android:gravity="center"
                     android:text="@string/attack_label"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@id/servant_info_attack_value"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
+                    app:layout_constraintStart_toEndOf="@id/image_separator"
                     app:layout_constraintTop_toBottomOf="@id/servant_info_name" />
 
                 <TextView
@@ -76,8 +84,9 @@
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@id/servant_info_attack_value"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
-                    app:layout_constraintTop_toBottomOf="@id/servant_info_attack_label" />
+                    app:layout_constraintStart_toEndOf="@id/image_separator"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_attack_label"
+                    android:textIsSelectable="true" />
 
                 <TextView
                     android:id="@+id/servant_info_hp_label"
@@ -89,7 +98,7 @@
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@id/servant_info_hp_value"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
+                    app:layout_constraintStart_toEndOf="@id/image_separator"
                     app:layout_constraintTop_toBottomOf="@id/servant_info_class_image" />
 
                 <TextView
@@ -101,8 +110,9 @@
                     android:textSize="20sp"
                     app:layout_constraintBaseline_toBaselineOf="@id/servant_info_image"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/servant_info_image"
-                    app:layout_constraintTop_toBottomOf="@id/servant_info_hp_label" />
+                    app:layout_constraintStart_toEndOf="@id/image_separator"
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_hp_label"
+                    android:textIsSelectable="true" />
 
                 <TextView
                     android:id="@+id/servant_info_ascension_materials_label"
@@ -124,8 +134,8 @@
                     android:layout_marginTop="10dp"
                     android:scrollbars="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/servant_info_ascension_materials_label" />
+                    app:layout_constraintTop_toBottomOf="@id/servant_info_ascension_materials_label"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/servant_info_skill_up_materials_label"
@@ -147,8 +157,8 @@
                     android:layout_marginTop="10dp"
                     android:scrollbars="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/servant_info_skill_up_materials_label" />
+                    app:layout_constraintTop_toBottomOf="@+id/servant_info_skill_up_materials_label"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
 
             </android.support.constraint.ConstraintLayout>

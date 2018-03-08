@@ -1705,6 +1705,60 @@
     },
     {
         "ascension_number": "1",
+        "count": "4",
+        "material_id": "archer_piece",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "2",
+        "count": "8",
+        "material_id": "archer_piece",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "2",
+        "count": "6",
+        "material_id": "seed_of_yggdrassil",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "3",
+        "count": "4",
+        "material_id": "archer_monument",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "3",
+        "count": "6",
+        "material_id": "serpent_jewel",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "3",
+        "count": "8",
+        "material_id": "dragon_fang",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "4",
+        "count": "8",
+        "material_id": "archer_monument",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "4",
+        "count": "16",
+        "material_id": "dragon_fang",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "4",
+        "count": "16",
+        "material_id": "voids_dust",
+        "servant_id": "13"
+    },
+    {
+        "ascension_number": "1",
         "count": "5",
         "material_id": "saber_piece",
         "servant_id": "91"
@@ -1717,7 +1771,7 @@
     },
     {
         "ascension_number": "2",
-        "count": "5",
+        "count": "15",
         "material_id": "voids_dust",
         "servant_id": "91"
     },
@@ -1756,5 +1810,59 @@
         "count": "5",
         "material_id": "heart_of_the_foreign_god",
         "servant_id": "91"
+    },
+    {
+        "ascension_number": "1",
+        "count": "4",
+        "material_id": "rider_piece",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "2",
+        "count": "10",
+        "material_id": "rider_piece",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "2",
+        "count": "6",
+        "material_id": "meteor_horseshoe",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "3",
+        "count": "4",
+        "material_id": "rider_monument",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "3",
+        "count": "8",
+        "material_id": "octuplet_twin_crystals",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "3",
+        "count": "4",
+        "material_id": "phoenix_feather",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "4",
+        "count": "10",
+        "material_id": "rider_monument",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "4",
+        "count": "6",
+        "material_id": "claw_of_chaos",
+        "servant_id": "94"
+    },
+    {
+        "ascension_number": "4",
+        "count": "7",
+        "material_id": "phoenix_feather",
+        "servant_id": "94"
     }
 ]

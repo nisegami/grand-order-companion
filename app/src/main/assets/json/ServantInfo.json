@@ -1,5 +1,17 @@
 [
     {
+        "base_attack": "1261",
+        "base_hp": "1854",
+        "class": "shielder",
+        "cost": "0",
+        "growth_curve": "linear",
+        "id": "1",
+        "max_attack": "6791",
+        "max_hp": "10302",
+        "name": "Mash Kyrielight",
+        "rarity": "4"
+    },
+    {
         "base_attack": "1734",
         "base_hp": "2222",
         "class": "saber",
@@ -82,6 +94,18 @@
         "max_hp": "13097",
         "name": "Gilgamesh",
         "rarity": "5"
+    },
+    {
+        "base_attack": "1247",
+        "base_hp": "1833",
+        "class": "archer",
+        "cost": "7",
+        "growth_curve": "linear",
+        "id": "13",
+        "max_attack": "6715",
+        "max_hp": "10187",
+        "name": "Robin Hood",
+        "rarity": "3"
     },
     {
         "base_attack": "1438",
@@ -416,7 +440,31 @@
         "id": "91",
         "max_attack": "10721",
         "max_hp": "15453",
-        "name": "Ryougi Shiki",
+        "name": "Ryougi Shiki (Saber)",
         "rarity": "5"
+    },
+    {
+        "base_attack": "1477",
+        "base_hp": "1768",
+        "class": "assassin",
+        "cost": "12",
+        "growth_curve": "linear",
+        "id": "92",
+        "max_attack": "8867",
+        "max_hp": "11055",
+        "name": "Ryougi Shiki (Assassin)",
+        "rarity": "4"
+    },
+    {
+        "base_attack": "1489",
+        "base_hp": "1787",
+        "class": "rider",
+        "cost": "12",
+        "growth_curve": "semi_reverse_s",
+        "id": "94",
+        "max_attack": "8937",
+        "max_hp": "11172",
+        "name": "Astolfo",
+        "rarity": "4"
     }
 ]
