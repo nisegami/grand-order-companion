@@ -47,7 +47,7 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
     public ServantInfoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View servantInfoView = inflater.inflate(R.layout.servant_info_entry, parent, false);
+        View servantInfoView = inflater.inflate(R.layout.entry_servant, parent, false);
         servantInfoView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ServantInfoActivity.class);
             intent.putExtra("servant", servants.get(((ServantInfoListActivity) context).servantInfoList.getChildAdapterPosition(view)));
@@ -61,7 +61,7 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
         final ServantInfo servant = servants.get(position);
 
         holder.name.setText(servant.getName());
-        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(servant.getThumbnailURL(1), context));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(servant.getThumbnailURL(1), context.getAssets()));
     }
 
     @Override

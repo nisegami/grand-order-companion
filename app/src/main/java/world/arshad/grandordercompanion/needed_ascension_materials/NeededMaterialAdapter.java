@@ -2,7 +2,6 @@ package world.arshad.grandordercompanion.needed_ascension_materials;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +67,7 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
     public NeededMaterialAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View servantInfoView = inflater.inflate(R.layout.needed_material_entry, parent, false);
+        View servantInfoView = inflater.inflate(R.layout.entry_needed_material, parent, false);
         servantInfoView.setOnClickListener(servantOnClickListener);
         return new ViewHolder(servantInfoView);
     }
@@ -79,7 +78,7 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
 
         holder.name.setText(entry.getMaterial().getName());
         holder.count.setText(String.valueOf(entry.getCount()));
-        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context.getAssets()));
     }
 
     @Override

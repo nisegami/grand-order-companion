@@ -58,8 +58,8 @@ public class ServantInfoActivity extends AppCompatActivity {
 
         mViewModel.setServant((getIntent().getExtras().getParcelable("servant")));
 
-        servantImage.setImageDrawable(Utilities.loadImageFromStorage(mViewModel.getServant().getFullImageURL(4), this));
-        classImage.setImageDrawable(Utilities.loadImageFromStorage(mViewModel.getServant().getServantClass().getIconURL(), this));
+        servantImage.setImageDrawable(Utilities.loadImageFromStorage(mViewModel.getServant().getFullImageURL(4), this.getAssets()));
+        classImage.setImageDrawable(Utilities.loadImageFromStorage(mViewModel.getServant().getServantClass().getIconURL(), this.getAssets()));
 
         servantName.setTitle(mViewModel.getServant().getName());
         attackValue.setText(String.format("%d / %d", mViewModel.getServant().getBaseAttack(), mViewModel.getServant().getMaxAttack()));

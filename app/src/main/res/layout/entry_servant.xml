@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="85dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        card_view:cardCornerRadius="@dimen/card_corner_radius"
+        card_view:cardElevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/servant_info_entry_thumbnail"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitStart" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/servant_info_entry_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@id/servant_info_entry_thumbnail"
+                android:gravity="center"
+                android:maxLines="2"
+                app:autoSizeMaxTextSize="38sp"
+                app:autoSizeMinTextSize="30sp"
+                app:autoSizeTextType="uniform"></android.support.v7.widget.AppCompatTextView>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

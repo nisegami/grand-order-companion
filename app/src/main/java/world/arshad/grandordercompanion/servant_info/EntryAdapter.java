@@ -67,13 +67,13 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
 
     @Override
     public EntryAdapter.EntryParentViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.skill_or_ascension_parent, parent, false);
+        View view = mInflater.inflate(R.layout.entry_skill_or_ascension_parent, parent, false);
         return new EntryAdapter.EntryParentViewHolder(view);
     }
 
     @Override
     public EntryAdapter.EntryChildViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.skill_or_ascension_child, parent, false);
+        View view = mInflater.inflate(R.layout.entry_skill_or_ascension_child, parent, false);
         return new EntryAdapter.EntryChildViewHolder(view);
     }
 
@@ -95,6 +95,6 @@ public class EntryAdapter extends ExpandableRecyclerViewAdapter<EntryAdapter.Ent
         Entry entry = ((EntryParent) group).getItems().get(childIndex);
         holder.name.setText(entry.getMaterial().getName());
         holder.count.setText(String.valueOf(entry.getCount()));
-        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context.getAssets()));
     }
 }

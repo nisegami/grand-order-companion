@@ -81,13 +81,13 @@ public class TrackedSkillUpAdapter extends ExpandableRecyclerViewAdapter<Tracked
 
     @Override
     public TrackedSkillUpAdapter.TrackedSkillUpParentViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.skill_or_ascension_parent, parent, false);
+        View view = mInflater.inflate(R.layout.entry_skill_or_ascension_parent, parent, false);
         return new TrackedSkillUpAdapter.TrackedSkillUpParentViewHolder(view);
     }
 
     @Override
     public TrackedSkillUpAdapter.TrackedSkillUpChildViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.skill_or_ascension_child, parent, false);
+        View view = mInflater.inflate(R.layout.entry_skill_or_ascension_child, parent, false);
         return new TrackedSkillUpAdapter.TrackedSkillUpChildViewHolder(view);
     }
 
@@ -111,7 +111,7 @@ public class TrackedSkillUpAdapter extends ExpandableRecyclerViewAdapter<Tracked
         Entry entry = ((TrackedSkillUpAdapter.TrackedSkillUpParent) group).getItems().get(childIndex);
         holder.name.setText(entry.getMaterial().getName());
         holder.count.setText(String.valueOf(entry.getCount()));
-        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context));
+        holder.thumbnail.setImageDrawable(Utilities.loadImageFromStorage(entry.getMaterial().getIconURL(), context.getAssets()));
     }
 
 }
