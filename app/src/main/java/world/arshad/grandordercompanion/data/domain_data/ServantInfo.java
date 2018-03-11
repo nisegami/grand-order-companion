@@ -7,11 +7,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import world.arshad.grandordercompanion.data.domain_data.sources.DomainDataSingleton;
 
-public class ServantInfo implements Parcelable {
+public class ServantInfo implements Parcelable, Comparable<ServantInfo> {
 
     @SerializedName("base_attack")
     @Expose
@@ -241,4 +242,52 @@ public class ServantInfo implements Parcelable {
     public String toString() {
         return String.format("%s (%s)", name, servantClass.toString());
     }
+
+    public static final Comparator<ServantInfo> ID_COMP = new Comparator<ServantInfo>() {
+        @Override
+        public int compare(ServantInfo a, ServantInfo b) {
+            return a.id - b.id;
+        }
+    };
+
+    @Override
+    public int compareTo(ServantInfo other) {
+        return this.id - other.id;
+    }
+
+    public static final Comparator<ServantInfo> NAME_COMP = new Comparator<ServantInfo>() {
+        @Override
+        public int compare(ServantInfo a, ServantInfo b) {
+            int result = a.name.compareTo(b.name);
+            if (result == 0) {
+                return a.compareTo(b);
+            } else {
+                return result;
+            }
+        }
+    };
+
+    public static final Comparator<ServantInfo> CLASS_COMP = new Comparator<ServantInfo>() {
+        @Override
+        public int compare(ServantInfo a, ServantInfo b) {
+            int result =  a.servantClass.compareTo(b.servantClass);
+            if (result == 0) {
+                return a.compareTo(b);
+            } else {
+                return result;
+            }
+        }
+    };
+
+    public static final Comparator<ServantInfo> RARITY_COMP = new Comparator<ServantInfo>() {
+        @Override
+        public int compare(ServantInfo a, ServantInfo b) {
+            int result =  a.rarity - b.rarity;
+            if (result == 0) {
+                return a.compareTo(b);
+            } else {
+                return result;
+            }
+        }
+    };
 }
