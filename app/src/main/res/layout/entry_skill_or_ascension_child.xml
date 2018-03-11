@@ -1,13 +1,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="@dimen/material_height"
     android:background="@color/cardview_light_background">
 
     <ImageView
         android:id="@+id/skill_or_ascension_child_thumbnail"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/material_height"
+        android:layout_height="@dimen/material_height"
         android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -15,8 +15,8 @@
 
     <TextView
         android:id="@+id/skill_or_ascension_child_count"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/material_height"
+        android:layout_height="@dimen/material_height"
         android:background="@color/cardview_dark_background"
         android:gravity="center"
         android:textColor="@color/cardview_light_background"
@@ -28,7 +28,7 @@
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/skill_or_ascension_child_name"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/material_height"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:gravity="center_vertical"
