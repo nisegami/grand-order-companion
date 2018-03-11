@@ -1,6 +1,8 @@
 package world.arshad.grandordercompanion.exp_calc;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,9 +55,6 @@ public class ExpActivity extends SidebarActivity {
         expStartSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-
                 ArrayAdapter<Integer> endAdapter = new ArrayAdapter<Integer>(c,
                         android.R.layout.simple_spinner_item,
                         ContiguousSet.create(Range.closed(i + 1, 100), DiscreteDomain.integers()).asList());
@@ -79,10 +78,25 @@ public class ExpActivity extends SidebarActivity {
 
                 int needed = DomainDataSingleton.getInstance().getExpEntries().get(end - 1).getTotalExp() - DomainDataSingleton.getInstance().getExpEntries().get(start - 1).getTotalExp();
 
-                int allCardsNeeded = (int) Math.ceil(needed / 32400);
-                int generalCardsNeeded = (int) Math.ceil(needed / 27000);
+                int allCardsNeeded = (int) Math.ceil((double) needed / 32400);
+                int generalCardsNeeded = (int) Math.ceil((double) needed / 27000);
 
-                Toast.makeText(c, String.valueOf(allCardsNeeded) + " / " + String.valueOf(generalCardsNeeded) , Toast.LENGTH_SHORT).show();
+                String message = String.format("%d Class/All | %d Other", allCardsNeeded, generalCardsNeeded);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                builder.setTitle("You need...");
+                builder.setMessage(message);
+                builder.setCancelable(true);
+
+                builder.setNeutralButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder.create();
+                alert11.show();
             }
         });
 
