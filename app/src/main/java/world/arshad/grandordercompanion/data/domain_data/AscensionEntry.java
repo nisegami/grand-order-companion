@@ -1,13 +1,9 @@
 package world.arshad.grandordercompanion.data.domain_data;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
-import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
 
 public class AscensionEntry extends Entry implements Parcelable
 {

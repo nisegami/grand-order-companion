@@ -120,13 +120,11 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         switch (viewType) {
             case GROUP: {
                 View view = inflater.inflate(R.layout.entry_skill_or_ascension_parent, viewGroup, false);
-                RecyclerView.ViewHolder viewHolder = new EntryParentViewHolder(view);
-                return viewHolder;
+                return new EntryParentViewHolder(view);
             }
             case CHILD: {
                 View view = inflater.inflate(R.layout.entry_skill_or_ascension_child, viewGroup, false);
-                RecyclerView.ViewHolder viewHolder = new EntryChildViewHolder(view);
-                return viewHolder;
+                return new EntryChildViewHolder(view);
             }
         }
         return null; // LOL

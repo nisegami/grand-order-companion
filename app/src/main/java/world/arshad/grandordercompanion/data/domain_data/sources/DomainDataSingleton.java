@@ -51,16 +51,16 @@ public class DomainDataSingleton {
             Gson gson = new Gson();
 
             jsonText = readJSON(context.getAssets().open("json/ServantInfo.json"));
-            DomainDataSingleton.getInstance().setServantInfos(Arrays.asList(gson.fromJson(jsonText, ServantInfo[].class)));
+            DomainDataSingleton.getInstance().servantInfos = Arrays.asList(gson.fromJson(jsonText, ServantInfo[].class));
 
             jsonText = readJSON(context.getAssets().open("json/AscensionEntry.json"));
-            DomainDataSingleton.getInstance().setAscensionEntries(Arrays.asList(gson.fromJson(jsonText, AscensionEntry[].class)));
+            DomainDataSingleton.getInstance().ascensionEntries = Arrays.asList(gson.fromJson(jsonText, AscensionEntry[].class));
 
             jsonText = readJSON(context.getAssets().open("json/SkillUpEntry.json"));
-            DomainDataSingleton.getInstance().setSkillUpEntries(Arrays.asList(gson.fromJson(jsonText, SkillUpEntry[].class)));
+            DomainDataSingleton.getInstance().skillUpEntries = Arrays.asList(gson.fromJson(jsonText, SkillUpEntry[].class));
 
             jsonText = readJSON(context.getAssets().open("json/ExperienceAtLevel.json"));
-            DomainDataSingleton.getInstance().setExpEntries(Arrays.asList(gson.fromJson(jsonText, ExperienceAtLevel[].class)));
+            DomainDataSingleton.getInstance().expEntries = Arrays.asList(gson.fromJson(jsonText, ExperienceAtLevel[].class));
 
         } catch (IOException e) {
             Log.e("JSON ERROR", "Could not open json file", e);

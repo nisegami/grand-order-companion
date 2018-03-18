@@ -7,7 +7,6 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
 import world.arshad.grandordercompanion.data.user_data.TrackedSkillUp;
 
 /**

@@ -1,19 +1,10 @@
 package world.arshad.grandordercompanion.data.domain_data;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.database.sqlite.SQLiteConstraintException;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import world.arshad.grandordercompanion.R;
-import world.arshad.grandordercompanion.data.user_data.TrackedSkillUp;
-import world.arshad.grandordercompanion.data.user_data.sources.UserDataSingleton;
 
 public class SkillUpEntry extends Entry implements Parcelable
 {

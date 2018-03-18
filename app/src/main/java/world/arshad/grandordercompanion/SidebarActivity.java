@@ -41,16 +41,16 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
 
     protected void setUpSidebar() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.open_nav_drawer, R.string.close_nav_drawer);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nvView);
+        NavigationView navigationView = findViewById(R.id.nvView);
         navigationView.setNavigationItemSelectedListener(this);
         Menu menu = navigationView.getMenu();
 
@@ -59,7 +59,7 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -83,7 +83,7 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         if (id == R.id.nav_servant_list) {
             showScreen(ServantInfoListActivity.class);
@@ -150,8 +150,8 @@ public class SidebarActivity extends AppCompatActivity implements NavigationView
     public void showScreen(Class cls, Map<String, String> args) {
         Intent in = new Intent(this, cls);
         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        for(String key : args.keySet()) {
-            in.putExtra(key, args.get(key));
+        for(Map.Entry<String, String> stringStringEntry : args.entrySet()) {
+            in.putExtra((String) stringStringEntry.getKey(), stringStringEntry.getValue());
         }
         startActivity(in);
     }

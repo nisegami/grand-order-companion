@@ -22,7 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.data.domain_data.AscensionEntry;
-import world.arshad.grandordercompanion.data.domain_data.Entry;
 import world.arshad.grandordercompanion.data.domain_data.SkillUpEntry;
 import world.arshad.grandordercompanion.data.user_data.TrackedAscension;
 import world.arshad.grandordercompanion.data.user_data.TrackedSkillUp;
@@ -109,7 +108,7 @@ public class ServantInfoActivity extends AppCompatActivity {
 
         for (int i = 0; i < 9; i++) {
             final int x = i;
-            skillUpItems.add(new EntryAdapter.EntryParent(String.format("%s : %d", "Skill Up", i + 2, i + 1), new EntryAdapter.EntryTrackInterface() {
+            skillUpItems.add(new EntryAdapter.EntryParent(String.format("%s : %d", "Skill Up", i + 2), new EntryAdapter.EntryTrackInterface() {
                 @Override
                 public void track(Context context) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);

@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +35,8 @@ public class NeededAscensionMaterialViewModel extends AndroidViewModel {
     public List<NeededMaterialEntry> getEntries() {
         entries = new ArrayList<>();
 
-        Map<Material, Integer> counts = new HashMap<>();
-        Map<Material, List<String>> servants = new HashMap<>();
+        Map<Material, Integer> counts = new EnumMap<Material, Integer>(Material.class);
+        Map<Material, List<String>> servants = new EnumMap<Material, List<String>>(Material.class);
 
         for (TrackedAscension trackedAscension : UserDataSingleton.getInstance().getRoomDB().trackedAscensionDao().getAll()) {
             for (AscensionEntry entry : DomainDataSingleton.getInstance().getServantInfo(trackedAscension.getServantId()).getAscensionEntries(trackedAscension.getAscensionNumber())) {
@@ -66,8 +67,8 @@ public class NeededAscensionMaterialViewModel extends AndroidViewModel {
         }
 
 
-        for (Material material : counts.keySet()) {
-            entries.add(new NeededMaterialEntry(material, counts.get(material), servants.get(material)));
+        for (Map.Entry<Material, Integer> materialIntegerEntry : counts.entrySet()) {
+            entries.add(new NeededMaterialEntry(materialIntegerEntry.getKey(), materialIntegerEntry.getValue(), servants.get((Material) materialIntegerEntry.getKey())));
         }
 
         return entries;

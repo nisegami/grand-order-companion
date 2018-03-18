@@ -1,6 +1,5 @@
 package world.arshad.grandordercompanion.data.domain_data;
 
-import android.content.Context;
 import android.os.Parcelable;
 
 /**

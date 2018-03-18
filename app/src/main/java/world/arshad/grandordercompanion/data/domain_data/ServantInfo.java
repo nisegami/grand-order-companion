@@ -2,6 +2,7 @@ package world.arshad.grandordercompanion.data.domain_data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -243,6 +244,23 @@ public class ServantInfo implements Parcelable, Comparable<ServantInfo> {
         return String.format("%s (%s)", name, servantClass.toString());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ServantInfo that = (ServantInfo) o;
+
+        if (cost != that.cost) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return cost;
+    }
+
     public static final Comparator<ServantInfo> ID_COMP = new Comparator<ServantInfo>() {
         @Override
         public int compare(ServantInfo a, ServantInfo b) {
@@ -251,7 +269,7 @@ public class ServantInfo implements Parcelable, Comparable<ServantInfo> {
     };
 
     @Override
-    public int compareTo(ServantInfo other) {
+    public int compareTo(@NonNull ServantInfo other) {
         return this.id - other.id;
     }
 
