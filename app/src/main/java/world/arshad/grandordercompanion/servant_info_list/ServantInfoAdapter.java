@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -80,7 +82,14 @@ public class ServantInfoAdapter extends RecyclerView.Adapter<ServantInfoAdapter.
     }
 
     public void sortItems() {
-        servants.sort(reverse ? comparator.reversed() : comparator);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            servants.sort(reverse ? comparator.reversed() : comparator);
+        } else{
+            Collections.sort(servants, comparator);
+            if (reverse) {
+                Collections.reverse(servants);
+            }
+        }
         notifyDataSetChanged();
     }
 
