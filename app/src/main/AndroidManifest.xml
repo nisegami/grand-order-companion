@@ -2,18 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="world.arshad.grandordercompanion">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
-        android:name=".GrandOrderCompanionApp"
+        android:name=".GOCApp"
         android:allowBackup="true"
-        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".servant_info_list.ServantInfoListActivity"
+            android:name=".all_servants.AllServantsActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,19 +22,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".servant_info.ServantInfoActivity"
-            android:launchMode="singleTask"
-            android:parentActivityName=".servant_info_list.ServantInfoListActivity" />
+            android:name=".view_servant.ServantActivity"
+            android:label="@string/title_activity_servant"
+            android:parentActivityName=".all_servants.AllServantsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="world.arshad.grandordercompanion.all_servants.AllServantsActivity" />
+        </activity>
         <activity
-            android:name=".needed_ascension_materials.NeededAscensionMaterialsActivity"
+            android:name=".needed_materials.NeededMaterialsActivity"
+            android:label="Needed Materials"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTask" />
         <activity
-            android:name=".tracked_ascension_management.TrackedAscensionsActivity"
+            android:name=".exp_calculator.ExpActivity"
+            android:label="@string/title_activity_exp"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".tracked_skill_up_management.TrackedSkillUpsActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".exp_calc.ExpActivity"></activity>
     </application>
 
 </manifest>

@@ -1,45 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="85sp">
+<?xml version="1.0" encoding="utf-8"?>
+<!--This RelativeLayout is necessary, but no one knows why: https://stackoverflow.com/questions/24503760/cardview-layout-width-match-parent-does-not-match-parent-recyclerview-width-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/card_margin"
-        android:elevation="3dp"
-        card_view:cardCornerRadius="@dimen/card_corner_radius"
-        card_view:cardElevation="2dp">
+        android:layout_marginTop="@dimen/card_vert_margin"
+        android:layout_marginBottom="@dimen/card_vert_margin"
+        android:layout_marginStart="@dimen/card_hor_margin"
+        android:layout_marginEnd="@dimen/card_hor_margin"
+        android:elevation="@dimen/card_elevation"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/servant_info_entry_thumbnail"
-                android:layout_width="85sp"
-                android:layout_height="85sp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="16dp"
-                android:scaleType="fitStart" />
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitStart"
+                android:contentDescription="servant thumbnail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/servant_info_entry_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
-                android:layout_toEndOf="@id/servant_info_entry_thumbnail"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:gravity="center"
-                android:maxLines="2"
-                app:autoSizeMaxTextSize="38sp"
-                app:autoSizeMinTextSize="30sp"
-                app:autoSizeTextType="uniform"></android.support.v7.widget.AppCompatTextView>
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@id/servant_info_entry_thumbnail"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:autoSizeMaxTextSize="40sp"
+                app:autoSizeMinTextSize="20sp"
+                app:autoSizeTextType="uniform" />
 
-        </RelativeLayout>
-
+        </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
-
-</LinearLayout>
+</RelativeLayout>

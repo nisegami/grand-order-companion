@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Grand Order Companion</string>
-    <string name="skill_up_materials_label">Skill Up Materials:</string>
-    <string name="ascension_materials_label">Ascension Materials:</string>
-    <string name="attack_label">Attack</string>
-    <string name="hp_label">HP</string>
-    <string name="open_nav_drawer">Open Navigation Drawer</string>
-    <string name="close_nav_drawer">Close Navigation Drawer</string>
-    <string name="shiki_is_best_girl">Shiki is best girl~</string>
+    <string name="title_activity_servant_data_list">ServantDataListActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_all_servants">AllServantsActivity</string>
+    <string name="title_activity_servant">ServantActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_needed_materials">NeededMaterialsActivity</string>
+    <string name="title_activity_exp">ExpActivity</string>
 </resources>
