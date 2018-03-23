@@ -112,7 +112,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case PARENT: {
                 SkillUpParentViewHolder holder = (SkillUpParentViewHolder) viewHolder;
                 SkillUp skillUp = ((SkillUp) items.get(position));
-                holder.skillUpLabel.setText(String.format("%s: %s", skillName, skillUp));
+                holder.skillUpLabel.setText(String.format("%s: %s", skillName, skillUp.getTitle()));
                 switch (skillUp.getStatus()) {
                     case SkillUp.DONTCARE: {
                         holder.trackButton1.setBackgroundResource(R.drawable.ic_eye_black_24dp);

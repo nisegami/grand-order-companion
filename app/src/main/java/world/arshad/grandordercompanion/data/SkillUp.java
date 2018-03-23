@@ -84,6 +84,10 @@ public class SkillUp {
         this.skillUpEntries = skillUpEntries;
     }
 
+    public String getTitle() {
+        return String.format("%d ➜ %d", destSkillLevel - 1, destSkillLevel);
+    }
+
     @Override
     public String toString() {
         return String.format("Skill %d: %d ➜ %d", skillNumber, destSkillLevel - 1, destSkillLevel);
