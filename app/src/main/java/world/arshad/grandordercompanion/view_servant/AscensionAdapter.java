@@ -95,7 +95,6 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 .setTitle("Mark as tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    Model.getInstance().setRefreshNeededMaterials(true);
                                     ascension.setStatus(Ascension.TRACKED);
                                     Model.getInstance().getDatabase().servantDao().updateAscension(ascension);
                                     notifyItemChanged(position);
@@ -110,7 +109,6 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    Model.getInstance().setRefreshNeededMaterials(true);
                                     ascension.setStatus(Ascension.DONTCARE);
                                     Model.getInstance().getDatabase().servantDao().updateAscension(ascension);
                                     notifyItemChanged(position);
@@ -121,7 +119,6 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 .setTitle("Mark as completed??")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    Model.getInstance().setRefreshNeededMaterials(true);
                                     ascension.setStatus(Ascension.COMPLETED);
                                     Model.getInstance().getDatabase().servantDao().updateAscension(ascension);
                                     notifyItemChanged(position);

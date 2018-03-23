@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.SidebarActivity;
+import world.arshad.grandordercompanion.data.Model;
 
 public class NeededMaterialsActivity extends SidebarActivity {
 
@@ -37,12 +38,24 @@ public class NeededMaterialsActivity extends SidebarActivity {
         ButterKnife.bind(this);
 
         viewModel = ViewModelProviders.of(this).get(NeededMaterialsViewModel.class);
-
         adapter = new NeededMaterialAdapter(this, viewModel.getCounts(), viewModel.getStrings());
         neededMaterialsList.setAdapter(adapter);
         neededMaterialsList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setAutoMeasureEnabled(false);
         neededMaterialsList.setLayoutManager(llm);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.refreshData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.setData(viewModel.getCounts(), viewModel.getStrings());
     }
 }

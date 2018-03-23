@@ -59,6 +59,11 @@ public class NeededMaterialsViewModel extends ViewModel {
         }
     }
 
+    public void refreshData() {
+        this.materialCounts = null;
+        this.materialStrings = null;
+    }
+
     public HashMap<Material, Integer> getCounts() {
         fetchData();
         return materialCounts;

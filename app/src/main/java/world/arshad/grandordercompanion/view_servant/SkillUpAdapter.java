@@ -120,7 +120,6 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setTitle("Mark as tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    Model.getInstance().setRefreshNeededMaterials(true);
                                     skillUp.setStatus(SkillUp.TRACKED);
                                     Model.getInstance().getDatabase().servantDao().updateSkillUp(skillUp);
                                     notifyItemChanged(position);
@@ -135,7 +134,6 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    Model.getInstance().setRefreshNeededMaterials(true);
                                     skillUp.setStatus(SkillUp.DONTCARE);
                                     Model.getInstance().getDatabase().servantDao().updateSkillUp(skillUp);
                                     notifyItemChanged(position);
@@ -146,7 +144,6 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setTitle("Mark as completed??")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    Model.getInstance().setRefreshNeededMaterials(true);
                                     skillUp.setStatus(SkillUp.COMPLETED);
                                     Model.getInstance().getDatabase().servantDao().updateSkillUp(skillUp);
                                     notifyItemChanged(position);

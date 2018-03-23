@@ -56,20 +56,6 @@ public class ServantActivity extends FragmentActivity {
         titleStrip.setViewPager(pager);
     }
 
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        // The following code is useful, but I found it frustrating to use.
-//        if (pager.getCurrentItem() == 0) {
-//            super.onBackPressed();
-//        } else {
-//            pager.setCurrentItem(pager.getCurrentItem() - 1);
-//        }
-    }
-
-
     private class ServantPagerAdapter extends FragmentPagerAdapter {
         public ServantPagerAdapter(FragmentManager fm) {
             super(fm);

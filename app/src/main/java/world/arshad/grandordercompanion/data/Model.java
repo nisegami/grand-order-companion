@@ -26,15 +26,4 @@ public class Model {
     public void setDatabase(ServantDatabase database) {
         this.database = database;
     }
-
-    // Refresh Needed Materials
-    private boolean refreshNeededMaterials = true;
-
-    public boolean isRefreshNeededMaterials() {
-        return refreshNeededMaterials;
-    }
-
-    public void setRefreshNeededMaterials(boolean refreshNeededMaterials) {
-        this.refreshNeededMaterials = refreshNeededMaterials;
-    }
 }
