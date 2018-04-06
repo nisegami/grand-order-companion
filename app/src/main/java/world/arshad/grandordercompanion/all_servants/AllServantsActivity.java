@@ -25,12 +25,6 @@ public class AllServantsActivity extends SidebarActivity {
     @BindView(R.id.servant_list)
     RecyclerView servantInfoList;
 
-    @BindView(R.id.update_label)
-    TextView updateLabel;
-
-    @BindView(R.id.update_progress)
-    ProgressBar updateProgressBar;
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -51,24 +45,6 @@ public class AllServantsActivity extends SidebarActivity {
         setContentView(R.layout.activity_all_servants);
         super.setupSidebar(R.id.toolbar);
         ButterKnife.bind(this);
-
-        // Update the database if necessary.
-
-        SharedPreferences prefs = getSharedPreferences("goc", MODE_PRIVATE);
-        int currVersion = prefs.getInt("database_contents_version", 0);
-
-        DatabaseUpdater updaterTask = new DatabaseUpdater(a);
-        updaterTask.execute(currVersion);
-    }
-
-    public void onDatabaseUpdated(int newVersion) {
-        updateLabel.setVisibility(View.GONE);
-        updateProgressBar.setVisibility(View.GONE);
-
-        SharedPreferences prefs = getSharedPreferences("goc", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("database_contents_version", newVersion);
-        editor.apply();
 
         viewModel = ViewModelProviders.of(this).get(AllServantsViewModel.class);
 
