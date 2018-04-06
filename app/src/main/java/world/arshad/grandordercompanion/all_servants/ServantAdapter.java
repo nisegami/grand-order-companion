@@ -2,6 +2,8 @@ package world.arshad.grandordercompanion.all_servants;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.graphics.Palette;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,8 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
     private final Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.servant_info_card)
+        CardView servantCard;
         @BindView(R.id.servant_info_entry_name)
         TextView name;
         @BindView(R.id.servant_info_entry_thumbnail)
@@ -62,15 +66,22 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
         final Servant servant = servants.get(position);
 
         holder.name.setText(servant.getName());
-        holder.thumbnail.setImageDrawable(Utilities.loadImageFromAssets(servant.getThumbnailPath(1), context.getAssets()));
+        holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(servant.getThumbnailPath(1), context.getAssets()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ServantActivity.class);
-                intent.putExtra("servant_id", servant.getId());
-                context.startActivity(intent);
-            }
+        if (context.getSharedPreferences("goc", Context.MODE_PRIVATE).getBoolean("use_colors", false)) {
+            Palette.from(Utilities.loadBitmapFromAssets(servant.getThumbnailPath(1), context.getAssets())).generate(palette -> {
+                try {
+                    holder.servantCard.setCardBackgroundColor(palette.getLightMutedSwatch().getRgb());
+                } catch (NullPointerException e) {
+                    holder.servantCard.setCardBackgroundColor(palette.getLightMutedColor(context.getColor(R.color.colorBackgroundGray)));
+                }
+            });
+        }
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ServantActivity.class);
+            intent.putExtra("servant_id", servant.getId());
+            context.startActivity(intent);
         });
     }
 

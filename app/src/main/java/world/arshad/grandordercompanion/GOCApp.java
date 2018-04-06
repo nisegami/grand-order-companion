@@ -2,6 +2,8 @@ package world.arshad.grandordercompanion;
 
 import android.app.Application;
 import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import world.arshad.grandordercompanion.data.Model;
 import world.arshad.grandordercompanion.data.ServantDatabase;
@@ -26,5 +28,11 @@ public class GOCApp extends Application {
                 .build();
 
         Model.getInstance().setDatabase(database);
+
+        SharedPreferences prefs = getSharedPreferences("goc", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("use_colors", true);
+        editor.apply();
+
     }
 }

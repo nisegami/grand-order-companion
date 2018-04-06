@@ -148,7 +148,7 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 AscensionEntry ascensionEntry = ((AscensionEntry) items.get(position));
                 holder.name.setText(ascensionEntry.getMaterial().toString());
                 holder.count.setText(String.valueOf(ascensionEntry.getCount()));
-                holder.thumbnail.setImageDrawable(Utilities.loadImageFromAssets(ascensionEntry.getMaterial().getIconPath(), context.getAssets()));
+                holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(ascensionEntry.getMaterial().getIconPath(), context.getAssets()));
                 break;
             }
         }

@@ -2,6 +2,8 @@ package world.arshad.grandordercompanion.view_servant;
 
 import android.app.ActionBar;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.graphics.Palette;
 import android.widget.Toolbar;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -16,6 +19,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
+import world.arshad.grandordercompanion.Utilities;
 
 /**
  *
@@ -54,6 +58,17 @@ public class ServantActivity extends FragmentActivity {
 
         titleStrip.setTextSize(45);
         titleStrip.setViewPager(pager);
+
+        if (getSharedPreferences("goc", Context.MODE_PRIVATE).getBoolean("use_colors", false)) {
+            Bitmap fullArt = Utilities.loadBitmapFromAssets(viewModel.getServant().getThumbnailPath(1), getAssets());
+            Palette.from(fullArt).generate(palette -> {
+                try {
+                    pager.setBackgroundColor(palette.getLightMutedSwatch().getRgb());
+                } catch (NullPointerException e) {
+                    pager.setBackgroundColor(palette.getLightMutedColor(getColor(R.color.colorBackgroundGray)));
+                }
+            });
+        }
     }
 
     private class ServantPagerAdapter extends FragmentPagerAdapter {

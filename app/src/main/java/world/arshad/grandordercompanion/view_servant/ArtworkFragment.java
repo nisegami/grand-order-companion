@@ -43,10 +43,10 @@ public class ArtworkFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ButterKnife.bind(this, view);
-        artwork1.setImageDrawable(Utilities.loadImageFromAssets(viewModel.getServant().getArtworkPath(1), getActivity().getAssets()));
-        artwork2.setImageDrawable(Utilities.loadImageFromAssets(viewModel.getServant().getArtworkPath(2), getActivity().getAssets()));
-        artwork3.setImageDrawable(Utilities.loadImageFromAssets(viewModel.getServant().getArtworkPath(3), getActivity().getAssets()));
-        artwork4.setImageDrawable(Utilities.loadImageFromAssets(viewModel.getServant().getArtworkPath(4), getActivity().getAssets()));
+        artwork1.setImageDrawable(Utilities.loadDrawableFromAssets(viewModel.getServant().getArtworkPath(1), getActivity().getAssets()));
+        artwork2.setImageDrawable(Utilities.loadDrawableFromAssets(viewModel.getServant().getArtworkPath(2), getActivity().getAssets()));
+        artwork3.setImageDrawable(Utilities.loadDrawableFromAssets(viewModel.getServant().getArtworkPath(3), getActivity().getAssets()));
+        artwork4.setImageDrawable(Utilities.loadDrawableFromAssets(viewModel.getServant().getArtworkPath(4), getActivity().getAssets()));
     }
 
 }

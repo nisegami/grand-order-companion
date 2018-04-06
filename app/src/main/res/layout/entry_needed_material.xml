@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/entry_height"
-    android:background="@color/cardview_light_background">
-
-    <ImageView
-        android:id="@+id/needed_material_thumbnail"
-        android:layout_width="@dimen/material_width"
+<!--This RelativeLayout is necessary, but no one knows why: https://stackoverflow.com/questions/24503760/cardview-layout-width-match-parent-does-not-match-parent-recyclerview-width-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/entry_height"
-        android:scaleType="centerCrop"
-        android:background="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/cardview_light_background">
 
-    <TextView
-        android:id="@+id/needed_material_count"
-        android:layout_width="@dimen/entry_height"
-        android:layout_height="@dimen/entry_height"
-        android:background="@color/cardview_dark_background"
-        android:gravity="center"
-        android:textColor="@color/cardview_light_background"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/needed_material_thumbnail"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/needed_material_thumbnail"
+            android:layout_width="@dimen/material_width"
+            android:layout_height="@dimen/entry_height"
+            android:scaleType="centerCrop"
+            android:background="@color/cardview_dark_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/needed_material_name"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/entry_height"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:textSize="20sp"
-        app:autoSizeMaxTextSize="25sp"
-        app:autoSizeMinTextSize="15sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/needed_material_count"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/needed_material_count"
+            android:layout_width="@dimen/entry_height"
+            android:layout_height="@dimen/entry_height"
+            android:background="@color/cardview_dark_background"
+            android:gravity="center"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/needed_material_thumbnail"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/needed_material_name"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/entry_height"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textSize="20sp"
+            app:autoSizeMaxTextSize="25sp"
+            app:autoSizeMinTextSize="15sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/needed_material_count"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>
