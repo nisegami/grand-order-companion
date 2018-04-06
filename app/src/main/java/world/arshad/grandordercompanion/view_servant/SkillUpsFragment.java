@@ -1,9 +1,11 @@
 package world.arshad.grandordercompanion.view_servant;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.leinardi.android.speeddial.SpeedDialActionItem;
+import com.leinardi.android.speeddial.SpeedDialView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,16 +29,7 @@ public class SkillUpsFragment extends Fragment {
     RecyclerView skillUpList;
 
     @BindView(R.id.skill_fab)
-    FloatingActionButton skillFab;
-
-//    @BindView(R.id.skill_1_button)
-//    Button skillUp1Button;
-//
-//    @BindView(R.id.skill_2_button)
-//    Button skillUp2Button;
-//
-//    @BindView(R.id.skill_3_button)
-//    Button skillUp3Button;
+    SpeedDialView skillFab;
 
     private SkillUpAdapter adapter;
 
@@ -64,12 +60,57 @@ public class SkillUpsFragment extends Fragment {
             }
         });
 
-        skillFab.setOnClickListener(view1 -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setItems(viewModel.getSkillNames(), (dialogInterface, j) -> {
-                adapter.setData(viewModel.getServant(), j + 1);
-            });
-            builder.create().show();
+        skillFab.addFabOptionItem(
+                new SpeedDialActionItem.Builder(R.id.fab_skill_1, R.drawable.ic_filter_1_black_24dp)
+                        .setLabel(viewModel.getServant().getSkill1())
+                        .setLabelColor(Color.WHITE)
+                        .setLabelBackgroundColor(Color.BLACK)
+                        .setFabBackgroundColor(ResourcesCompat.getColor(getResources(), android.R.color.black, getActivity().getTheme()))
+                        .setFabImageTintColor(ResourcesCompat.getColor(getResources(), android.R.color.white, getActivity().getTheme()))
+                        .create()
+        );
+
+        skillFab.addFabOptionItem(
+                new SpeedDialActionItem.Builder(R.id.fab_skill_2, R.drawable.ic_filter_2_black_24dp)
+                        .setLabel(viewModel.getServant().getSkill2())
+                        .setLabelColor(Color.WHITE)
+                        .setLabelBackgroundColor(Color.BLACK)
+                        .setFabBackgroundColor(ResourcesCompat.getColor(getResources(), android.R.color.black, getActivity().getTheme()))
+                        .setFabImageTintColor(ResourcesCompat.getColor(getResources(), android.R.color.white, getActivity().getTheme()))
+                        .create()
+        );
+
+        skillFab.addFabOptionItem(
+                new SpeedDialActionItem.Builder(R.id.fab_skill_3, R.drawable.ic_filter_3_black_24dp)
+                        .setLabel(viewModel.getServant().getSkill3())
+                        .setLabelColor(Color.WHITE)
+                        .setLabelBackgroundColor(Color.BLACK)
+                        .setFabBackgroundColor(ResourcesCompat.getColor(getResources(), android.R.color.black, getActivity().getTheme()))
+                        .setFabImageTintColor(ResourcesCompat.getColor(getResources(), android.R.color.white, getActivity().getTheme()))
+                        .create()
+        );
+
+        skillFab.setMainFabOnClickListener(view1 -> {
+            if (skillFab.isFabMenuOpen()) {
+                skillFab.closeOptionsMenu();
+            }
+        });
+
+        skillFab.setOptionFabSelectedListener(speedDialActionItem -> {
+            switch (speedDialActionItem.getId()) {
+                case R.id.fab_skill_1:
+                    adapter.setData(viewModel.getServant(), 1);
+                    skillFab.closeOptionsMenu();
+                    break;
+                case R.id.fab_skill_2:
+                    adapter.setData(viewModel.getServant(), 2);
+                    skillFab.closeOptionsMenu();
+                    break;
+                case R.id.fab_skill_3:
+                    adapter.setData(viewModel.getServant(), 3);
+                    skillFab.closeOptionsMenu();
+                    break;
+            }
         });
 
         adapter = new SkillUpAdapter(getActivity());
