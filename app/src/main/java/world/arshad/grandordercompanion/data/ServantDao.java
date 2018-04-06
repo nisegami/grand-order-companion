@@ -5,7 +5,6 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
-import android.util.Log;
 
 import java.util.List;
 
@@ -15,6 +14,13 @@ import java.util.List;
  */
 @Dao
 public abstract class ServantDao {
+
+
+    /*
+     * Room does not handle nested relations at all, so the public methods here are inserts,
+     * updates, or methods that pull the raw data and construct the necessary objects with their
+     * nested relations intact.
+     */
 
     public List<Servant> getAllServants() {
         List<Servant> servants = _getAllServants();
@@ -227,8 +233,4 @@ public abstract class ServantDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public abstract void insertAllSkillUpEntrys(List<SkillUpEntry> entries);
-
-
-
-
 }

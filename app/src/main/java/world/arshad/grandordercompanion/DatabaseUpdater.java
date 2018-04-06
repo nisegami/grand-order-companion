@@ -46,6 +46,10 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                 update(Model.getInstance().getDatabase(), activity.getAssets(),1);
                 currVersion = 1;
             }
+            if (currVersion < 2) {
+                update(Model.getInstance().getDatabase(), activity.getAssets(),2);
+                currVersion = 2;
+            }
             return Model.getInstance().getDatabase().CONTENTS_VERSION;
         } catch (IOException e) {
             return currVersion;
@@ -54,7 +58,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
     @Override
     protected void onPostExecute(Integer newVersion) {
-        ((AllServantsActivity) activity).onDatabaseUpdated(newVersion);
+        ((SplashActivity) activity).onDatabaseUpdated(newVersion);
     }
 
     private static void update(ServantDatabase database, AssetManager assetManager, int num) throws IOException {
