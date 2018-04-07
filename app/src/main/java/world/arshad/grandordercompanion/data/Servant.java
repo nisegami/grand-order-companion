@@ -78,6 +78,9 @@ public class Servant implements Comparable<Servant> {
     @ColumnInfo(name = "seiyuu")
     private String seiyuu;
 
+    @ColumnInfo(name = "deck")
+    private String deck;
+
     @ColumnInfo(name = "gamepress_url")
     private String gamepressURL;
 
@@ -239,6 +242,14 @@ public class Servant implements Comparable<Servant> {
 
     public void setGamepressURL(String gamepressURL) {
         this.gamepressURL = gamepressURL;
+    }
+
+    public String getDeck() {
+        return deck;
+    }
+
+    public void setDeck(String deck) {
+        this.deck = deck;
     }
 
     // Skill and Ascension Stuff
@@ -505,7 +516,7 @@ public class Servant implements Comparable<Servant> {
     /**
      * This constructor is for building with read only data.
      */
-    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL) {
+    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL, String deck) {
         this.id = id;
         this.name = name;
         this.skill1 = skill1;
@@ -526,6 +537,7 @@ public class Servant implements Comparable<Servant> {
         this.alignment = alignment;
         this.seiyuu = seiyuu;
         this.gamepressURL = gamepressURL;
+        this.deck = deck;
 
         // Set to default
         this.summoned = false;
@@ -549,7 +561,7 @@ public class Servant implements Comparable<Servant> {
         this.targetSkillThreeLevel = 1;
     }
 
-    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL, boolean summoned, int currentServantExp, int currentNPLevel, int currentBondPoints, int currentAscensionNum, int currentFouATK, int currentFouHP, int currentSkillOneLevel, int currentSkillTwoLevel, int currentSkillThreeLevel, int targetServantExp, int targetNPLevel, int targetBondPoints, int targetAscensionNum, int targetFouATK, int targetFouHP, int targetSkillOneLevel, int targetSkillTwoLevel, int targetSkillThreeLevel) {
+    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL, String deck, boolean summoned, int currentServantExp, int currentNPLevel, int currentBondPoints, int currentAscensionNum, int currentFouATK, int currentFouHP, int currentSkillOneLevel, int currentSkillTwoLevel, int currentSkillThreeLevel, int targetServantExp, int targetNPLevel, int targetBondPoints, int targetAscensionNum, int targetFouATK, int targetFouHP, int targetSkillOneLevel, int targetSkillTwoLevel, int targetSkillThreeLevel) {
         this.id = id;
         this.name = name;
         this.skill1 = skill1;
@@ -570,6 +582,8 @@ public class Servant implements Comparable<Servant> {
         this.alignment = alignment;
         this.seiyuu = seiyuu;
         this.gamepressURL = gamepressURL;
+        this.deck = deck;
+
         this.summoned = summoned;
         this.currentServantExp = currentServantExp;
         this.currentNPLevel = currentNPLevel;

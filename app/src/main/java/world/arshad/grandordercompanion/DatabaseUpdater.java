@@ -98,7 +98,8 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                     nextLine[16],
                     nextLine[17],
                     nextLine[18],
-                    nextLine[19]
+                    nextLine[19],
+                    nextLine[20]
             ));
         }
 
