@@ -37,7 +37,7 @@ public class AllServantsActivity extends SidebarActivity {
     private AllServantsViewModel viewModel;
     private ServantAdapter adapter;
 
-    String[] sortOptions = {"ID", "Name", "Class", "Rarity"};
+    String[] sortOptions = {"ID", "Name", "Class", "Rarity", "Attack", "HP"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

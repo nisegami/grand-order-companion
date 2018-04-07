@@ -640,7 +640,7 @@ public class Servant implements Comparable<Servant> {
 
     public enum Comps {
 
-        ID(ID_COMP), NAME(NAME_COMP), CLASS(CLASS_COMP), RARITY(RARITY_COMP);
+        ID(ID_COMP), NAME(NAME_COMP), CLASS(CLASS_COMP), RARITY(RARITY_COMP), ATTACK(ATK_COMP), HP(HP_COMP);
 
         private Comparator<Servant> myComp;
 
@@ -653,46 +653,50 @@ public class Servant implements Comparable<Servant> {
         }
     }
 
-    public static final Comparator<Servant> ID_COMP = new Comparator<Servant>() {
-        @Override
-        public int compare(Servant a, Servant b) {
-            return a.id - b.id;
+    public static final Comparator<Servant> ID_COMP = (a, b) -> a.id - b.id;
+
+    public static final Comparator<Servant> NAME_COMP = (a, b) -> {
+        int result = a.name.compareTo(b.name);
+        if (result == 0) {
+            return a.compareTo(b);
+        } else {
+            return result;
         }
     };
 
-    public static final Comparator<Servant> NAME_COMP = new Comparator<Servant>() {
-        @Override
-        public int compare(Servant a, Servant b) {
-            int result = a.name.compareTo(b.name);
-            if (result == 0) {
-                return a.compareTo(b);
-            } else {
-                return result;
-            }
+    public static final Comparator<Servant> CLASS_COMP = (a, b) -> {
+        int result =  a.servantClass.compareTo(b.servantClass);
+        if (result == 0) {
+            return a.compareTo(b);
+        } else {
+            return result;
         }
     };
 
-    public static final Comparator<Servant> CLASS_COMP = new Comparator<Servant>() {
-        @Override
-        public int compare(Servant a, Servant b) {
-            int result =  a.servantClass.compareTo(b.servantClass);
-            if (result == 0) {
-                return a.compareTo(b);
-            } else {
-                return result;
-            }
+    public static final Comparator<Servant> RARITY_COMP = (a, b) -> {
+        int result =  b.rarity - a.rarity;
+        if (result == 0) {
+            return a.compareTo(b);
+        } else {
+            return result;
         }
     };
 
-    public static final Comparator<Servant> RARITY_COMP = new Comparator<Servant>() {
-        @Override
-        public int compare(Servant a, Servant b) {
-            int result =  b.rarity - a.rarity;
-            if (result == 0) {
-                return a.compareTo(b);
-            } else {
-                return result;
-            }
+    public static final Comparator<Servant> ATK_COMP = (a, b) -> {
+        int result =  b.maxAtk - a.maxAtk;
+        if (result == 0) {
+            return a.compareTo(b);
+        } else {
+            return result;
+        }
+    };
+
+    public static final Comparator<Servant> HP_COMP = (a, b) -> {
+        int result =  b.maxHp - a.maxHp;
+        if (result == 0) {
+            return a.compareTo(b);
+        } else {
+            return result;
         }
     };
 }
