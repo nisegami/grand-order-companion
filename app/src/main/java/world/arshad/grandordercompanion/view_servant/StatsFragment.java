@@ -4,12 +4,14 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,9 +23,13 @@ import world.arshad.grandordercompanion.R;
 public class StatsFragment extends Fragment {
 
     @BindView(R.id.stats_gamepress_button)
-    Button gamepressButton;
+    FloatingActionButton gamepressButton;
+
+    @BindView(R.id.stats_list)
+    RecyclerView statsList;
 
     private ServantViewModel viewModel;
+    private StatsAdapter adapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,5 +49,21 @@ public class StatsFragment extends Fragment {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(viewModel.getServant().getGamepressURL()));
             startActivity(browserIntent);
         });
+
+        statsList.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                if (dy > 0)
+                    gamepressButton.hide();
+                else if (dy < 0)
+                    gamepressButton.show();
+            }
+        });
+
+        adapter = new StatsAdapter(viewModel.getServant());
+        statsList.setNestedScrollingEnabled(false);
+        statsList.setAdapter(adapter);
+        statsList.setHasFixedSize(true);
+        statsList.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--This RelativeLayout is necessary, but no one knows why: https://stackoverflow.com/questions/24503760/cardview-layout-width-match-parent-does-not-match-parent-recyclerview-width-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="@dimen/entry_height"
+    android:layout_width="match_parent">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/entry_height"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/entry_height"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_percent="0.5"
+            android:orientation="vertical"/>
+
+        <TextView
+            android:id="@+id/entry_stat_title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/entry_height"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical|end"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/entry_stat_value"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/entry_height"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical|start"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>
