@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
+import world.arshad.grandordercompanion.data.Model;
 import world.arshad.grandordercompanion.data.Servant;
 import world.arshad.grandordercompanion.view_servant.ServantActivity;
 
@@ -67,16 +68,7 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
 
         holder.name.setText(servant.getName());
         holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(servant.getThumbnailPath(1), context.getAssets()));
-
-        if (context.getSharedPreferences("goc", Context.MODE_PRIVATE).getBoolean("use_colors", false)) {
-            Palette.from(Utilities.loadBitmapFromAssets(servant.getThumbnailPath(1), context.getAssets())).generate(palette -> {
-                try {
-                    holder.servantCard.setCardBackgroundColor(palette.getLightMutedSwatch().getRgb());
-                } catch (NullPointerException e) {
-                    holder.servantCard.setCardBackgroundColor(palette.getLightMutedColor(context.getColor(R.color.colorBackgroundGray)));
-                }
-            });
-        }
+        holder.servantCard.setCardBackgroundColor(Model.getInstance().getServantColor(servant, context));
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ServantActivity.class);

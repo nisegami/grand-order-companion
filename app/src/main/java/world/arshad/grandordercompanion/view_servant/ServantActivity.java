@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
+import world.arshad.grandordercompanion.data.Model;
 
 /**
  *
@@ -59,16 +60,7 @@ public class ServantActivity extends FragmentActivity {
         titleStrip.setTextSize(45);
         titleStrip.setViewPager(pager);
 
-        if (getSharedPreferences("goc", Context.MODE_PRIVATE).getBoolean("use_colors", false)) {
-            Bitmap fullArt = Utilities.loadBitmapFromAssets(viewModel.getServant().getThumbnailPath(1), getAssets());
-            Palette.from(fullArt).generate(palette -> {
-                try {
-                    pager.setBackgroundColor(palette.getLightMutedSwatch().getRgb());
-                } catch (NullPointerException e) {
-                    pager.setBackgroundColor(palette.getLightMutedColor(getColor(R.color.colorBackgroundGray)));
-                }
-            });
-        }
+        pager.setBackgroundColor(Model.getInstance().getServantColor(viewModel.getServant(), this));
     }
 
     private class ServantPagerAdapter extends FragmentPagerAdapter {
