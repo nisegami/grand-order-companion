@@ -13,14 +13,14 @@
         <activity
             android:name=".all_servants.AllServantsActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".view_servant.ServantActivity"
             android:label="@string/title_activity_servant"
             android:parentActivityName=".all_servants.AllServantsActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:launchMode="singleTask">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -29,12 +29,12 @@
         <activity
             android:name=".needed_materials.NeededMaterialsActivity"
             android:label="Needed Materials"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:launchMode="singleTask" />
         <activity
             android:name=".exp_calculator.ExpActivity"
             android:label="@string/title_activity_exp"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:launchMode="singleTask" />
         <activity
             android:name=".SplashActivity"
