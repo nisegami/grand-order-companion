@@ -21,6 +21,5 @@ import android.arch.persistence.room.TypeConverters;
 @TypeConverters({Converters.class})
 public abstract class ServantDatabase extends RoomDatabase {
 
-    public final int CONTENTS_VERSION = 1;
     public abstract ServantDao servantDao();
 }
