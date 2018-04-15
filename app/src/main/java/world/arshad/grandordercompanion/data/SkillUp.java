@@ -101,6 +101,10 @@ public class SkillUp {
 
     @Override
     public String toString() {
-        return String.format("%s (%d): %d ➜ %d", skillName, skillNumber, destSkillLevel - 1, destSkillLevel);
+        if (skillName != null) {
+            return String.format("%s (%d): %d ➜ %d", skillName, skillNumber, destSkillLevel - 1, destSkillLevel);
+        } else {
+            return String.format("%d: %d ➜ %d", skillNumber, destSkillLevel - 1, destSkillLevel);
+        }
     }
 }
