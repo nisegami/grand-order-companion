@@ -1,6 +1,7 @@
 package world.arshad.grandordercompanion.view_servant;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -107,7 +108,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             case PARENT: {
                 SkillUpParentViewHolder holder = (SkillUpParentViewHolder) viewHolder;
@@ -120,9 +121,16 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setTitle("Mark as tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    skillUp.setStatus(SkillUp.TRACKED);
-                                    Model.getInstance().getDatabase().servantDao().updateSkillUp(skillUp);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof SkillUp) && (j <= position)) {
+                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
+                                            if (otherSkillUp.getStatus() == SkillUp.DONTCARE) {
+                                                otherSkillUp.setStatus(SkillUp.TRACKED);
+                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                notifyItemChanged(j);
+                                            }
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);
@@ -134,9 +142,16 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    skillUp.setStatus(SkillUp.DONTCARE);
-                                    Model.getInstance().getDatabase().servantDao().updateSkillUp(skillUp);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof SkillUp) && (j >= position)) {
+                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
+                                            if (otherSkillUp.getStatus() == SkillUp.TRACKED) {
+                                                otherSkillUp.setStatus(SkillUp.DONTCARE);
+                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                notifyItemChanged(j);
+                                            }
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setBackgroundResource(R.drawable.ic_check_black_24dp);
@@ -144,9 +159,16 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setTitle("Mark as completed??")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    skillUp.setStatus(SkillUp.COMPLETED);
-                                    Model.getInstance().getDatabase().servantDao().updateSkillUp(skillUp);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof SkillUp) && (j <= position)) {
+                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
+                                            if (otherSkillUp.getStatus() == SkillUp.TRACKED) {
+                                                otherSkillUp.setStatus(SkillUp.COMPLETED);
+                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                notifyItemChanged(j);
+                                            }
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.VISIBLE);
@@ -158,9 +180,14 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    skillUp.setStatus(SkillUp.DONTCARE);
-                                    Model.getInstance().getDatabase().servantDao().updateSkillUp(skillUp);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof SkillUp) && (j >= position)) {
+                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
+                                            otherSkillUp.setStatus(SkillUp.DONTCARE);
+                                            Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                            notifyItemChanged(j);
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);

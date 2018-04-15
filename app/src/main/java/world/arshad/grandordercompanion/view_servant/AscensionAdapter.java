@@ -1,6 +1,7 @@
 package world.arshad.grandordercompanion.view_servant;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private static final int PARENT = 0, CHILD = 1;
     private final Context context;
     private List<Object> items;
+    private List<Ascension> ascensions;
     
     public static class AscensionParentViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ascension_parent_label)
@@ -70,6 +72,7 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void setData(List<Ascension> ascensions) {
         this.items = new ArrayList<>();
+        this.ascensions = ascensions;
 
         for (Ascension ascension : ascensions) {
             this.items.add(ascension);
@@ -81,7 +84,7 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             case PARENT: {
                 AscensionParentViewHolder holder = (AscensionParentViewHolder) viewHolder;
@@ -95,9 +98,16 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 .setTitle("Mark as tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    ascension.setStatus(Ascension.TRACKED);
-                                    Model.getInstance().getDatabase().servantDao().updateAscension(ascension);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof Ascension) && (j <= position)) {
+                                            Ascension otherAscension = (Ascension) items.get(j);
+                                            if (otherAscension.getStatus() == Ascension.DONTCARE) {
+                                                otherAscension.setStatus(Ascension.TRACKED);
+                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                notifyItemChanged(j);
+                                            }
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);
@@ -109,19 +119,33 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    ascension.setStatus(Ascension.DONTCARE);
-                                    Model.getInstance().getDatabase().servantDao().updateAscension(ascension);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof Ascension) && (j >= position)) {
+                                            Ascension otherAscension = (Ascension) items.get(j);
+                                            if (otherAscension.getStatus() == Ascension.TRACKED) {
+                                                otherAscension.setStatus(Ascension.DONTCARE);
+                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                notifyItemChanged(j);
+                                            }
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setBackgroundResource(R.drawable.ic_check_black_24dp);
                         holder.trackButton2.setOnClickListener(view -> new AlertDialog.Builder(context)
-                                .setTitle("Mark as completed??")
+                                .setTitle("Mark as completed?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    ascension.setStatus(Ascension.COMPLETED);
-                                    Model.getInstance().getDatabase().servantDao().updateAscension(ascension);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof Ascension) && (j <= position)) {
+                                            Ascension otherAscension = (Ascension) items.get(j);
+                                            if (otherAscension.getStatus() == Ascension.TRACKED) {
+                                                otherAscension.setStatus(Ascension.COMPLETED);
+                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                notifyItemChanged(j);
+                                            }
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.VISIBLE);
@@ -133,9 +157,14 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    ascension.setStatus(Ascension.DONTCARE);
-                                    Model.getInstance().getDatabase().servantDao().updateAscension(ascension);
-                                    notifyItemChanged(position);
+                                    for (int j = 0; j < items.size(); j++) {
+                                        if ((items.get(j) instanceof Ascension) && (j >= position)) {
+                                            Ascension otherAscension = (Ascension) items.get(j);
+                                            otherAscension.setStatus(Ascension.DONTCARE);
+                                            Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                            notifyItemChanged(j);
+                                        }
+                                    }
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);
