@@ -13,13 +13,13 @@
         android:layout_marginStart="8dp"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:paddingEnd="40dp"
+        android:paddingEnd="100dp"
         app:autoSizeMaxTextSize="20sp"
-        app:autoSizeMinTextSize="8sp"
+        app:autoSizeMinTextSize="16sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageButton
         android:id="@+id/skill_up_parent_button_1"

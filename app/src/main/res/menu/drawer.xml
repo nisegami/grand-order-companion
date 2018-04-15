@@ -10,5 +10,9 @@
             android:id="@+id/nav_needed_materials"
             android:icon="@drawable/ic_check_box_black_24dp"
             android:title="Needed Materials" />
+        <item
+            android:id="@+id/tracked_entries"
+            android:icon="@drawable/ic_eye_black_24dp"
+            android:title="Tracked Entries" />
     </group>
 </menu>

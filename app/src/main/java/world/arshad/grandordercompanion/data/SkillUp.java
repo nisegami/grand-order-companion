@@ -35,6 +35,9 @@ public class SkillUp {
     private int status;
 
     @Ignore
+    private String skillName = null;
+
+    @Ignore
     private List<SkillUpEntry> skillUpEntries;
 
     public SkillUp(int skillNumber, int destSkillLevel, int servantId, int status) {
@@ -84,12 +87,20 @@ public class SkillUp {
         this.skillUpEntries = skillUpEntries;
     }
 
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
+    }
+
     public String getTitle() {
-        return String.format("%d ➜ %d", destSkillLevel - 1, destSkillLevel);
+        return toString();
     }
 
     @Override
     public String toString() {
-        return String.format("Skill %d: %d ➜ %d", skillNumber, destSkillLevel - 1, destSkillLevel);
+        return String.format("%s (%d): %d ➜ %d", skillName, skillNumber, destSkillLevel - 1, destSkillLevel);
     }
 }

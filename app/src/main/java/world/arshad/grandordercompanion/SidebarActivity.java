@@ -16,6 +16,8 @@ import android.view.View;
 
 import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
 import world.arshad.grandordercompanion.needed_materials.NeededMaterialsActivity;
+import world.arshad.grandordercompanion.tracked_entries.TrackedEntriesActivity;
+import world.arshad.grandordercompanion.tracked_entries.TrackedEntryViewModel;
 
 /**
  * Created by arsha on 20/03/2018.
@@ -80,6 +82,9 @@ public class SidebarActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_needed_materials) {
             showScreen(NeededMaterialsActivity.class);
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.tracked_entries) {
+            showScreen(TrackedEntriesActivity.class);
             drawer.closeDrawer(GravityCompat.START);
         } else {
             drawer.closeDrawer(GravityCompat.START);

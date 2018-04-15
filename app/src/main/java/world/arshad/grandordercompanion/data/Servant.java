@@ -6,6 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -281,6 +282,9 @@ public class Servant implements Comparable<Servant> {
 
     public void setSkillUps1(List<SkillUp> skillUps1) {
         this.skillUps1 = skillUps1;
+        for (SkillUp skillUp : skillUps1) {
+            skillUp.setSkillName(skill1);
+        }
     }
 
     public List<SkillUp> getSkillUps2() {
@@ -289,6 +293,9 @@ public class Servant implements Comparable<Servant> {
 
     public void setSkillUps2(List<SkillUp> skillUps2) {
         this.skillUps2 = skillUps2;
+        for (SkillUp skillUp : skillUps2) {
+            skillUp.setSkillName(skill2);
+        }
     }
 
     public List<SkillUp> getSkillUps3() {
@@ -297,6 +304,9 @@ public class Servant implements Comparable<Servant> {
 
     public void setSkillUps3(List<SkillUp> skillUps3) {
         this.skillUps3 = skillUps3;
+        for (SkillUp skillUp : skillUps3) {
+            skillUp.setSkillName(skill3);
+        }
     }
 
     // This is user defined stuff
@@ -699,4 +709,50 @@ public class Servant implements Comparable<Servant> {
             return result;
         }
     };
+
+    public List<Ascension> getAscensions(int type) {
+        List<Ascension> toReturn = new ArrayList<>();
+        for (Ascension ascension : ascensions) {
+            if (ascension.getStatus() == type) {
+                toReturn.add(ascension);
+            }
+        }
+        return toReturn;
+    };
+
+    public List<SkillUp> getSkillUps(int skillNumber, int type) {
+        List<SkillUp> toReturn = new ArrayList<>();
+        for (SkillUp skillUp : getSkillUps(skillNumber)) {
+            if (skillUp.getStatus() == type) {
+                toReturn.add(skillUp);
+            }
+        }
+        return toReturn;
+    }
+
+    public String getSkillUpName(int skillNumber) {
+        if (skillNumber == 1) {
+            return skill1;
+        }
+        if (skillNumber == 2) {
+            return skill2;
+        }
+        if (skillNumber == 3) {
+            return skill3;
+        }
+        return "";
+    }
+
+    public List<SkillUp> getSkillUps(int skillNumber) {
+        if (skillNumber == 1) {
+            return skillUps1;
+        }
+        if (skillNumber == 2) {
+            return skillUps2;
+        }
+        if (skillNumber == 3) {
+            return skillUps3;
+        }
+        return null;
+    }
 }

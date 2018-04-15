@@ -113,7 +113,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case PARENT: {
                 SkillUpParentViewHolder holder = (SkillUpParentViewHolder) viewHolder;
                 SkillUp skillUp = ((SkillUp) items.get(position));
-                holder.skillUpLabel.setText(String.format("%s: %s", skillName, skillUp.getTitle()));
+                holder.skillUpLabel.setText(skillUp.getTitle());
                 switch (skillUp.getStatus()) {
                     case SkillUp.DONTCARE: {
                         holder.trackButton1.setBackgroundResource(R.drawable.ic_eye_black_24dp);
@@ -156,7 +156,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setBackgroundResource(R.drawable.ic_check_black_24dp);
                         holder.trackButton2.setOnClickListener(view -> new AlertDialog.Builder(context)
-                                .setTitle("Mark as completed??")
+                                .setTitle("Mark as completed?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                                     for (int j = 0; j < items.size(); j++) {

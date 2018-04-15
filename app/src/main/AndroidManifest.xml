@@ -32,6 +32,11 @@
             android:theme="@style/AppTheme"
             android:launchMode="singleTask" />
         <activity
+            android:name=".tracked_entries.TrackedEntriesActivity"
+            android:label="Tracked Entries"
+            android:theme="@style/AppTheme"
+            android:launchMode="singleTask" />
+        <activity
             android:name=".exp_calculator.ExpActivity"
             android:label="@string/title_activity_exp"
             android:theme="@style/AppTheme"
