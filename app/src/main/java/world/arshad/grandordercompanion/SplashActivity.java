@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         // Update the database if necessary.
 
         SharedPreferences prefs = getSharedPreferences("goc", MODE_PRIVATE);
-        int currVersion = prefs.getInt("database_contents_version", 0);
+        int currVersion = prefs.getInt("database_version", 0);
 
         DatabaseUpdater updaterTask = new DatabaseUpdater(a);
         updaterTask.execute(currVersion);
@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("goc", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("database_contents_version", newVersion);
+        editor.putInt("database_version", newVersion);
         editor.apply();
 
         Intent intent = new Intent(this, AllServantsActivity.class);

@@ -25,6 +25,7 @@ public class GOCApp extends Application {
                         ServantDatabase.class,
                         "servant-database")
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build();
 
         Model.getInstance().setDatabase(database);
@@ -33,6 +34,5 @@ public class GOCApp extends Application {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("use_colors", true);
         editor.apply();
-
     }
 }

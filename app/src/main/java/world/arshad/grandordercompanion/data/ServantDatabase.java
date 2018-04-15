@@ -16,7 +16,7 @@ import android.arch.persistence.room.TypeConverters;
                 SkillUp.class,
                 SkillUpEntry.class
             },
-            version = 1,
+            version = 2,
             exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class ServantDatabase extends RoomDatabase {
