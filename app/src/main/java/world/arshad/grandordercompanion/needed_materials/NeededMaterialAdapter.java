@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -46,9 +47,10 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
         }
     }
 
-    public NeededMaterialAdapter(Context context, Map<Material, Integer> materialCounts, Map<Material, String> materialStrings) {
+    public NeededMaterialAdapter(Context context) {
         this.context = context;
-        setData(materialCounts, materialStrings);
+        this.materialCounts = new HashMap<>();
+        this.materialStrings = new HashMap<>();
     }
 
     public void setData(Map<Material, Integer> materialCounts, Map<Material, String> materialStrings) {

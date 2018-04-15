@@ -38,13 +38,12 @@ public class NeededMaterialsActivity extends SidebarActivity {
         ButterKnife.bind(this);
 
         viewModel = ViewModelProviders.of(this).get(NeededMaterialsViewModel.class);
-        adapter = new NeededMaterialAdapter(this, viewModel.getCounts(), viewModel.getStrings());
+        adapter = new NeededMaterialAdapter(this);
         neededMaterialsList.setAdapter(adapter);
         neededMaterialsList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setAutoMeasureEnabled(false);
+        llm.setAutoMeasureEnabled(false); // Idk what this is for but im not touching it
         neededMaterialsList.setLayoutManager(llm);
-
     }
 
     @Override

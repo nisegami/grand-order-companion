@@ -49,7 +49,6 @@ public class TrackedEntriesActivity extends SidebarActivity {
             setData();
             swipeRefreshLayout.setRefreshing(false);
         });
-        setData();
     }
 
     @Override
