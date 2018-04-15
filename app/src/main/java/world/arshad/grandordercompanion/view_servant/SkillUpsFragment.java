@@ -60,7 +60,7 @@ public class SkillUpsFragment extends Fragment {
             }
         });
 
-        skillFab.addFabOptionItem(
+        skillFab.addActionItem(
                 new SpeedDialActionItem.Builder(R.id.fab_skill_1, R.drawable.ic_filter_1_black_24dp)
                         .setLabel(viewModel.getServant().getSkill1())
                         .setLabelColor(Color.WHITE)
@@ -70,7 +70,7 @@ public class SkillUpsFragment extends Fragment {
                         .create()
         );
 
-        skillFab.addFabOptionItem(
+        skillFab.addActionItem(
                 new SpeedDialActionItem.Builder(R.id.fab_skill_2, R.drawable.ic_filter_2_black_24dp)
                         .setLabel(viewModel.getServant().getSkill2())
                         .setLabelColor(Color.WHITE)
@@ -80,7 +80,7 @@ public class SkillUpsFragment extends Fragment {
                         .create()
         );
 
-        skillFab.addFabOptionItem(
+        skillFab.addActionItem(
                 new SpeedDialActionItem.Builder(R.id.fab_skill_3, R.drawable.ic_filter_3_black_24dp)
                         .setLabel(viewModel.getServant().getSkill3())
                         .setLabelColor(Color.WHITE)
@@ -90,27 +90,35 @@ public class SkillUpsFragment extends Fragment {
                         .create()
         );
 
-        skillFab.setMainFabOnClickListener(view1 -> {
-            if (skillFab.isFabMenuOpen()) {
-                skillFab.closeOptionsMenu();
+        skillFab.setOnChangeListener(new SpeedDialView.OnChangeListener() {
+            @Override
+            public void onMainActionSelected() {
+                if (skillFab.isOpen()) {
+                    skillFab.close();
+                }
+            }
+
+            @Override
+            public void onToggleChanged(boolean isOpen) {
             }
         });
 
-        skillFab.setOptionFabSelectedListener(speedDialActionItem -> {
+        skillFab.setOnActionSelectedListener(speedDialActionItem -> {
             switch (speedDialActionItem.getId()) {
                 case R.id.fab_skill_1:
                     adapter.setData(viewModel.getServant(), 1);
-                    skillFab.closeOptionsMenu();
+                    skillFab.close();
                     break;
                 case R.id.fab_skill_2:
                     adapter.setData(viewModel.getServant(), 2);
-                    skillFab.closeOptionsMenu();
+                    skillFab.close();
                     break;
                 case R.id.fab_skill_3:
                     adapter.setData(viewModel.getServant(), 3);
-                    skillFab.closeOptionsMenu();
+                    skillFab.close();
                     break;
             }
+            return false;
         });
 
         adapter = new SkillUpAdapter(getActivity());
