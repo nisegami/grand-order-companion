@@ -6,8 +6,8 @@ android {
         applicationId "world.arshad.grandordercompanion"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 13
-        versionName "4.1.2"
+        versionCode 14
+        versionName "4.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
