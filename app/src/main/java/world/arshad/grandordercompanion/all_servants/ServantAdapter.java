@@ -45,9 +45,9 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
         }
     }
 
-    public ServantAdapter(List<Servant> servants, Context context) {
+    public ServantAdapter(Context context) {
         this.context = context;
-        setData(servants);
+        setData(new ArrayList<>());
     }
 
     public void setData(List<Servant> servants) {

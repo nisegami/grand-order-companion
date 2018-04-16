@@ -1,26 +1,19 @@
 package world.arshad.grandordercompanion.needed_materials;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.SidebarActivity;
-import world.arshad.grandordercompanion.data.Model;
+import world.arshad.grandordercompanion.data.Material;
 
 public class NeededMaterialsActivity extends SidebarActivity {
 
@@ -55,6 +48,21 @@ public class NeededMaterialsActivity extends SidebarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.setData(viewModel.getCounts(), viewModel.getStrings());
+        new LoadDataTask().execute();
+    }
+
+    private class LoadDataTask extends AsyncTask<Void, Void, Map<Material, NeededMaterialEntry>> {
+        protected void onPreExecute() {
+            neededMaterialsList.setVisibility(View.INVISIBLE);
+        }
+
+        protected Map<Material, NeededMaterialEntry> doInBackground(Void ... params) {
+            return viewModel.getItems();
+        }
+
+        protected void onPostExecute(Map<Material, NeededMaterialEntry> items) {
+            adapter.setData(items);
+            neededMaterialsList.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -8,7 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageButton;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,8 +49,7 @@ public class TrackedEntriesActivity extends SidebarActivity {
 
         swipeRefreshLayout.setOnRefreshListener(() -> {
             viewModel.refreshData();
-            setData();
-            swipeRefreshLayout.setRefreshing(false);
+            new LoadDataTask().execute();
         });
     }
 
@@ -60,10 +62,23 @@ public class TrackedEntriesActivity extends SidebarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setData();
+        new LoadDataTask().execute();
     }
 
-    private void setData() {
-        adapter.setData(viewModel.getItems()); //This really needs to be on a background thread but im too dumb
+    private class LoadDataTask extends AsyncTask<Void, Void, List<Object>> {
+        protected void onPreExecute() {
+            swipeRefreshLayout.setRefreshing(true);
+            trackedEntryList.setVisibility(View.INVISIBLE);
+        }
+
+        protected List<Object> doInBackground(Void ... params) {
+            return viewModel.getItems();
+        }
+
+        protected void onPostExecute(List<Object> items) {
+            adapter.setData(items);
+            swipeRefreshLayout.setRefreshing(false);
+            trackedEntryList.setVisibility(View.VISIBLE);
+        }
     }
 }

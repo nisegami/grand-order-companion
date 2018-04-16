@@ -42,9 +42,7 @@ public class TrackedEntryViewModel extends ViewModel {
         return items;
     }
 
-
     public void refreshData() {
         this.items = null;
     }
-
 }

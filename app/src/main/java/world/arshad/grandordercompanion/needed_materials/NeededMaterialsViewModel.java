@@ -19,27 +19,26 @@ import world.arshad.grandordercompanion.data.SkillUpEntry;
 
 public class NeededMaterialsViewModel extends ViewModel {
 
-    private HashMap<Material, Integer> materialCounts;
-    private HashMap<Material, String> materialStrings;
+    private HashMap<Material, NeededMaterialEntry> items;
 
     /**
      * Call this at the start of any method that is working with the data.
      */
     public void fetchData() {
-        if (materialCounts == null) {
+        if (items == null) {
             // Use LinkedHashMap to guarantee key ordering for populating RecyclerView
-            materialCounts = new LinkedHashMap<>();
-            materialStrings = new LinkedHashMap<>();
+            items = new LinkedHashMap<>();
 
             List<Ascension> ascensions = Model.getInstance().getDatabase().servantDao().getTrackedAscensions();
             for (Ascension ascension : ascensions) {
                 for (AscensionEntry ascensionEntry : ascension.getAscensionEntries()) {
-                    if (materialCounts.containsKey(ascensionEntry.getMaterial())) {
-                        materialCounts.put(ascensionEntry.getMaterial(), ascensionEntry.getCount() + materialCounts.get(ascensionEntry.getMaterial()));
-                        materialStrings.put(ascensionEntry.getMaterial(), materialStrings.get(ascensionEntry.getMaterial()) + String.format("\n%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension));
+                    if (items.containsKey(ascensionEntry.getMaterial())) {
+                        NeededMaterialEntry existingEntry = items.get(ascensionEntry.getMaterial());
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + ascensionEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension));
+                        items.put(ascensionEntry.getMaterial(), newEntry);
                     } else {
-                        materialCounts.put(ascensionEntry.getMaterial(), ascensionEntry.getCount());
-                        materialStrings.put(ascensionEntry.getMaterial(), String.format("%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(ascensionEntry.getCount(), String.format("%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension));
+                        items.put(ascensionEntry.getMaterial(), newEntry);
                     }
                 }
             }
@@ -47,12 +46,13 @@ public class NeededMaterialsViewModel extends ViewModel {
             List<SkillUp> skillUps = Model.getInstance().getDatabase().servantDao().getTrackedSkillUps();
             for (SkillUp skillUp : skillUps) {
                 for (SkillUpEntry skillUpEntry : skillUp.getSkillUpEntries()) {
-                    if (materialCounts.containsKey(skillUpEntry.getMaterial())) {
-                        materialCounts.put(skillUpEntry.getMaterial(), skillUpEntry.getCount() + materialCounts.get(skillUpEntry.getMaterial()));
-                        materialStrings.put(skillUpEntry.getMaterial(), materialStrings.get(skillUpEntry.getMaterial()) + String.format("\n%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp));
+                    if (items.containsKey(skillUpEntry.getMaterial())) {
+                        NeededMaterialEntry existingEntry = items.get(skillUpEntry.getMaterial());
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + skillUpEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp));
+                        items.put(skillUpEntry.getMaterial(), newEntry);
                     } else {
-                        materialCounts.put(skillUpEntry.getMaterial(), skillUpEntry.getCount());
-                        materialStrings.put(skillUpEntry.getMaterial(), String.format("%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(skillUpEntry.getCount(), String.format("%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp));
+                        items.put(skillUpEntry.getMaterial(), newEntry);
                     }
                 }
             }
@@ -60,17 +60,12 @@ public class NeededMaterialsViewModel extends ViewModel {
     }
 
     public void refreshData() {
-        this.materialCounts = null;
-        this.materialStrings = null;
+        this.items = null;
     }
 
-    public HashMap<Material, Integer> getCounts() {
+    public HashMap<Material, NeededMaterialEntry> getItems() {
         fetchData();
-        return materialCounts;
+        return items;
     }
 
-    public HashMap<Material, String> getStrings() {
-        fetchData();
-        return materialStrings;
-    }
 }

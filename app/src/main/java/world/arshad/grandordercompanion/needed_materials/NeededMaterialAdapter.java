@@ -28,8 +28,7 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
 
     private Context context;
 
-    private Map<Material, Integer> materialCounts;
-    private Map<Material, String> materialStrings;
+    private Map<Material, NeededMaterialEntry> items;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.needed_material_name)
@@ -49,13 +48,11 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
 
     public NeededMaterialAdapter(Context context) {
         this.context = context;
-        this.materialCounts = new HashMap<>();
-        this.materialStrings = new HashMap<>();
+        this.items = new HashMap<>();
     }
 
-    public void setData(Map<Material, Integer> materialCounts, Map<Material, String> materialStrings) {
-        this.materialCounts = materialCounts;
-        this.materialStrings = materialStrings;
+    public void setData(Map<Material, NeededMaterialEntry> items) {
+        this.items = items;
         notifyDataSetChanged();
     }
 
@@ -68,9 +65,9 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
 
     @Override
     public void onBindViewHolder(NeededMaterialAdapter.ViewHolder holder, int position) {
-        Material material = (Material) materialCounts.keySet().toArray()[position];
-        int count = materialCounts.get(material);
-        String string = materialStrings.get(material);
+        Material material = (Material) items.keySet().toArray()[position];
+        int count = items.get(material).getCount();
+        String string = items.get(material).getText();
 
         holder.name.setText(material.toString());
         holder.count.setText(String.valueOf(count));
@@ -88,7 +85,7 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
 
     @Override
     public int getItemCount() {
-        return materialCounts.keySet().size();
+        return items.size();
     }
 
 

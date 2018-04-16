@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -12,15 +13,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
+import android.view.View;
 import android.widget.Toolbar;
 
 import com.astuetz.PagerSlidingTabStrip;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
 import world.arshad.grandordercompanion.data.Model;
+import world.arshad.grandordercompanion.data.Servant;
 
 /**
  *
@@ -36,6 +41,7 @@ public class ServantActivity extends FragmentActivity {
     @BindView(R.id.servant_pager_title_strip)
     PagerSlidingTabStrip titleStrip;
 
+    private Context c = this;
     private ServantViewModel viewModel;
     private ServantPagerAdapter adapter;
 
@@ -52,15 +58,7 @@ public class ServantActivity extends FragmentActivity {
         viewModel = ViewModelProviders.of(this).get(ServantViewModel.class);
         viewModel.setID(getIntent().getIntExtra("servant_id", 1));
 
-        setTitle(viewModel.getServant().toString());
-
-        adapter = new ServantPagerAdapter(getSupportFragmentManager());
-        pager.setAdapter(adapter);
-
-        titleStrip.setTextSize(45);
-        titleStrip.setViewPager(pager);
-
-        pager.setBackgroundColor(Model.getInstance().getServantColor(viewModel.getServant(), this));
+        new LoadDataTask().execute();
     }
 
     private class ServantPagerAdapter extends FragmentPagerAdapter {
@@ -94,7 +92,25 @@ public class ServantActivity extends FragmentActivity {
             }
             return null;
         }
+    }
 
+    private class LoadDataTask extends AsyncTask<Void, Void, Servant> {
+
+        protected Servant doInBackground(Void ... params) {
+            return viewModel.getServant();
+        }
+
+        protected void onPostExecute(Servant servant) {
+            setTitle(servant.toString());
+
+            adapter = new ServantPagerAdapter(getSupportFragmentManager());
+            pager.setAdapter(adapter);
+
+            titleStrip.setTextSize(45);
+            titleStrip.setViewPager(pager);
+
+            pager.setBackgroundColor(Model.getInstance().getServantColor(servant, c));
+        }
     }
 
 }
