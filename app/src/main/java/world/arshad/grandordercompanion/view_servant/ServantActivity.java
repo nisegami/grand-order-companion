@@ -1,36 +1,30 @@
 package world.arshad.grandordercompanion.view_servant;
 
-import android.app.ActionBar;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.graphics.Palette;
-import android.view.View;
-import android.widget.Toolbar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.astuetz.PagerSlidingTabStrip;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
-import world.arshad.grandordercompanion.Utilities;
 import world.arshad.grandordercompanion.data.Model;
 import world.arshad.grandordercompanion.data.Servant;
 
 /**
  *
  */
-public class ServantActivity extends FragmentActivity {
+public class ServantActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -50,9 +44,9 @@ public class ServantActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servant);
         ButterKnife.bind(this);
-        setActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         viewModel = ViewModelProviders.of(this).get(ServantViewModel.class);

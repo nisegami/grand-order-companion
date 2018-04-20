@@ -16,10 +16,10 @@
     <style name="ToolBarStyle">
         <item name="android:textColorPrimary">@color/actionBarForeground</item>
         <item name="android:textColorSecondary">@color/actionBarForeground</item>
-        <item name="actionMenuTextColor">@color/actionBarForeground</item>
         <item name="android:tint">@color/actionBarForeground</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:textStyle">normal</item>
+        <item name="actionMenuTextColor">@color/actionBarForeground</item>
     </style>
 
 </resources>
