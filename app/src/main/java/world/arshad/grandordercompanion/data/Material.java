@@ -66,7 +66,8 @@ public enum Material {
     TWINKLE_CANDY("Twinkle Candy", "twinkle_candy"),
     SHARP_KNIFE("Sharp Knife", "sharp_knife"),
     BUCKET_OF_CHICKEN("Bucket of Chicken", "bucket_of_chicken"),
-    GOLDEN_SKULL("Golden Skull", "golden_skull");
+    GOLDEN_SKULL("Golden Skull", "golden_skull"),
+    CRYSTAL_BALL("Crystal Ball", "crystal_ball");
 
     private String humanName;
     private String cleanName;

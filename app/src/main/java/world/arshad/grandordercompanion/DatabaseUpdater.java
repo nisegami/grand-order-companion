@@ -50,6 +50,10 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                 update(Model.getInstance().getDatabase(), activity.getAssets(),2);
                 currVersion = 2;
             }
+            if (currVersion < 3) {
+                update(Model.getInstance().getDatabase(), activity.getAssets(),3);
+                currVersion = 3;
+            }
             return currVersion;
         } catch (IOException e) {
             return currVersion;
