@@ -6,11 +6,12 @@
     <dimen name="nav_header_height">100dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="card_elevation">3dp</dimen>
-    <dimen name="card_corner_radius">2dp</dimen>
-    <dimen name="card_hor_margin">6dp</dimen>
-    <dimen name="card_vert_margin">3dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_hor_margin">10dp</dimen>
+    <dimen name="card_vert_margin">6dp</dimen>
     <dimen name="pager_padding">4dp</dimen>
     <dimen name="entry_height">50dp</dimen>
     <dimen name="material_width">50dp</dimen>
     <dimen name="tab_bar_height">45dp</dimen>
+    <dimen name="servant_card_height">100dp</dimen>
 </resources>
