@@ -51,7 +51,6 @@ public class Model {
         try {
             color = palette.getLightMutedSwatch().getRgb();
         } catch (NullPointerException e) {
-            Log.e("POOP", servant.getName());
             color = palette.getLightMutedColor(context.getColor(R.color.colorBackgroundGray));
         }
 
