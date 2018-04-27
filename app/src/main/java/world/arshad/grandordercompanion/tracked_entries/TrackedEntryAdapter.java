@@ -131,6 +131,12 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 AscensionViewHolder holder = (AscensionViewHolder) viewHolder;
                 Ascension ascension = ((Ascension) items.get(position));
                 holder.ascensionLabel.setText(ascension.toString());
+                holder.ascensionLabel.setOnClickListener(view -> {
+                    Intent intent = new Intent(context, ServantActivity.class);
+                    intent.putExtra("servant_id", ascension.getServantId());
+                    intent.putExtra("screen_number", ServantActivity.ASCENSION);
+                    context.startActivity(intent);
+                });
                 switch (ascension.getStatus()) {
                     case Ascension.DONTCARE: {
                         holder.trackButton1.setBackgroundResource(R.drawable.ic_eye_black_24dp);
@@ -228,6 +234,12 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 SkillUpViewHolder holder = (SkillUpViewHolder) viewHolder;
                 SkillUp skillUp = ((SkillUp) items.get(position));
                 holder.skillUpLabel.setText(skillUp.getTitle());
+                holder.skillUpLabel.setOnClickListener(view -> {
+                    Intent intent = new Intent(context, ServantActivity.class);
+                    intent.putExtra("servant_id", skillUp.getServantId());
+                    intent.putExtra("screen_number", ServantActivity.SKILL_UP);
+                    context.startActivity(intent);
+                });
                 switch (skillUp.getStatus()) {
                     case SkillUp.DONTCARE: {
                         holder.trackButton1.setBackgroundResource(R.drawable.ic_eye_black_24dp);

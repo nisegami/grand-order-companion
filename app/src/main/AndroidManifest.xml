@@ -19,12 +19,8 @@
         <activity
             android:name=".view_servant.ServantActivity"
             android:label="@string/title_activity_servant"
-            android:parentActivityName=".all_servants.AllServantsActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTask">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="world.arshad.grandordercompanion.all_servants.AllServantsActivity" />
         </activity>
         <activity
             android:name=".needed_materials.NeededMaterialsActivity"

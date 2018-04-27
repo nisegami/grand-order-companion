@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -34,6 +35,9 @@ public class ServantActivity extends AppCompatActivity {
 
     @BindView(R.id.servant_pager_title_strip)
     PagerSlidingTabStrip titleStrip;
+
+    public final static int ASCENSION = 1;
+    public final static int SKILL_UP = 2;
 
     private Context c = this;
     private ServantViewModel viewModel;
@@ -104,7 +108,19 @@ public class ServantActivity extends AppCompatActivity {
             titleStrip.setViewPager(pager);
 
             pager.setBackgroundColor(Model.getInstance().getServantColor(servant, c));
+
+            pager.setCurrentItem(getIntent().getIntExtra("screen_number", 0));
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
