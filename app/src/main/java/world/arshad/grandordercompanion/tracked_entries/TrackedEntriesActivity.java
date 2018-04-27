@@ -54,12 +54,6 @@ public class TrackedEntriesActivity extends SidebarActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        viewModel.refreshData();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         new LoadDataTask().execute();
@@ -68,7 +62,6 @@ public class TrackedEntriesActivity extends SidebarActivity {
     private class LoadDataTask extends AsyncTask<Void, Void, List<Object>> {
         protected void onPreExecute() {
             swipeRefreshLayout.setRefreshing(true);
-            trackedEntryList.setVisibility(View.INVISIBLE);
         }
 
         protected List<Object> doInBackground(Void ... params) {
@@ -78,7 +71,6 @@ public class TrackedEntriesActivity extends SidebarActivity {
         protected void onPostExecute(List<Object> items) {
             adapter.setData(items);
             swipeRefreshLayout.setRefreshing(false);
-            trackedEntryList.setVisibility(View.VISIBLE);
         }
     }
 }
