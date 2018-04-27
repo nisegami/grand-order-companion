@@ -17,27 +17,35 @@
             app:layout_constraintGuide_percent="0.5"
             android:orientation="vertical"/>
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/entry_stat_title"
             android:layout_width="0dp"
             android:layout_height="@dimen/entry_height"
             android:paddingEnd="@dimen/activity_horizontal_margin"
             android:gravity="center_vertical|end"
-            android:textSize="30sp"
             android:textColor="@android:color/black"
+            android:paddingStart="16dp"
+            android:maxLines="1"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="15sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/entry_stat_value"
             android:layout_width="0dp"
             android:layout_height="@dimen/entry_height"
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:gravity="center_vertical|start"
-            android:textSize="30sp"
             android:textColor="@android:color/black"
+            android:paddingEnd="16dp"
+            android:maxLines="1"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="15sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
