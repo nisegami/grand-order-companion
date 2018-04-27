@@ -34,10 +34,10 @@ public class NeededMaterialsViewModel extends ViewModel {
                 for (AscensionEntry ascensionEntry : ascension.getAscensionEntries()) {
                     if (items.containsKey(ascensionEntry.getMaterial())) {
                         NeededMaterialEntry existingEntry = items.get(ascensionEntry.getMaterial());
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + ascensionEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + ascensionEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension, ascensionEntry.getCount()));
                         items.put(ascensionEntry.getMaterial(), newEntry);
                     } else {
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(ascensionEntry.getCount(), String.format("%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(ascensionEntry.getCount(), String.format("%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension, ascensionEntry.getCount()));
                         items.put(ascensionEntry.getMaterial(), newEntry);
                     }
                 }
@@ -48,10 +48,10 @@ public class NeededMaterialsViewModel extends ViewModel {
                 for (SkillUpEntry skillUpEntry : skillUp.getSkillUpEntries()) {
                     if (items.containsKey(skillUpEntry.getMaterial())) {
                         NeededMaterialEntry existingEntry = items.get(skillUpEntry.getMaterial());
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + skillUpEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + skillUpEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
                         items.put(skillUpEntry.getMaterial(), newEntry);
                     } else {
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(skillUpEntry.getCount(), String.format("%s | %s", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(skillUpEntry.getCount(), String.format("%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
                         items.put(skillUpEntry.getMaterial(), newEntry);
                     }
                 }
