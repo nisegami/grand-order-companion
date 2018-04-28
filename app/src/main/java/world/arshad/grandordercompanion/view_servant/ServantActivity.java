@@ -13,6 +13,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -49,6 +51,8 @@ public class ServantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_servant);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

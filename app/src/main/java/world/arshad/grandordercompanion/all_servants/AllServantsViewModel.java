@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class AllServantsViewModel extends AndroidViewModel {
     private SharedPreferences prefs;
 
     private List<Servant> servants;
+    private List<Servant> allServants;
     private boolean reverse = false;
     private Servant.Comps comparator = Servant.Comps.ID;
 
@@ -43,7 +45,9 @@ public class AllServantsViewModel extends AndroidViewModel {
      */
     private void fetchData(){
         if (servants == null) {
-            servants = Model.getInstance().getDatabase().servantDao().getAllServants();
+            allServants = Model.getInstance().getDatabase().servantDao().getAllServants();
+            servants = new ArrayList<>();
+            servants.addAll(allServants);
         }
     }
 
@@ -70,6 +74,25 @@ public class AllServantsViewModel extends AndroidViewModel {
         editor.putBoolean("servant_info_list_reverse", !reverse);
         editor.apply();
         reverse = !reverse;
+        sortItems();
+    }
+
+    public void filterItems(CharSequence rawTerm) {
+        fetchData();
+        servants = new ArrayList<>();
+        String term = rawTerm.toString();
+
+        if (term.equals("")) {
+            servants.addAll(allServants);
+            sortItems();
+            return;
+        }
+
+        for (Servant servant : allServants) {
+            if (servant.getName().toLowerCase().contains(term.toLowerCase())) {
+                servants.add(servant);
+            }
+        }
         sortItems();
     }
 

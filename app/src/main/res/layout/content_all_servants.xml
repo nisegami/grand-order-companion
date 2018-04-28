@@ -23,4 +23,13 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/servant_list_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_search_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
