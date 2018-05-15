@@ -1,4 +1,4 @@
-package world.arshad.grandordercompanion.data;
+package world.arshad.grandordercompanion.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -84,7 +84,10 @@ public class Servant implements Comparable<Servant> {
 
     @ColumnInfo(name = "gamepress_url")
     private String gamepressURL;
-
+    
+    @ColumnInfo(name = "color")
+    private int color;    
+        
     public int getId() {
         return id;
     }
@@ -251,6 +254,14 @@ public class Servant implements Comparable<Servant> {
 
     public void setDeck(String deck) {
         this.deck = deck;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     // Skill and Ascension Stuff
@@ -523,10 +534,10 @@ public class Servant implements Comparable<Servant> {
     // General Stuff
 
     @Ignore
-    /**
+    /*
      * This constructor is for building with read only data.
      */
-    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL, String deck) {
+    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL, String deck, int color) {
         this.id = id;
         this.name = name;
         this.skill1 = skill1;
@@ -548,8 +559,9 @@ public class Servant implements Comparable<Servant> {
         this.seiyuu = seiyuu;
         this.gamepressURL = gamepressURL;
         this.deck = deck;
+        this.color = color;
 
-        // Set to default
+        // Set user data to default
         this.summoned = false;
         this.currentServantExp = 0;
         this.currentNPLevel = 1;
@@ -571,7 +583,7 @@ public class Servant implements Comparable<Servant> {
         this.targetSkillThreeLevel = 1;
     }
 
-    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL, String deck, boolean summoned, int currentServantExp, int currentNPLevel, int currentBondPoints, int currentAscensionNum, int currentFouATK, int currentFouHP, int currentSkillOneLevel, int currentSkillTwoLevel, int currentSkillThreeLevel, int targetServantExp, int targetNPLevel, int targetBondPoints, int targetAscensionNum, int targetFouATK, int targetFouHP, int targetSkillOneLevel, int targetSkillTwoLevel, int targetSkillThreeLevel) {
+    public Servant(int id, String name, String skill1, String skill2, String skill3, int rarity, int cost, String attribute, ServantClass servantClass, GrowthCurve growthCurve, int baseAtk, int baseHp, int maxAtk, int maxHp, int grailAtk, int grailHp, String gender, String alignment, String seiyuu, String gamepressURL, String deck, int color, boolean summoned, int currentServantExp, int currentNPLevel, int currentBondPoints, int currentAscensionNum, int currentFouATK, int currentFouHP, int currentSkillOneLevel, int currentSkillTwoLevel, int currentSkillThreeLevel, int targetServantExp, int targetNPLevel, int targetBondPoints, int targetAscensionNum, int targetFouATK, int targetFouHP, int targetSkillOneLevel, int targetSkillTwoLevel, int targetSkillThreeLevel) {
         this.id = id;
         this.name = name;
         this.skill1 = skill1;
@@ -593,7 +605,9 @@ public class Servant implements Comparable<Servant> {
         this.seiyuu = seiyuu;
         this.gamepressURL = gamepressURL;
         this.deck = deck;
+        this.color = color;
 
+        // Set user data
         this.summoned = summoned;
         this.currentServantExp = currentServantExp;
         this.currentNPLevel = currentNPLevel;
@@ -626,7 +640,7 @@ public class Servant implements Comparable<Servant> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (null == o || getClass() != o.getClass()) return false;
 
         Servant that = (Servant) o;
 
@@ -650,7 +664,7 @@ public class Servant implements Comparable<Servant> {
 
     public enum Comps {
 
-        ID(ID_COMP), NAME(NAME_COMP), CLASS(CLASS_COMP), RARITY(RARITY_COMP), ATTACK(ATK_COMP), HP(HP_COMP);
+        ID(Servant.ID_COMP), NAME(Servant.NAME_COMP), CLASS(Servant.CLASS_COMP), RARITY(Servant.RARITY_COMP), ATTACK(Servant.ATK_COMP), HP(Servant.HP_COMP);
 
         private Comparator<Servant> myComp;
 
@@ -667,7 +681,7 @@ public class Servant implements Comparable<Servant> {
 
     public static final Comparator<Servant> NAME_COMP = (a, b) -> {
         int result = a.name.compareTo(b.name);
-        if (result == 0) {
+        if (0 == result) {
             return a.compareTo(b);
         } else {
             return result;
@@ -676,7 +690,7 @@ public class Servant implements Comparable<Servant> {
 
     public static final Comparator<Servant> CLASS_COMP = (a, b) -> {
         int result =  a.servantClass.compareTo(b.servantClass);
-        if (result == 0) {
+        if (0 == result) {
             return a.compareTo(b);
         } else {
             return result;
@@ -685,7 +699,7 @@ public class Servant implements Comparable<Servant> {
 
     public static final Comparator<Servant> RARITY_COMP = (a, b) -> {
         int result =  b.rarity - a.rarity;
-        if (result == 0) {
+        if (0 == result) {
             return a.compareTo(b);
         } else {
             return result;
@@ -694,7 +708,7 @@ public class Servant implements Comparable<Servant> {
 
     public static final Comparator<Servant> ATK_COMP = (a, b) -> {
         int result =  b.maxAtk - a.maxAtk;
-        if (result == 0) {
+        if (0 == result) {
             return a.compareTo(b);
         } else {
             return result;
@@ -703,7 +717,7 @@ public class Servant implements Comparable<Servant> {
 
     public static final Comparator<Servant> HP_COMP = (a, b) -> {
         int result =  b.maxHp - a.maxHp;
-        if (result == 0) {
+        if (0 == result) {
             return a.compareTo(b);
         } else {
             return result;
@@ -731,26 +745,26 @@ public class Servant implements Comparable<Servant> {
     }
 
     public String getSkillUpName(int skillNumber) {
-        if (skillNumber == 1) {
+        if (1 == skillNumber) {
             return skill1;
         }
-        if (skillNumber == 2) {
+        if (2 == skillNumber) {
             return skill2;
         }
-        if (skillNumber == 3) {
+        if (3 == skillNumber) {
             return skill3;
         }
         return "";
     }
 
     public List<SkillUp> getSkillUps(int skillNumber) {
-        if (skillNumber == 1) {
+        if (1 == skillNumber) {
             return skillUps1;
         }
-        if (skillNumber == 2) {
+        if (2 == skillNumber) {
             return skillUps2;
         }
-        if (skillNumber == 3) {
+        if (3 == skillNumber) {
             return skillUps3;
         }
         return null;

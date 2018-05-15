@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.SidebarActivity;
-import world.arshad.grandordercompanion.data.Servant;
+import world.arshad.grandordercompanion.model.Servant;
 
 public class AllServantsActivity extends SidebarActivity implements SearchLiveo.OnSearchListener {
 
@@ -100,12 +100,12 @@ public class AllServantsActivity extends SidebarActivity implements SearchLiveo.
             public void onScrolled(RecyclerView recyclerView, int dx,int dy){
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (dy > 0) {
+                if (0 < dy) {
                     if (searchButton.isShown()) {
                         searchButton.hide();
                     }
                 }
-                else if (dy < 0) {
+                else if (0 > dy) {
                     if (!searchButton.isShown()) {
                         searchButton.show();
                     }

@@ -1,4 +1,4 @@
-package world.arshad.grandordercompanion.data;
+package world.arshad.grandordercompanion.model;
 
 /**
  * Enum representing the different servant classes

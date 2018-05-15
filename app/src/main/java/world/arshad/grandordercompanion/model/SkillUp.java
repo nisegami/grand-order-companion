@@ -1,14 +1,10 @@
-package world.arshad.grandordercompanion.data;
+package world.arshad.grandordercompanion.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
 
 import java.util.List;
-
-import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 /**
  * This class represents a given skill up.
@@ -101,7 +97,7 @@ public class SkillUp {
 
     @Override
     public String toString() {
-        if (skillName != null) {
+        if (null != skillName) {
             return String.format("%s (%d): %d ➜ %d", skillName, skillNumber, destSkillLevel - 1, destSkillLevel);
         } else {
             return String.format("%d: %d ➜ %d", skillNumber, destSkillLevel - 1, destSkillLevel);

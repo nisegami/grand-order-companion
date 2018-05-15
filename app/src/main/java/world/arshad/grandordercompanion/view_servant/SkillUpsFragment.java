@@ -3,17 +3,13 @@ package world.arshad.grandordercompanion.view_servant;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
@@ -21,7 +17,6 @@ import com.leinardi.android.speeddial.SpeedDialView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
-import world.arshad.grandordercompanion.data.Servant;
 
 public class SkillUpsFragment extends Fragment {
 
@@ -53,9 +48,9 @@ public class SkillUpsFragment extends Fragment {
         skillUpList.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                if (dy > 0)
+                if (0 < dy)
                     skillFab.hide();
-                else if (dy < 0)
+                else if (0 > dy)
                     skillFab.show();
             }
         });

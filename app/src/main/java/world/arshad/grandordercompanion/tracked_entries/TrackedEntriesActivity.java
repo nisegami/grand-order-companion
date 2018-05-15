@@ -4,12 +4,9 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ImageButton;
 
 import java.util.List;
 
@@ -17,7 +14,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.SidebarActivity;
-import world.arshad.grandordercompanion.data.Servant;
 
 public class TrackedEntriesActivity extends SidebarActivity {
 
@@ -59,11 +55,13 @@ public class TrackedEntriesActivity extends SidebarActivity {
         new LoadDataTask().execute();
     }
 
-    private class LoadDataTask extends AsyncTask<Void, Void, List<Object>> {
-        protected void onPreExecute() {
-            swipeRefreshLayout.setRefreshing(true);
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.refreshData();
+    }
 
+    private class LoadDataTask extends AsyncTask<Void, Void, List<Object>> {
         protected List<Object> doInBackground(Void ... params) {
             return viewModel.getItems();
         }

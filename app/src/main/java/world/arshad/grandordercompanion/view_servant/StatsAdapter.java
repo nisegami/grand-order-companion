@@ -1,6 +1,5 @@
 package world.arshad.grandordercompanion.view_servant;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
-import world.arshad.grandordercompanion.data.Servant;
+import world.arshad.grandordercompanion.model.Servant;
 
 public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder>  {
 
@@ -143,7 +142,7 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
                 break;
         }
 
-        if (position % 2 == 0) {
+        if (0 == (position % 2)) {
             holder.title.setBackgroundColor(color1);
             holder.value.setBackgroundColor(color1);
         } else {

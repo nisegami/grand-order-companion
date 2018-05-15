@@ -5,8 +5,9 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.ServantDatabase;
+import world.arshad.grandordercompanion.database.ServantRepository;
+import world.arshad.grandordercompanion.database.RoomMigrations;
+import world.arshad.grandordercompanion.database.ServantDatabase;
 
 /**
  * I'm using this as a God object because no one can give me a good reason not to.
@@ -26,9 +27,10 @@ public class GOCApp extends Application {
                         "servant-database")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
+                .addMigrations(RoomMigrations.MIGRATION_2_3)
                 .build();
 
-        Model.getInstance().setDatabase(database);
+        ServantRepository.getInstance().setDatabase(database);
 
         SharedPreferences prefs = getSharedPreferences("goc", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

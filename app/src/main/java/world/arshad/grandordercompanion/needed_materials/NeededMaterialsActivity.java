@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.SidebarActivity;
-import world.arshad.grandordercompanion.data.Material;
+import world.arshad.grandordercompanion.model.Material;
 
 public class NeededMaterialsActivity extends SidebarActivity {
 

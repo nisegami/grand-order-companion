@@ -3,27 +3,23 @@ package world.arshad.grandordercompanion;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
 import world.arshad.grandordercompanion.needed_materials.NeededMaterialsActivity;
 import world.arshad.grandordercompanion.tracked_entries.TrackedEntriesActivity;
-import world.arshad.grandordercompanion.tracked_entries.TrackedEntryViewModel;
 
 /**
  * Created by arsha on 20/03/2018.
  */
 
-public class SidebarActivity extends AppCompatActivity
+public abstract class SidebarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     protected Activity a = this;
@@ -54,7 +50,7 @@ public class SidebarActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -77,17 +73,22 @@ public class SidebarActivity extends AppCompatActivity
         int id = item.getItemId();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
-        if (id == R.id.nav_servant_list) {
-            showScreen(AllServantsActivity.class);
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_needed_materials) {
-            showScreen(NeededMaterialsActivity.class);
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.tracked_entries) {
-            showScreen(TrackedEntriesActivity.class);
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            drawer.closeDrawer(GravityCompat.START);
+        switch (id) {
+            case R.id.nav_servant_list:
+                showScreen(AllServantsActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_needed_materials:
+                showScreen(NeededMaterialsActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.tracked_entries:
+                showScreen(TrackedEntriesActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+            default:
+                drawer.closeDrawer(GravityCompat.START);
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);

@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,9 +52,9 @@ public class StatsFragment extends Fragment {
         statsList.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                if (dy > 0)
+                if (0 < dy)
                     gamepressButton.hide();
-                else if (dy < 0)
+                else if (0 > dy)
                     gamepressButton.show();
             }
         });

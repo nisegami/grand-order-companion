@@ -18,10 +18,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.Servant;
-import world.arshad.grandordercompanion.data.SkillUp;
-import world.arshad.grandordercompanion.data.SkillUpEntry;
+import world.arshad.grandordercompanion.database.ServantRepository;
+import world.arshad.grandordercompanion.model.Servant;
+import world.arshad.grandordercompanion.model.SkillUp;
+import world.arshad.grandordercompanion.model.SkillUpEntry;
 
 /**
  * Created by arsha on 21/03/2018.
@@ -32,7 +32,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int PARENT = 0, CHILD = 1;
     private final Context context;
     private List<Object> items;
-    private String skillName; //For skill names
+    private String skillName;
 
     public static class SkillUpParentViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.skill_up_parent_label)
@@ -76,22 +76,22 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         switch (skillNum) {
             case 1: {
-                this.skillName = servant.getSkill1();
+                skillName = servant.getSkill1();
                 list = servant.getSkillUps1();
             }
                 break;
             case 2: {
-                this.skillName = servant.getSkill2();
+                skillName = servant.getSkill2();
                 list = servant.getSkillUps2();
             }
                 break;
             case 3: {
-                this.skillName = servant.getSkill3();
+                skillName = servant.getSkill3();
                 list = servant.getSkillUps3();
             }
                 break;
             default: {
-                this.skillName = servant.getSkill1();
+                skillName = servant.getSkill1();
                 list = servant.getSkillUps1();
             }
         }
@@ -110,7 +110,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
-            case PARENT: {
+            case SkillUpAdapter.PARENT: {
                 SkillUpParentViewHolder holder = (SkillUpParentViewHolder) viewHolder;
                 SkillUp skillUp = ((SkillUp) items.get(position));
                 holder.skillUpLabel.setText(skillUp.getTitle());
@@ -124,9 +124,9 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     for (int j = 0; j < items.size(); j++) {
                                         if ((items.get(j) instanceof SkillUp) && (j <= position)) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
-                                            if (otherSkillUp.getStatus() == SkillUp.DONTCARE) {
+                                            if (SkillUp.DONTCARE == otherSkillUp.getStatus()) {
                                                 otherSkillUp.setStatus(SkillUp.TRACKED);
-                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -145,9 +145,9 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     for (int j = 0; j < items.size(); j++) {
                                         if ((items.get(j) instanceof SkillUp) && (j >= position)) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
-                                            if (otherSkillUp.getStatus() == SkillUp.TRACKED) {
+                                            if (SkillUp.TRACKED == otherSkillUp.getStatus()) {
                                                 otherSkillUp.setStatus(SkillUp.DONTCARE);
-                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -162,9 +162,9 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     for (int j = 0; j < items.size(); j++) {
                                         if ((items.get(j) instanceof SkillUp) && (j <= position)) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
-                                            if (otherSkillUp.getStatus() == SkillUp.TRACKED) {
+                                            if (SkillUp.TRACKED == otherSkillUp.getStatus()) {
                                                 otherSkillUp.setStatus(SkillUp.COMPLETED);
-                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -184,7 +184,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                         if ((items.get(j) instanceof SkillUp) && (j >= position)) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
                                             otherSkillUp.setStatus(SkillUp.DONTCARE);
-                                            Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                            ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                             notifyItemChanged(j);
                                         }
                                     }
@@ -195,7 +195,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
                 break;
             }
-            case CHILD: {
+            case SkillUpAdapter.CHILD: {
                 SkillUpChildViewHolder holder = (SkillUpChildViewHolder) viewHolder;
                 SkillUpEntry skillUpEntry = ((SkillUpEntry) items.get(position));
                 holder.name.setText(skillUpEntry.getMaterial().toString());
@@ -211,11 +211,11 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
         switch (viewType) {
-            case PARENT: {
+            case SkillUpAdapter.PARENT: {
                 View view = inflater.inflate(R.layout.entry_skill_up_parent, viewGroup, false);
                 return new SkillUpParentViewHolder(view);
             }
-            case CHILD: {
+            case SkillUpAdapter.CHILD: {
                 View view = inflater.inflate(R.layout.entry_skill_up_child, viewGroup, false);
                 return new SkillUpChildViewHolder(view);
             }
@@ -226,9 +226,9 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public int getItemViewType(int position) {
         if (items.get(position) instanceof SkillUp) {
-            return PARENT;
+            return SkillUpAdapter.PARENT;
         } else if (items.get(position) instanceof SkillUpEntry) {
-            return CHILD;
+            return SkillUpAdapter.CHILD;
         }
         return -1;
     }

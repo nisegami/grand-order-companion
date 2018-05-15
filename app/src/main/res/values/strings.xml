@@ -9,8 +9,6 @@
     <string name="title_activity_all_servants">AllServantsActivity</string>
     <string name="title_activity_servant">ServantActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_needed_materials">NeededMaterialsActivity</string>
     <string name="title_activity_exp">ExpActivity</string>
 </resources>

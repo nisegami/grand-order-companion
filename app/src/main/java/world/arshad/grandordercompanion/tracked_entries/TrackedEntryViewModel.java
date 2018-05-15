@@ -5,10 +5,10 @@ import android.arch.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import world.arshad.grandordercompanion.data.Ascension;
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.Servant;
-import world.arshad.grandordercompanion.data.SkillUp;
+import world.arshad.grandordercompanion.model.Ascension;
+import world.arshad.grandordercompanion.database.ServantRepository;
+import world.arshad.grandordercompanion.model.Servant;
+import world.arshad.grandordercompanion.model.SkillUp;
 
 public class TrackedEntryViewModel extends ViewModel {
     private List<Object> items;
@@ -17,9 +17,9 @@ public class TrackedEntryViewModel extends ViewModel {
      * Call this at the start of any method that is working with the data.
      */
     private void fetchData(){
-        if (items == null) {
+        if (null == items) {
             items = new ArrayList<>();
-            for (Servant servant : Model.getInstance().getDatabase().servantDao().getAllServants()) {
+            for (Servant servant : ServantRepository.getInstance().getAllServants()) {
                 List<Ascension> trackedAscensions = servant.getAscensions(Ascension.TRACKED);
                 List<SkillUp> trackedSkillUps = new ArrayList<>();
                 trackedSkillUps.addAll(servant.getSkillUps(1, SkillUp.TRACKED));

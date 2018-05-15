@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import world.arshad.grandordercompanion.data.Model;
+import world.arshad.grandordercompanion.database.ServantRepository;
 import world.arshad.grandordercompanion.R;
-import world.arshad.grandordercompanion.data.Servant;
+import world.arshad.grandordercompanion.model.Servant;
 
 /**
  * ViewModel for the list of servants.
@@ -44,8 +44,8 @@ public class AllServantsViewModel extends AndroidViewModel {
      * Call this at the start of any method that is working with the data.
      */
     private void fetchData(){
-        if (servants == null) {
-            allServants = Model.getInstance().getDatabase().servantDao().getAllServants();
+        if (null == servants) {
+            allServants = ServantRepository.getInstance().getAllServants();
             servants = new ArrayList<>();
             servants.addAll(allServants);
         }
@@ -82,7 +82,7 @@ public class AllServantsViewModel extends AndroidViewModel {
         servants = new ArrayList<>();
         String term = rawTerm.toString();
 
-        if (term.equals("")) {
+        if ("".equals(term)) {
             servants.addAll(allServants);
             sortItems();
             return;
@@ -98,7 +98,7 @@ public class AllServantsViewModel extends AndroidViewModel {
 
     public void sortItems() {
         fetchData();
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        if (Build.VERSION_CODES.N <= Build.VERSION.SDK_INT){
             servants.sort(reverse ? comparator.getComp().reversed() : comparator.getComp());
         } else{
             Collections.sort(servants, comparator.getComp());

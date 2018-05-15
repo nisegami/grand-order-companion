@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.Ascension;
-import world.arshad.grandordercompanion.data.AscensionEntry;
-import world.arshad.grandordercompanion.data.Material;
-import world.arshad.grandordercompanion.data.SkillUp;
-import world.arshad.grandordercompanion.data.SkillUpEntry;
+import world.arshad.grandordercompanion.database.ServantRepository;
+import world.arshad.grandordercompanion.model.Ascension;
+import world.arshad.grandordercompanion.model.AscensionEntry;
+import world.arshad.grandordercompanion.model.Material;
+import world.arshad.grandordercompanion.model.SkillUp;
+import world.arshad.grandordercompanion.model.SkillUpEntry;
 
 /**
  * Created by arsha on 22/03/2018.
@@ -25,33 +25,33 @@ public class NeededMaterialsViewModel extends ViewModel {
      * Call this at the start of any method that is working with the data.
      */
     public void fetchData() {
-        if (items == null) {
+        if (null == items) {
             // Use LinkedHashMap to guarantee key ordering for populating RecyclerView
             items = new LinkedHashMap<>();
 
-            List<Ascension> ascensions = Model.getInstance().getDatabase().servantDao().getTrackedAscensions();
+            List<Ascension> ascensions = ServantRepository.getInstance().getAscensionsOfType(Ascension.TRACKED);
             for (Ascension ascension : ascensions) {
                 for (AscensionEntry ascensionEntry : ascension.getAscensionEntries()) {
                     if (items.containsKey(ascensionEntry.getMaterial())) {
                         NeededMaterialEntry existingEntry = items.get(ascensionEntry.getMaterial());
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + ascensionEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension, ascensionEntry.getCount()));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + ascensionEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s | %d", ServantRepository.getInstance().getServantNameFromId(ascensionEntry.getServantId()), ascension, ascensionEntry.getCount()));
                         items.put(ascensionEntry.getMaterial(), newEntry);
                     } else {
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(ascensionEntry.getCount(), String.format("%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(ascensionEntry.getServantId()), ascension, ascensionEntry.getCount()));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(ascensionEntry.getCount(), String.format("%s | %s | %d", ServantRepository.getInstance().getServantNameFromId(ascensionEntry.getServantId()), ascension, ascensionEntry.getCount()));
                         items.put(ascensionEntry.getMaterial(), newEntry);
                     }
                 }
             }
 
-            List<SkillUp> skillUps = Model.getInstance().getDatabase().servantDao().getTrackedSkillUps();
+            List<SkillUp> skillUps = ServantRepository.getInstance().getSkillUpsOfType(SkillUp.TRACKED);
             for (SkillUp skillUp : skillUps) {
                 for (SkillUpEntry skillUpEntry : skillUp.getSkillUpEntries()) {
                     if (items.containsKey(skillUpEntry.getMaterial())) {
                         NeededMaterialEntry existingEntry = items.get(skillUpEntry.getMaterial());
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + skillUpEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + skillUpEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s | %d", ServantRepository.getInstance().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
                         items.put(skillUpEntry.getMaterial(), newEntry);
                     } else {
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(skillUpEntry.getCount(), String.format("%s | %s | %d", Model.getInstance().getDatabase().servantDao().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(skillUpEntry.getCount(), String.format("%s | %s | %d", ServantRepository.getInstance().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
                         items.put(skillUpEntry.getMaterial(), newEntry);
                     }
                 }

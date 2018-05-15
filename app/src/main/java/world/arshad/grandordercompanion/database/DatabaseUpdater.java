@@ -1,6 +1,7 @@
-package world.arshad.grandordercompanion;
+package world.arshad.grandordercompanion.database;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
@@ -12,17 +13,15 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
-import world.arshad.grandordercompanion.data.Ascension;
-import world.arshad.grandordercompanion.data.AscensionEntry;
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.GrowthCurve;
-import world.arshad.grandordercompanion.data.Material;
-import world.arshad.grandordercompanion.data.Servant;
-import world.arshad.grandordercompanion.data.ServantClass;
-import world.arshad.grandordercompanion.data.ServantDatabase;
-import world.arshad.grandordercompanion.data.SkillUp;
-import world.arshad.grandordercompanion.data.SkillUpEntry;
+import world.arshad.grandordercompanion.Utilities;
+import world.arshad.grandordercompanion.model.Ascension;
+import world.arshad.grandordercompanion.model.AscensionEntry;
+import world.arshad.grandordercompanion.model.GrowthCurve;
+import world.arshad.grandordercompanion.model.Material;
+import world.arshad.grandordercompanion.model.Servant;
+import world.arshad.grandordercompanion.model.ServantClass;
+import world.arshad.grandordercompanion.model.SkillUp;
+import world.arshad.grandordercompanion.model.SkillUpEntry;
 
 /**
  * This class will be used to add new servants to the database.
@@ -31,32 +30,44 @@ import world.arshad.grandordercompanion.data.SkillUpEntry;
 
 public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
-    private Activity activity;
+    private PostUpdateCallback callback;
+    private ServantDao dao;
+    @SuppressLint("StaticFieldLeak") //Only ever supplied with app context
+    private Context context;
 
-    public DatabaseUpdater(Activity activity) {
-        super();
-        this.activity = activity;
+    public DatabaseUpdater(PostUpdateCallback callback, Context context, ServantDao dao) {
+        this.callback = callback;
+        this.context = context;
+        this.dao = dao;
     }
 
     @Override
     protected Integer doInBackground(Integer ... ints) {
         int currVersion = ints[0];
         try {
-            if (currVersion < 1) {
-                update(Model.getInstance().getDatabase(), activity.getAssets(),1);
+            if (1 > currVersion) {
+                update(context.getAssets(),1);
                 currVersion = 1;
             }
-            if (currVersion < 2) {
-                update(Model.getInstance().getDatabase(), activity.getAssets(),2);
+            if (2 > currVersion) {
+                update(context.getAssets(),2);
                 currVersion = 2;
             }
-            if (currVersion < 3) {
-                update(Model.getInstance().getDatabase(), activity.getAssets(),3);
+            if (3 > currVersion) {
+                update(context.getAssets(),3);
                 currVersion = 3;
             }
-            if (currVersion < 4) {
-                update(Model.getInstance().getDatabase(), activity.getAssets(),3);
+            if (4 > currVersion) {
+                update(context.getAssets(),4);
                 currVersion = 4;
+            }
+            if (5 > currVersion) {
+                List<Servant> currentServants = dao.getAllServants();
+                for (Servant servant : currentServants) {
+                    servant.setColor(Utilities.getServantColor(servant, context));
+                    dao.updateServant(servant);
+                }
+                currVersion = 5;
             }
             return currVersion;
         } catch (IOException e) {
@@ -66,18 +77,18 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
     @Override
     protected void onPostExecute(Integer newVersion) {
-        ((SplashActivity) activity).onDatabaseUpdated(newVersion);
+        this.callback.onDatabaseUpdated(newVersion);
     }
 
-    private static void update(ServantDatabase database, AssetManager assetManager, int num) throws IOException {
+    private void update(AssetManager assetManager, int num) throws IOException {
 
         String filename_base = String.format("csv/%d/", num);
 
-        database.servantDao().insertAllServants(getServants(new InputStreamReader(assetManager.open(filename_base + "servants.csv"))));
-        database.servantDao().insertAllAscensions(getAscensions(new InputStreamReader(assetManager.open(filename_base + "ascensions.csv"))));
-        database.servantDao().insertAllSkillUps(getSkillUps(new InputStreamReader(assetManager.open(filename_base + "skill_ups.csv"))));
-        database.servantDao().insertAllAscensionEntrys(getAscensionEntries(new InputStreamReader(assetManager.open(filename_base + "ascension_entries.csv"))));
-        database.servantDao().insertAllSkillUpEntrys(getSkillUpEntries(new InputStreamReader(assetManager.open(filename_base + "skill_up_entries.csv"))));
+        dao.insertAllServants(DatabaseUpdater.getServants(new InputStreamReader(assetManager.open(filename_base + "servants.csv"))));
+        dao.insertAllAscensions(DatabaseUpdater.getAscensions(new InputStreamReader(assetManager.open(filename_base + "ascensions.csv"))));
+        dao.insertAllSkillUps(DatabaseUpdater.getSkillUps(new InputStreamReader(assetManager.open(filename_base + "skill_ups.csv"))));
+        dao.insertAllAscensionEntries(DatabaseUpdater.getAscensionEntries(new InputStreamReader(assetManager.open(filename_base + "ascension_entries.csv"))));
+        dao.insertAllSkillUpEntries(DatabaseUpdater.getSkillUpEntries(new InputStreamReader(assetManager.open(filename_base + "skill_up_entries.csv"))));
     }
 
     private static List<Servant> getServants(Reader file) throws IOException {
@@ -85,7 +96,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
         CSVReader reader = new CSVReader(file);
         String [] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
+        while (null != (nextLine = reader.readNext())) {
             servants.add(new Servant(
                     Integer.valueOf(nextLine[0]),
                     nextLine[1],
@@ -107,7 +118,8 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                     nextLine[17],
                     nextLine[18],
                     nextLine[19],
-                    nextLine[20]
+                    nextLine[20],
+                    -1
             ));
         }
 
@@ -119,7 +131,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
         CSVReader reader = new CSVReader(file);
         String [] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
+        while (null != (nextLine = reader.readNext())) {
             ascensions.add(new Ascension(
                     Integer.valueOf(nextLine[0]),
                     Integer.valueOf(nextLine[1]),
@@ -135,7 +147,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
         CSVReader reader = new CSVReader(file);
         String [] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
+        while (null != (nextLine = reader.readNext())) {
             ascensionEntries.add(new AscensionEntry(
                     Integer.valueOf(nextLine[0]),
                     Integer.valueOf(nextLine[1]),
@@ -152,7 +164,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
         CSVReader reader = new CSVReader(file);
         String [] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
+        while (null != (nextLine = reader.readNext())) {
             skillUps.add(new SkillUp(
                     Integer.valueOf(nextLine[0]),
                     Integer.valueOf(nextLine[1]),
@@ -169,7 +181,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
         CSVReader reader = new CSVReader(file);
         String [] nextLine;
-        while ((nextLine = reader.readNext()) != null) {
+        while (null != (nextLine = reader.readNext())) {
             skillUpEntries.add(new SkillUpEntry(
                     Integer.valueOf(nextLine[0]),
                     Integer.valueOf(nextLine[1]),
@@ -179,5 +191,9 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
         }
 
         return skillUpEntries;
+    }
+
+    public interface PostUpdateCallback {
+        void onDatabaseUpdated(int newVersion);
     }
 }

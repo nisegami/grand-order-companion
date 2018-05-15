@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
-import world.arshad.grandordercompanion.data.Material;
+import world.arshad.grandordercompanion.model.Material;
 
 import static android.content.DialogInterface.BUTTON_NEUTRAL;
 

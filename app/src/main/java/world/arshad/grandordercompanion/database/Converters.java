@@ -1,12 +1,19 @@
-package world.arshad.grandordercompanion.data;
+package world.arshad.grandordercompanion.database;
 
 import android.arch.persistence.room.TypeConverter;
+
+import world.arshad.grandordercompanion.model.GrowthCurve;
+import world.arshad.grandordercompanion.model.Material;
+import world.arshad.grandordercompanion.model.ServantClass;
 
 /**
  * Created by arsha on 19/03/2018.
  */
 
-public class Converters {
+public final class Converters {
+
+    private Converters() {
+    }
 
     @TypeConverter
     public static Material toMaterialFromString(String val) {
@@ -18,6 +25,7 @@ public class Converters {
         return material.name();
     }
 
+
     @TypeConverter
     public static ServantClass toClassFromString(String val) {
         return ServantClass.valueOf(val);
@@ -27,6 +35,7 @@ public class Converters {
     public static String toStringFromClass(ServantClass servantClass) {
         return servantClass.name();
     }
+
 
     @TypeConverter
     public static GrowthCurve toCurveFromString(String val) {

@@ -2,7 +2,6 @@ package world.arshad.grandordercompanion.all_servants;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,8 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.Servant;
+import world.arshad.grandordercompanion.model.Servant;
 import world.arshad.grandordercompanion.view_servant.ServantActivity;
 
 /**
@@ -68,7 +66,7 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
 
         holder.name.setText(servant.getName());
         holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(servant.getThumbnailPath(1), context.getAssets()));
-        holder.servantCard.setCardBackgroundColor(Model.getInstance().getServantColor(servant, context));
+        holder.servantCard.setCardBackgroundColor(servant.getColor());
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ServantActivity.class);

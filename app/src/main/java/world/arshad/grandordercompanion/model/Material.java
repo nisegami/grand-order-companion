@@ -1,4 +1,4 @@
-package world.arshad.grandordercompanion.data;
+package world.arshad.grandordercompanion.model;
 
 /**
  * This is an enum of all skill and ascension materials.

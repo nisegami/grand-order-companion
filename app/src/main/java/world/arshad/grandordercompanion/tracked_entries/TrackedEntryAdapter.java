@@ -20,10 +20,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
-import world.arshad.grandordercompanion.data.Ascension;
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.Servant;
-import world.arshad.grandordercompanion.data.SkillUp;
+import world.arshad.grandordercompanion.model.Ascension;
+import world.arshad.grandordercompanion.database.ServantRepository;
+import world.arshad.grandordercompanion.model.Servant;
+import world.arshad.grandordercompanion.model.SkillUp;
 import world.arshad.grandordercompanion.view_servant.ServantActivity;
 
 public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -94,15 +94,15 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
         switch (viewType) {
-            case SERVANT: {
-                View view = inflater.inflate(R.layout.entry_servant_for_entries, viewGroup, false);
+            case TrackedEntryAdapter.SERVANT: {
+                View view = inflater.inflate(R.layout.entry_servant_for_tracked_entries, viewGroup, false);
                 return new ServantViewHolder(view);
             }
-            case ASCENSION: {
+            case TrackedEntryAdapter.ASCENSION: {
                 View view = inflater.inflate(R.layout.entry_ascension_parent, viewGroup, false);
                 return new AscensionViewHolder(view);
             }
-            case SKILL: {
+            case TrackedEntryAdapter.SKILL: {
                 View view = inflater.inflate(R.layout.entry_skill_up_parent, viewGroup, false);
                 return new SkillUpViewHolder(view);
             }
@@ -113,12 +113,12 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
-            case SERVANT: {
+            case TrackedEntryAdapter.SERVANT: {
                 ServantViewHolder holder = (ServantViewHolder) viewHolder;
                 Servant servant = ((Servant) items.get(position));
                 holder.name.setText(servant.getName());
                 holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(servant.getThumbnailPath(1), context.getAssets()));
-                holder.background.setBackgroundColor(Model.getInstance().getServantColor(servant, context));
+                holder.background.setBackgroundColor(servant.getColor());
 
                 holder.itemView.setOnClickListener(view -> {
                     Intent intent = new Intent(context, ServantActivity.class);
@@ -127,7 +127,7 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
             break;
-            case ASCENSION: {
+            case TrackedEntryAdapter.ASCENSION: {
                 AscensionViewHolder holder = (AscensionViewHolder) viewHolder;
                 Ascension ascension = ((Ascension) items.get(position));
                 holder.ascensionLabel.setText(ascension.toString());
@@ -145,14 +145,14 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                                     for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof Ascension) && (j <= position)) {
+                                        if ((items.get(j) instanceof Ascension) && (j < position)) {
                                             Ascension otherAscension = (Ascension) items.get(j);
                                             if (otherAscension.getServantId() != ascension.getServantId()) {
                                                 continue;
                                             }
-                                            if (otherAscension.getStatus() == Ascension.DONTCARE) {
+                                            if (Ascension.DONTCARE == otherAscension.getStatus()) {
                                                 otherAscension.setStatus(Ascension.TRACKED);
-                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                ServantRepository.getInstance().updateAscension(otherAscension);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -174,9 +174,9 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                             if (otherAscension.getServantId() != ascension.getServantId()) {
                                                 continue;
                                             }
-                                            if (otherAscension.getStatus() == Ascension.TRACKED) {
+                                            if (Ascension.TRACKED == otherAscension.getStatus()) {
                                                 otherAscension.setStatus(Ascension.DONTCARE);
-                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                ServantRepository.getInstance().updateAscension(otherAscension);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -194,9 +194,9 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                             if (otherAscension.getServantId() != ascension.getServantId()) {
                                                 continue;
                                             }
-                                            if (otherAscension.getStatus() == Ascension.TRACKED) {
+                                            if (Ascension.TRACKED == otherAscension.getStatus()) {
                                                 otherAscension.setStatus(Ascension.COMPLETED);
-                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                ServantRepository.getInstance().updateAscension(otherAscension);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -219,7 +219,7 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                                 continue;
                                             }
                                             otherAscension.setStatus(Ascension.DONTCARE);
-                                            Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                            ServantRepository.getInstance().updateAscension(otherAscension);
                                             notifyItemChanged(j);
                                         }
                                     }
@@ -230,7 +230,7 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
                 break;
             }
-            case SKILL: {
+            case TrackedEntryAdapter.SKILL: {
                 SkillUpViewHolder holder = (SkillUpViewHolder) viewHolder;
                 SkillUp skillUp = ((SkillUp) items.get(position));
                 holder.skillUpLabel.setText(skillUp.getTitle());
@@ -248,14 +248,14 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                                     for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j <= position)) {
+                                        if ((items.get(j) instanceof SkillUp) && (j <= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
                                             if (otherSkillUp.getServantId() != skillUp.getServantId()) {
                                                 continue;
                                             }
-                                            if (otherSkillUp.getStatus() == SkillUp.DONTCARE) {
+                                            if (SkillUp.DONTCARE == otherSkillUp.getStatus()) {
                                                 otherSkillUp.setStatus(SkillUp.TRACKED);
-                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -272,14 +272,14 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                                     for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j >= position)) {
+                                        if ((items.get(j) instanceof SkillUp) && (j >= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
                                             if (otherSkillUp.getServantId() != skillUp.getServantId()) {
                                                 continue;
                                             }
-                                            if (otherSkillUp.getStatus() == SkillUp.TRACKED) {
+                                            if (SkillUp.TRACKED == otherSkillUp.getStatus()) {
                                                 otherSkillUp.setStatus(SkillUp.DONTCARE);
-                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -292,14 +292,14 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                                     for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j <= position)) {
+                                        if ((items.get(j) instanceof SkillUp) && (j <= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
                                             if (otherSkillUp.getServantId() != skillUp.getServantId()) {
                                                 continue;
                                             }
-                                            if (otherSkillUp.getStatus() == SkillUp.TRACKED) {
+                                            if (SkillUp.TRACKED == otherSkillUp.getStatus()) {
                                                 otherSkillUp.setStatus(SkillUp.COMPLETED);
-                                                Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -316,13 +316,13 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                                     for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j >= position)) {
+                                        if ((items.get(j) instanceof SkillUp) && (j >= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
                                             SkillUp otherSkillUp = (SkillUp) items.get(j);
                                             if (otherSkillUp.getServantId() != skillUp.getServantId()) {
                                                 continue;
                                             }
                                             otherSkillUp.setStatus(SkillUp.DONTCARE);
-                                            Model.getInstance().getDatabase().servantDao().updateSkillUp(otherSkillUp);
+                                            ServantRepository.getInstance().updateSkillUp(otherSkillUp);
                                             notifyItemChanged(j);
                                         }
                                     }
@@ -339,11 +339,11 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemViewType(int position) {
         if (items.get(position) instanceof Ascension) {
-            return ASCENSION;
+            return TrackedEntryAdapter.ASCENSION;
         } else if (items.get(position) instanceof SkillUp) {
-            return SKILL;
+            return TrackedEntryAdapter.SKILL;
         } else if (items.get(position) instanceof Servant) {
-            return SERVANT;
+            return TrackedEntryAdapter.SERVANT;
         }
         return -1;
     }

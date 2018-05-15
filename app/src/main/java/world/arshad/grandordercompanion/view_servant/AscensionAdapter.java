@@ -16,11 +16,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import world.arshad.grandordercompanion.data.Model;
+import world.arshad.grandordercompanion.database.ServantRepository;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.Utilities;
-import world.arshad.grandordercompanion.data.Ascension;
-import world.arshad.grandordercompanion.data.AscensionEntry;
+import world.arshad.grandordercompanion.model.Ascension;
+import world.arshad.grandordercompanion.model.AscensionEntry;
 
 /**
  * Created by arsha on 21/03/2018.
@@ -86,7 +86,7 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
-            case PARENT: {
+            case AscensionAdapter.PARENT: {
                 AscensionParentViewHolder holder = (AscensionParentViewHolder) viewHolder;
                 Ascension ascension = ((Ascension) items.get(position));
                 holder.ascensionLabel.setText(ascension.toString());
@@ -101,9 +101,9 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                     for (int j = 0; j < items.size(); j++) {
                                         if ((items.get(j) instanceof Ascension) && (j <= position)) {
                                             Ascension otherAscension = (Ascension) items.get(j);
-                                            if (otherAscension.getStatus() == Ascension.DONTCARE) {
+                                            if (Ascension.DONTCARE == otherAscension.getStatus()) {
                                                 otherAscension.setStatus(Ascension.TRACKED);
-                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                ServantRepository.getInstance().updateAscension(otherAscension);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -122,9 +122,9 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                     for (int j = 0; j < items.size(); j++) {
                                         if ((items.get(j) instanceof Ascension) && (j >= position)) {
                                             Ascension otherAscension = (Ascension) items.get(j);
-                                            if (otherAscension.getStatus() == Ascension.TRACKED) {
+                                            if (Ascension.TRACKED == otherAscension.getStatus()) {
                                                 otherAscension.setStatus(Ascension.DONTCARE);
-                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                ServantRepository.getInstance().updateAscension(otherAscension);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -139,9 +139,9 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                     for (int j = 0; j < items.size(); j++) {
                                         if ((items.get(j) instanceof Ascension) && (j <= position)) {
                                             Ascension otherAscension = (Ascension) items.get(j);
-                                            if (otherAscension.getStatus() == Ascension.TRACKED) {
+                                            if (Ascension.TRACKED == otherAscension.getStatus()) {
                                                 otherAscension.setStatus(Ascension.COMPLETED);
-                                                Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                                ServantRepository.getInstance().updateAscension(otherAscension);
                                                 notifyItemChanged(j);
                                             }
                                         }
@@ -161,7 +161,7 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                         if ((items.get(j) instanceof Ascension) && (j >= position)) {
                                             Ascension otherAscension = (Ascension) items.get(j);
                                             otherAscension.setStatus(Ascension.DONTCARE);
-                                            Model.getInstance().getDatabase().servantDao().updateAscension(otherAscension);
+                                            ServantRepository.getInstance().updateAscension(otherAscension);
                                             notifyItemChanged(j);
                                         }
                                     }
@@ -172,7 +172,7 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 }
                 break;
             }
-            case CHILD: {
+            case AscensionAdapter.CHILD: {
                 AscensionChildViewHolder holder = (AscensionChildViewHolder) viewHolder;
                 AscensionEntry ascensionEntry = ((AscensionEntry) items.get(position));
                 holder.name.setText(ascensionEntry.getMaterial().toString());
@@ -188,11 +188,11 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
         switch (viewType) {
-            case PARENT: {
+            case AscensionAdapter.PARENT: {
                 View view = inflater.inflate(R.layout.entry_ascension_parent, viewGroup, false);
                 return new AscensionParentViewHolder(view);
             }
-            case CHILD: {
+            case AscensionAdapter.CHILD: {
                 View view = inflater.inflate(R.layout.entry_ascension_child, viewGroup, false);
                 return new AscensionChildViewHolder(view);
             }
@@ -203,9 +203,9 @@ public class AscensionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public int getItemViewType(int position) {
         if (items.get(position) instanceof Ascension) {
-            return PARENT;
+            return AscensionAdapter.PARENT;
         } else if (items.get(position) instanceof AscensionEntry) {
-            return CHILD;
+            return AscensionAdapter.CHILD;
         }
         return -1;
     }

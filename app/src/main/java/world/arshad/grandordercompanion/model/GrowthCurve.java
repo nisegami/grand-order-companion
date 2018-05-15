@@ -1,4 +1,4 @@
-package world.arshad.grandordercompanion.data;
+package world.arshad.grandordercompanion.model;
 
 /**
  * Created by arsha on 21/03/2018.

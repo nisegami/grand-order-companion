@@ -2,8 +2,8 @@ package world.arshad.grandordercompanion.view_servant;
 
 import android.arch.lifecycle.ViewModel;
 
-import world.arshad.grandordercompanion.data.Model;
-import world.arshad.grandordercompanion.data.Servant;
+import world.arshad.grandordercompanion.database.ServantRepository;
+import world.arshad.grandordercompanion.model.Servant;
 
 /**
  * Created by arsha on 20/03/2018.
@@ -22,11 +22,11 @@ public class ServantViewModel extends ViewModel {
      * Call this at the start of any method that is working with the data.
      */
     private void fetchData(){
-        if (servantId < 1) {
+        if (1 > servantId) {
             throw new RuntimeException("Servant ID not defined!");
         }
-        if (servant == null) {
-            servant = Model.getInstance().getDatabase().servantDao().getServant(servantId);
+        if (null == servant) {
+            servant = ServantRepository.getInstance().getServant(servantId);
             skillNames[0] = servant.getSkill1();
             skillNames[1] = servant.getSkill2();
             skillNames[2] = servant.getSkill3();

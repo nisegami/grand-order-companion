@@ -1,8 +1,14 @@
-package world.arshad.grandordercompanion.data;
+package world.arshad.grandordercompanion.database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
+
+import world.arshad.grandordercompanion.model.Ascension;
+import world.arshad.grandordercompanion.model.AscensionEntry;
+import world.arshad.grandordercompanion.model.Servant;
+import world.arshad.grandordercompanion.model.SkillUp;
+import world.arshad.grandordercompanion.model.SkillUpEntry;
 
 /**
  * This is the database that backs the application.
@@ -16,9 +22,9 @@ import android.arch.persistence.room.TypeConverters;
                 SkillUp.class,
                 SkillUpEntry.class
             },
-            version = 2,
+            version = 3,
             exportSchema = false)
-@TypeConverters({Converters.class})
+@TypeConverters(Converters.class)
 public abstract class ServantDatabase extends RoomDatabase {
 
     public abstract ServantDao servantDao();

@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
+import world.arshad.grandordercompanion.database.DatabaseUpdater;
+import world.arshad.grandordercompanion.database.ServantRepository;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements DatabaseUpdater.PostUpdateCallback {
 
     private Activity a = this;
 
@@ -20,10 +22,10 @@ public class SplashActivity extends AppCompatActivity {
 
         // Update the database if necessary.
 
-        SharedPreferences prefs = getSharedPreferences("goc", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("goc", Context.MODE_PRIVATE);
         int currVersion = prefs.getInt("database_version", 0);
 
-        DatabaseUpdater updaterTask = new DatabaseUpdater(a);
+        DatabaseUpdater updaterTask = new DatabaseUpdater(this, this, ServantRepository.getInstance().getDatabase().servantDao());
         updaterTask.execute(currVersion);
     }
 
@@ -33,6 +35,8 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("database_version", newVersion);
         editor.apply();
+
+        ServantRepository.getInstance().populate();
 
         Intent intent = new Intent(this, AllServantsActivity.class);
         startActivity(intent);
