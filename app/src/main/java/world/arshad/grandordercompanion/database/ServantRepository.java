@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.util.Log;
 import world.arshad.grandordercompanion.model.Ascension;
 import world.arshad.grandordercompanion.model.AscensionEntry;
 import world.arshad.grandordercompanion.model.Servant;
@@ -18,10 +19,11 @@ import world.arshad.grandordercompanion.model.SkillUpEntry;
  */
 
 public final class ServantRepository implements ServantDatabaseInterface {
+
     private static final ServantRepository ourInstance = new ServantRepository();
 
     public static ServantRepository getInstance() {
-        return ServantRepository.ourInstance;
+        return ourInstance;
     }
 
     private ServantRepository() {
@@ -29,18 +31,16 @@ public final class ServantRepository implements ServantDatabaseInterface {
 
     /*.....................................................*/
 
-    private ServantDatabase database;
-
-    public void setDatabase(ServantDatabase database) {
-        this.database = database;
-    }
+    private ServantDatabaseInterface backingDatabase;
 
     @SuppressLint("UseSparseArrays")
-    public void populate() {
+    public void setBackingDatabase(ServantDatabase database) {
+        this.backingDatabase = database.servantDao();
         servantCache = new HashMap<>();
         for (Servant servant : getDao().getAllServants()) {
             servantCache.put(servant.getId(), servant);
         }
+        Log.e("poop ", "done");
     }
 
     private void invalidateEntriesCache() {
@@ -48,19 +48,15 @@ public final class ServantRepository implements ServantDatabaseInterface {
         trackedSkillUps = null;
     }
 
-    public ServantDatabase getDatabase() {
-        return database;
-    }
-
     public ServantDatabaseInterface getDao() {
-        return database.servantDao();
+        return backingDatabase;
     }
 
     /*.....................................................*/
 
     private Map<Integer, Servant> servantCache;
-    private List<Ascension> trackedAscensions = null;
-    private List<SkillUp> trackedSkillUps = null;
+    private List<Ascension> trackedAscensions;
+    private List<SkillUp> trackedSkillUps;
 
 
     @Override
