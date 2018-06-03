@@ -45,30 +45,15 @@ public class TrackedEntriesActivity extends SidebarActivity {
 
         swipeRefreshLayout.setOnRefreshListener(() -> {
             viewModel.refreshData();
-            new LoadDataTask().execute();
+            adapter.setData(viewModel.getItems());
+            swipeRefreshLayout.setRefreshing(false);
         });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        new LoadDataTask().execute();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        viewModel.refreshData();
-    }
-
-    private class LoadDataTask extends AsyncTask<Void, Void, List<Object>> {
-        protected List<Object> doInBackground(Void ... params) {
-            return viewModel.getItems();
-        }
-
-        protected void onPostExecute(List<Object> items) {
-            adapter.setData(items);
-            swipeRefreshLayout.setRefreshing(false);
-        }
+        adapter.setData(viewModel.getItems());
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

@@ -48,21 +48,8 @@ public class NeededMaterialsActivity extends SidebarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new LoadDataTask().execute();
-    }
-
-    private class LoadDataTask extends AsyncTask<Void, Void, Map<Material, NeededMaterialEntry>> {
-        protected void onPreExecute() {
-            neededMaterialsList.setVisibility(View.INVISIBLE);
-        }
-
-        protected Map<Material, NeededMaterialEntry> doInBackground(Void ... params) {
-            return viewModel.getItems();
-        }
-
-        protected void onPostExecute(Map<Material, NeededMaterialEntry> items) {
-            adapter.setData(items);
-            neededMaterialsList.setVisibility(View.VISIBLE);
-        }
+        neededMaterialsList.setVisibility(View.INVISIBLE);
+        adapter.setData(viewModel.getItems());
+        neededMaterialsList.setVisibility(View.VISIBLE);
     }
 }
