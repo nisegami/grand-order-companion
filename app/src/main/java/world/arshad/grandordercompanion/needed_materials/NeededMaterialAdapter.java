@@ -71,7 +71,7 @@ public class NeededMaterialAdapter extends RecyclerView.Adapter<NeededMaterialAd
 
         holder.name.setText(material.toString());
         holder.count.setText(String.valueOf(count));
-        holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(material.getIconPath(), context.getAssets()));
+        holder.thumbnail.setImageBitmap(Utilities.loadBitmapFromAssets(material.getIconPath(), context.getAssets()));
 
         holder.itemView.setOnClickListener(view -> {
             AlertDialog alertDialog = new AlertDialog.Builder(context).create();

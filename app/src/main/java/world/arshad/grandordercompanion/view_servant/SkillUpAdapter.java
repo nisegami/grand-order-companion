@@ -200,7 +200,7 @@ public class SkillUpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 SkillUpEntry skillUpEntry = ((SkillUpEntry) items.get(position));
                 holder.name.setText(skillUpEntry.getMaterial().toString());
                 holder.count.setText(String.valueOf(skillUpEntry.getCount()));
-                holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(skillUpEntry.getMaterial().getIconPath(), context.getAssets()));
+                holder.thumbnail.setImageBitmap(Utilities.loadBitmapFromAssets(skillUpEntry.getMaterial().getIconPath(), context.getAssets()));
                 break;
             }
         }

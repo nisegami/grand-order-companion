@@ -117,7 +117,7 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 ServantViewHolder holder = (ServantViewHolder) viewHolder;
                 Servant servant = ((Servant) items.get(position));
                 holder.name.setText(servant.getName());
-                holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(servant.getThumbnailPath(1), context.getAssets()));
+                holder.thumbnail.setImageBitmap(Utilities.loadBitmapFromAssets(servant.getThumbnailPath(1), context.getAssets()));
                 holder.background.setBackgroundColor(servant.getColor());
 
                 holder.itemView.setOnClickListener(view -> {
