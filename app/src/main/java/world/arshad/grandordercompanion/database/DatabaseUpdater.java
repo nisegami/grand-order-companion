@@ -69,6 +69,10 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                 }
                 currVersion = 5;
             }
+            if (6 > currVersion) {
+                update(context.getAssets(),6);
+                currVersion = 6;
+            }
             return currVersion;
         } catch (IOException e) {
             return currVersion;
