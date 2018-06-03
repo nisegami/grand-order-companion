@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import android.widget.Toast;
 import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
 import world.arshad.grandordercompanion.database.DatabaseUpdater;
 import world.arshad.grandordercompanion.database.RoomMigrations;
@@ -30,6 +31,12 @@ public class SplashActivity extends AppCompatActivity implements DatabaseUpdater
         prefs = getSharedPreferences("goc", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
+        final int currVersion = prefs.getInt("database_version", 0);
+
+        if (currVersion == 0) {
+            Toast.makeText(this, "Please wait while the database is built.", Toast.LENGTH_LONG).show();
+        }
+
         database = Room.databaseBuilder(
                 getApplicationContext(),
                 ServantDatabase.class,
@@ -38,10 +45,6 @@ public class SplashActivity extends AppCompatActivity implements DatabaseUpdater
                 .fallbackToDestructiveMigration()
                 .addMigrations(RoomMigrations.MIGRATION_2_3)
                 .build();
-
-        // Update the database if necessary.
-
-        final int currVersion = prefs.getInt("database_version", 0);
 
         DatabaseUpdater updaterTask = new DatabaseUpdater(this, this, database.servantDao());
         updaterTask.execute(currVersion);
