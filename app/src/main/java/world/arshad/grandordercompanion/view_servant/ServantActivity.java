@@ -58,7 +58,21 @@ public class ServantActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(ServantViewModel.class);
         viewModel.setID(getIntent().getIntExtra("servant_id", 1));
 
-        new LoadDataTask().execute();
+        Servant servant = viewModel.getServant();
+
+        setTitle(servant.toString());
+
+        adapter = new ServantPagerAdapter(getSupportFragmentManager());
+        pager.setAdapter(adapter);
+
+        titleStrip.setTextSize(45);
+        titleStrip.setViewPager(pager);
+
+        pager.setBackgroundColor(servant.getColor());
+        pager.setCurrentItem(getIntent().getIntExtra("screen_number", 0));
+
+        pager.setPageTransformer(true, new DepthPageTransformer());
+        pager.setOffscreenPageLimit(3);
     }
 
     private class ServantPagerAdapter extends FragmentPagerAdapter {
@@ -91,27 +105,6 @@ public class ServantActivity extends AppCompatActivity {
                 case 3: return "Artwork";
             }
             return null;
-        }
-    }
-
-    private class LoadDataTask extends AsyncTask<Void, Void, Servant> {
-
-        protected Servant doInBackground(Void ... params) {
-            return viewModel.getServant();
-        }
-
-        protected void onPostExecute(Servant servant) {
-            setTitle(servant.toString());
-
-            adapter = new ServantPagerAdapter(getSupportFragmentManager());
-            pager.setAdapter(adapter);
-
-            titleStrip.setTextSize(45);
-            titleStrip.setViewPager(pager);
-
-            pager.setBackgroundColor(servant.getColor());
-
-            pager.setCurrentItem(getIntent().getIntExtra("screen_number", 0));
         }
     }
 
