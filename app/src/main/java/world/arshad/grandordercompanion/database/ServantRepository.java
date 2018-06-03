@@ -40,12 +40,6 @@ public final class ServantRepository implements ServantDatabaseInterface {
         for (Servant servant : getDao().getAllServants()) {
             servantCache.put(servant.getId(), servant);
         }
-        Log.e("poop ", "done");
-    }
-
-    private void invalidateEntriesCache() {
-        trackedAscensions = null;
-        trackedSkillUps = null;
     }
 
     public ServantDatabaseInterface getDao() {
@@ -55,9 +49,6 @@ public final class ServantRepository implements ServantDatabaseInterface {
     /*.....................................................*/
 
     private Map<Integer, Servant> servantCache;
-    private List<Ascension> trackedAscensions;
-    private List<SkillUp> trackedSkillUps;
-
 
     @Override
     public List<Servant> getAllServants() {
@@ -89,11 +80,7 @@ public final class ServantRepository implements ServantDatabaseInterface {
 
     @Override
     public List<Ascension> getAscensionsOfType(int type) {
-        if ((Ascension.TRACKED == type) && (null != trackedAscensions)) {
-            return trackedAscensions;
-        } else {
-            return getDao().getAscensionsOfType(type);
-        }
+        return getDao().getAscensionsOfType(type);
     }
 
     @Override
@@ -103,7 +90,6 @@ public final class ServantRepository implements ServantDatabaseInterface {
 
     @Override
     public void updateAscension(Ascension ascension) {
-        invalidateEntriesCache();
         getDao().updateAscension(ascension);
         servantCache.put(ascension.getServantId(), getDao().getServant(ascension.getServantId()));
     }
@@ -122,11 +108,7 @@ public final class ServantRepository implements ServantDatabaseInterface {
 
     @Override
     public List<SkillUp> getSkillUpsOfType(int type) {
-        if ((SkillUp.TRACKED == type) && (null != trackedSkillUps)) {
-            return trackedSkillUps;
-        } else {
-            return getDao().getSkillUpsOfType(type);
-        }
+        return getDao().getSkillUpsOfType(type);
     }
 
     @Override
@@ -136,7 +118,6 @@ public final class ServantRepository implements ServantDatabaseInterface {
 
     @Override
     public void updateSkillUp(SkillUp skillUp) {
-        invalidateEntriesCache();
         getDao().updateSkillUp(skillUp);
         servantCache.put(skillUp.getServantId(), getDao().getServant(skillUp.getServantId()));
     }

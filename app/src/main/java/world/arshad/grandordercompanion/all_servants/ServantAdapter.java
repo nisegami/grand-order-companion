@@ -29,7 +29,7 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
     private List<Servant> servants = new ArrayList<>();
     private final Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.servant_info_card)
         CardView servantCard;
         @BindView(R.id.servant_info_entry_name)
@@ -37,9 +37,20 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
         @BindView(R.id.servant_info_entry_thumbnail)
         ImageView thumbnail;
 
+        int servantId;
+
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), ServantActivity.class);
+            intent.putExtra("servant_id", servantId);
+            v.getContext().startActivity(intent);
         }
     }
 
@@ -53,7 +64,6 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
         notifyDataSetChanged();
     }
 
-
     @Override
     public ServantAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View servantView = LayoutInflater.from(parent.getContext()).inflate(R.layout.entry_servant, parent, false);
@@ -65,14 +75,9 @@ public class ServantAdapter extends RecyclerView.Adapter<ServantAdapter.ViewHold
         final Servant servant = servants.get(position);
 
         holder.name.setText(servant.getName());
-        holder.thumbnail.setImageDrawable(Utilities.loadDrawableFromAssets(servant.getThumbnailPath(1), context.getAssets()));
+        holder.thumbnail.setImageBitmap(Utilities.loadBitmapFromAssets(servant.getThumbnailPath(1), context.getAssets()));
         holder.servantCard.setCardBackgroundColor(servant.getColor());
-
-        holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, ServantActivity.class);
-            intent.putExtra("servant_id", servant.getId());
-            context.startActivity(intent);
-        });
+        holder.servantId = servant.getId();
     }
 
     @Override

@@ -68,23 +68,24 @@ public class AllServantsActivity extends SidebarActivity implements SearchLiveo.
         viewModel = ViewModelProviders.of(this).get(AllServantsViewModel.class);
 
         adapter = new ServantAdapter(this);
-        new LoadDataTask().execute();
         servantInfoList.setAdapter(adapter);
         servantInfoList.setHasFixedSize(true);
         servantInfoList.setLayoutManager(new LinearLayoutManager(this));
+
+        updateAdapter();
 
         sortButton.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(c);
             builder.setItems(sortOptions, (dialogInterface, j) -> {
                 viewModel.sortItems(Servant.Comps.valueOf(sortOptions[j].toUpperCase()));
-                new LoadDataTask().execute();
+                updateAdapter();
             });
             builder.create().show();
         });
 
         reverseButton.setOnClickListener(view -> {
             viewModel.reverseItems();
-            new LoadDataTask().execute();
+            updateAdapter();
             reverseButton.setImageDrawable(viewModel.getReverseButtonDrawable());
         });
 
@@ -114,27 +115,19 @@ public class AllServantsActivity extends SidebarActivity implements SearchLiveo.
         });
     }
 
-    private class LoadDataTask extends AsyncTask<Void, Void, List<Servant>> {
-        protected void onPreExecute() {
-            servantInfoList.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
-        }
+    private void updateAdapter() {
+        servantInfoList.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+        adapter.setData(viewModel.getServants());
+        servantInfoList.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
 
-        protected List<Servant> doInBackground(Void ... params) {
-            return viewModel.getServants();
-        }
-
-        protected void onPostExecute(List<Servant> servants) {
-            adapter.setData(servants);
-            servantInfoList.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.INVISIBLE);
-        }
     }
 
     @Override
     public void changedSearch(CharSequence text) {
         viewModel.filterItems(text);
-        new LoadDataTask().execute();
+        updateAdapter();
     }
 
     @Override

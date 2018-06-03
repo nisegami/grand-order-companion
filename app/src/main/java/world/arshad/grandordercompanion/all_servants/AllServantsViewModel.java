@@ -11,6 +11,7 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import world.arshad.grandordercompanion.database.ServantRepository;
 import world.arshad.grandordercompanion.R;
@@ -27,7 +28,7 @@ public class AllServantsViewModel extends AndroidViewModel {
     private SharedPreferences prefs;
 
     private List<Servant> servants;
-    private List<Servant> allServants;
+
     private boolean reverse = false;
     private Servant.Comps comparator = Servant.Comps.ID;
 
@@ -38,26 +39,12 @@ public class AllServantsViewModel extends AndroidViewModel {
         prefs = appContext.getSharedPreferences(appContext.getString(R.string.app_name), Context.MODE_PRIVATE);
         comparator = Servant.Comps.valueOf(prefs.getString("servant_info_list_sort", "ID"));
         reverse = prefs.getBoolean("servant_info_list_reverse", false);
-    }
 
-    /**
-     * Call this at the start of any method that is working with the data.
-     */
-    private void fetchData(){
-        if (null == servants) {
-            allServants = ServantRepository.getInstance().getAllServants();
-            servants = new ArrayList<>();
-            servants.addAll(allServants);
-        }
-    }
-
-    public void refreshServants() {
-        servants = null;
+        servants = new ArrayList<>(ServantRepository.getInstance().getAllServants());
+        sortItems();
     }
 
     public List<Servant> getServants() {
-        fetchData();
-        sortItems();
         return servants;
     }
 
@@ -78,26 +65,21 @@ public class AllServantsViewModel extends AndroidViewModel {
     }
 
     public void filterItems(CharSequence rawTerm) {
-        fetchData();
         servants = new ArrayList<>();
         String term = rawTerm.toString();
 
+
         if ("".equals(term)) {
-            servants.addAll(allServants);
-            sortItems();
-            return;
+            servants = ServantRepository.getInstance().getAllServants();
+        } else {
+            servants = ServantRepository.getInstance().getAllServants().stream()
+                    .filter(s -> s.getName().toLowerCase().contains(term.toLowerCase())).collect(Collectors.toList());
         }
 
-        for (Servant servant : allServants) {
-            if (servant.getName().toLowerCase().contains(term.toLowerCase())) {
-                servants.add(servant);
-            }
-        }
         sortItems();
     }
 
     public void sortItems() {
-        fetchData();
         if (Build.VERSION_CODES.N <= Build.VERSION.SDK_INT){
             servants.sort(reverse ? comparator.getComp().reversed() : comparator.getComp());
         } else{

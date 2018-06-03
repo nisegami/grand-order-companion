@@ -630,7 +630,7 @@ public class Servant implements Comparable<Servant> {
     }
 
     public String getThumbnailPath(int num) {
-        return String.format("img/servants/thumb/%03d%d.jpg", id, num);
+        return String.format("img/servants/thumb/%03d.jpg", id, num);
     }
 
     public String getArtworkPath(int num) {
