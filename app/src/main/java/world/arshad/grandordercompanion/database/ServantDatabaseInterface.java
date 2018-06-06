@@ -11,6 +11,7 @@ import world.arshad.grandordercompanion.model.SkillUpEntry;
 public interface ServantDatabaseInterface {
 
     List<Servant> getAllServants();
+    List<Servant> getSomeServants(int finalID);
     Servant getServant(int servantId);
     String getServantNameFromId(int id);
     void updateServant(Servant servant);

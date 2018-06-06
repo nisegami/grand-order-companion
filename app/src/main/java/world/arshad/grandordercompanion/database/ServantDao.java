@@ -42,6 +42,19 @@ public abstract class ServantDao implements ServantDatabaseInterface {
         return servants;
     }
 
+    public List<Servant> getSomeServants(int finalID) {
+        List<Servant> servants = _getSomeServants(finalID);
+
+        for (Servant servant : servants) {
+            servant.setAscensions(getAscensionsForServant(servant.getId()));
+            servant.setSkillUps1(getSkillUpsForServantAndSkillNumber(servant.getId(), 1));
+            servant.setSkillUps2(getSkillUpsForServantAndSkillNumber(servant.getId(), 2));
+            servant.setSkillUps3(getSkillUpsForServantAndSkillNumber(servant.getId(), 3));
+        }
+
+        return servants;
+    }
+
     public Servant getServant(int servantId) {
         Servant servant = _getServant(servantId);
         servant.setAscensions(getAscensionsForServant(servant.getId()));
@@ -164,6 +177,9 @@ public abstract class ServantDao implements ServantDatabaseInterface {
 
     @Query("SELECT * FROM servant")
     abstract List<Servant> _getAllServants();
+
+    @Query("SELECT * FROM servant WHERE id <= :finalId")
+    abstract List<Servant> _getSomeServants(int finalId);
 
     @Query("SELECT * FROM servant WHERE id = :id")
     abstract Servant _getServant(int id);

@@ -52,12 +52,14 @@ public class SplashActivity extends AppCompatActivity implements DatabaseUpdater
 
     public void onDatabaseUpdated(int newVersion) {
 
+        boolean NAOnly = prefs.getBoolean("na_only", true);
+
         editor.putInt("database_version", newVersion);
         editor.apply();
 
         new AsyncTask<Void, Void, Void>() {
             protected Void doInBackground(Void... unused) {
-                ServantRepository.getInstance().setBackingDatabase(database);
+                ServantRepository.getInstance().setBackingDatabase(database.servantDao(), NAOnly);
                 return null;
             }
             protected void onPostExecute(Void unused) {
