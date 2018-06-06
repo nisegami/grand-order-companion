@@ -68,12 +68,17 @@ public class AllServantsViewModel extends AndroidViewModel {
         servants = new ArrayList<>();
         String term = rawTerm.toString();
 
-
         if ("".equals(term)) {
             servants = ServantRepository.getInstance().getAllServants();
-        } else {
+        } else if (Build.VERSION_CODES.M < Build.VERSION.SDK_INT) {
             servants = ServantRepository.getInstance().getAllServants().stream()
                     .filter(s -> s.getName().toLowerCase().contains(term.toLowerCase())).collect(Collectors.toList());
+        } else {
+            for (Servant servant : ServantRepository.getInstance().getAllServants()) {
+                if (servant.getName().toLowerCase().contains(term.toLowerCase())) {
+                    servants.add(servant);
+                }
+            }
         }
 
         sortItems();
