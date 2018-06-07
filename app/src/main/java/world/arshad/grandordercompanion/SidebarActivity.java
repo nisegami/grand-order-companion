@@ -8,14 +8,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
-import world.arshad.grandordercompanion.all_servants.ModelActivity;
-import world.arshad.grandordercompanion.database.ServantRepository;
 import world.arshad.grandordercompanion.needed_materials.NeededMaterialsActivity;
 import world.arshad.grandordercompanion.tracked_entries.TrackedEntriesActivity;
 

@@ -2,7 +2,6 @@ package world.arshad.grandordercompanion.view_servant;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -10,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -20,7 +18,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
-import world.arshad.grandordercompanion.all_servants.ModelActivity;
+import world.arshad.grandordercompanion.ModelActivity;
 import world.arshad.grandordercompanion.model.Servant;
 
 /**

@@ -1,9 +1,11 @@
-package world.arshad.grandordercompanion.all_servants;
+package world.arshad.grandordercompanion;
 
+import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 import world.arshad.grandordercompanion.database.RoomMigrations;
 import world.arshad.grandordercompanion.database.ServantDatabase;
