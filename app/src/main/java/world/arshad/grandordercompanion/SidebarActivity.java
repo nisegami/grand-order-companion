@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
+import world.arshad.grandordercompanion.all_servants.ModelActivity;
 import world.arshad.grandordercompanion.database.ServantRepository;
 import world.arshad.grandordercompanion.needed_materials.NeededMaterialsActivity;
 import world.arshad.grandordercompanion.tracked_entries.TrackedEntriesActivity;
@@ -22,7 +23,7 @@ import world.arshad.grandordercompanion.tracked_entries.TrackedEntriesActivity;
  * Created by arsha on 20/03/2018.
  */
 
-public abstract class SidebarActivity extends AppCompatActivity
+public abstract class SidebarActivity extends ModelActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     protected Activity a = this;

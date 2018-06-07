@@ -20,12 +20,13 @@ import com.astuetz.PagerSlidingTabStrip;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
+import world.arshad.grandordercompanion.all_servants.ModelActivity;
 import world.arshad.grandordercompanion.model.Servant;
 
 /**
  *
  */
-public class ServantActivity extends AppCompatActivity {
+public class ServantActivity extends ModelActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
