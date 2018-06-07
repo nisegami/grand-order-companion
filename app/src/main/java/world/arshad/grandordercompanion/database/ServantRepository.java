@@ -22,10 +22,8 @@ import world.arshad.grandordercompanion.model.SkillUpEntry;
 public final class ServantRepository implements ServantDatabaseInterface {
 
     private final static int CURRENT_NA_CUTOFF = 113;
-
     private boolean NAOnly = true;
-
-    private final Lock lock = (new ReentrantReadWriteLock()).writeLock();
+    private Map<Integer, Servant> servantCache;
 
     /*.....................................................*/
 
@@ -38,25 +36,23 @@ public final class ServantRepository implements ServantDatabaseInterface {
     private ServantRepository() {
     }
 
+    public boolean isValid() {
+        return servantCache != null;
+    }
+
     /*.....................................................*/
 
     private ServantDatabaseInterface backingDatabase;
 
     @SuppressLint("UseSparseArrays")
     public void setBackingDatabase(ServantDatabaseInterface backingDatabase, boolean NAOnly) {
-        lock.lock();
-        try {
-            this.NAOnly = NAOnly;
-            this.backingDatabase = backingDatabase;
+        this.NAOnly = NAOnly;
+        this.backingDatabase = backingDatabase;
 
-            servantCache = new HashMap<>();
+        servantCache = new HashMap<>();
 
-            for (Servant servant : NAOnly ? backingDatabase.getSomeServants(CURRENT_NA_CUTOFF) : backingDatabase.getAllServants()) {
-                servantCache.put(servant.getId(), servant);
-            }
-
-        } finally {
-            lock.unlock();
+        for (Servant servant : NAOnly ? backingDatabase.getSomeServants(CURRENT_NA_CUTOFF) : backingDatabase.getAllServants()) {
+            servantCache.put(servant.getId(), servant);
         }
     }
 
@@ -66,62 +62,35 @@ public final class ServantRepository implements ServantDatabaseInterface {
 
     /*.....................................................*/
 
-    private Map<Integer, Servant> servantCache;
-
     @Override
     public List<Servant> getAllServants() {
-        lock.lock();
-        try {
-            return new ArrayList<>(servantCache.values());
-        } finally {
-            lock.unlock();
-        }
+        return new ArrayList<>(servantCache.values());
     }
 
     @Override
     public List<Servant> getSomeServants(int finalId) {
-        lock.lock();
-        try {
-            List<Servant> toReturn = new ArrayList<>();
-            servantCache.forEach((id, servant) -> {
-                if (id <= finalId) {
-                    toReturn.add(servant);
-                }
-            });
-            return toReturn;
-        } finally {
-            lock.unlock();
-        }
+        List<Servant> toReturn = new ArrayList<>();
+        servantCache.forEach((id, servant) -> {
+            if (id <= finalId) {
+                toReturn.add(servant);
+            }
+        });
+        return toReturn;
     }
 
     @Override
     public Servant getServant(int servantId) {
-        lock.lock();
-        try {
-            return servantCache.get(servantId);
-        } finally {
-            lock.unlock();
-        }
+        return servantCache.get(servantId);
     }
 
     @Override
     public String getServantNameFromId(int servantId) {
-        lock.lock();
-        try {
-            return servantCache.get(servantId).getName();
-        } finally {
-            lock.unlock();
-        }
+        return servantCache.get(servantId).getName();
     }
 
     @Override
     public void updateServant(Servant servant) {
-        lock.lock();
-        try {
-            servantCache.put(servant.getId(), servant);
-        } finally {
-            lock.unlock();
-        }
+        servantCache.put(servant.getId(), servant);
         getBackingStructure().updateServant(servant);
     }
 
@@ -145,11 +114,7 @@ public final class ServantRepository implements ServantDatabaseInterface {
     @Override
     public void updateAscension(Ascension ascension) {
         getBackingStructure().updateAscension(ascension);
-        try {
-            servantCache.put(ascension.getServantId(), getBackingStructure().getServant(ascension.getServantId()));
-        } finally {
-            lock.unlock();
-        }
+        servantCache.put(ascension.getServantId(), getBackingStructure().getServant(ascension.getServantId()));
     }
 
     @Override
@@ -177,11 +142,7 @@ public final class ServantRepository implements ServantDatabaseInterface {
     @Override
     public void updateSkillUp(SkillUp skillUp) {
         getBackingStructure().updateSkillUp(skillUp);
-        try {
-            servantCache.put(skillUp.getServantId(), getBackingStructure().getServant(skillUp.getServantId()));
-        } finally {
-            lock.unlock();
-        }
+        servantCache.put(skillUp.getServantId(), getBackingStructure().getServant(skillUp.getServantId()));
     }
 
     @Override

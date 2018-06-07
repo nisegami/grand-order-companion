@@ -116,12 +116,10 @@ public class SkillUpsFragment extends Fragment {
             return false;
         });
 
-        adapter = new SkillUpAdapter(getActivity());
-
-        adapter.setData(viewModel.getServant(), 1);
-        skillUpList.setNestedScrollingEnabled(false);
-        skillUpList.setAdapter(adapter);
         skillUpList.setHasFixedSize(true);
         skillUpList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new SkillUpAdapter(getActivity());
+        adapter.setData(viewModel.getServant(), 1);
+        skillUpList.setAdapter(adapter);
     }
 }

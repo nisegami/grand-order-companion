@@ -42,7 +42,6 @@ public class SplashActivity extends AppCompatActivity implements DatabaseUpdater
                 ServantDatabase.class,
                 "servant-database")
                 .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
                 .addMigrations(RoomMigrations.MIGRATION_2_3)
                 .build();
 

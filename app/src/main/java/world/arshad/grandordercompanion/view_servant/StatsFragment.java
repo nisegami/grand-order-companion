@@ -28,7 +28,6 @@ public class StatsFragment extends Fragment {
     RecyclerView statsList;
 
     private ServantViewModel viewModel;
-    private StatsAdapter adapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +58,9 @@ public class StatsFragment extends Fragment {
             }
         });
 
-        adapter = new StatsAdapter(viewModel.getServant());
-        statsList.setNestedScrollingEnabled(false);
-        statsList.setAdapter(adapter);
         statsList.setHasFixedSize(true);
         statsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        final StatsAdapter adapter = new StatsAdapter(viewModel.getServant());
+        statsList.setAdapter(adapter);
     }
 }

@@ -62,17 +62,27 @@ public class ServantActivity extends AppCompatActivity {
 
         setTitle(servant.toString());
 
-        adapter = new ServantPagerAdapter(getSupportFragmentManager());
-        pager.setAdapter(adapter);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                adapter = new ServantPagerAdapter(getSupportFragmentManager());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        pager.setAdapter(adapter);
 
-        titleStrip.setTextSize(45);
-        titleStrip.setViewPager(pager);
+                        titleStrip.setTextSize(45);
+                        titleStrip.setViewPager(pager);
 
-        pager.setBackgroundColor(servant.getColor());
-        pager.setCurrentItem(getIntent().getIntExtra("screen_number", 0));
+                        pager.setBackgroundColor(servant.getColor());
+                        pager.setCurrentItem(getIntent().getIntExtra("screen_number", 0));
 
-        pager.setPageTransformer(true, new DepthPageTransformer());
-        pager.setOffscreenPageLimit(3);
+                        pager.setPageTransformer(true, new DepthPageTransformer());
+                        pager.setOffscreenPageLimit(3);
+                    }
+                });
+            }
+        }).start();
     }
 
     private class ServantPagerAdapter extends FragmentPagerAdapter {

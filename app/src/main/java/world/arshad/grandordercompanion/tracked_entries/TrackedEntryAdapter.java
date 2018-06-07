@@ -31,6 +31,7 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int SERVANT = 0, ASCENSION = 1, SKILL = 3;
     private final Context context;
     private List<Object> items;
+    private ActivityWithRefresh refreser;
 
     public static class ServantViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.servant_info_background)
@@ -79,8 +80,9 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    public TrackedEntryAdapter(Context context) {
+    public TrackedEntryAdapter(Context context, ActivityWithRefresh refresher) {
         this.context = context;
+        this.refreser = refresher;
         this.items = new ArrayList<>();
     }
 
@@ -144,19 +146,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof Ascension) && (j < position)) {
-                                            Ascension otherAscension = (Ascension) items.get(j);
-                                            if (otherAscension.getServantId() != ascension.getServantId()) {
-                                                continue;
-                                            }
-                                            if (Ascension.DONTCARE == otherAscension.getStatus()) {
-                                                otherAscension.setStatus(Ascension.TRACKED);
-                                                ServantRepository.getInstance().updateAscension(otherAscension);
-                                                notifyItemChanged(j);
-                                            }
-                                        }
-                                    }
+                                    Utilities.updateAscensions(ServantRepository.getInstance().getServant(ascension.getServantId()), Ascension.TRACKED, ascension.getAscensionNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);
@@ -168,19 +159,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof Ascension) && (j >= position)) {
-                                            Ascension otherAscension = (Ascension) items.get(j);
-                                            if (otherAscension.getServantId() != ascension.getServantId()) {
-                                                continue;
-                                            }
-                                            if (Ascension.TRACKED == otherAscension.getStatus()) {
-                                                otherAscension.setStatus(Ascension.DONTCARE);
-                                                ServantRepository.getInstance().updateAscension(otherAscension);
-                                                notifyItemChanged(j);
-                                            }
-                                        }
-                                    }
+                                    Utilities.updateAscensions(ServantRepository.getInstance().getServant(ascension.getServantId()), Ascension.DONTCARE, ascension.getAscensionNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setBackgroundResource(R.drawable.ic_check_black_24dp);
@@ -188,19 +168,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as completed?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof Ascension) && (j <= position)) {
-                                            Ascension otherAscension = (Ascension) items.get(j);
-                                            if (otherAscension.getServantId() != ascension.getServantId()) {
-                                                continue;
-                                            }
-                                            if (Ascension.TRACKED == otherAscension.getStatus()) {
-                                                otherAscension.setStatus(Ascension.COMPLETED);
-                                                ServantRepository.getInstance().updateAscension(otherAscension);
-                                                notifyItemChanged(j);
-                                            }
-                                        }
-                                    }
+                                    Utilities.updateAscensions(ServantRepository.getInstance().getServant(ascension.getServantId()), Ascension.COMPLETED, ascension.getAscensionNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.VISIBLE);
@@ -212,17 +181,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof Ascension) && (j >= position)) {
-                                            Ascension otherAscension = (Ascension) items.get(j);
-                                            if (otherAscension.getServantId() != ascension.getServantId()) {
-                                                continue;
-                                            }
-                                            otherAscension.setStatus(Ascension.DONTCARE);
-                                            ServantRepository.getInstance().updateAscension(otherAscension);
-                                            notifyItemChanged(j);
-                                        }
-                                    }
+                                    Utilities.updateAscensions(ServantRepository.getInstance().getServant(ascension.getServantId()), Ascension.DONTCARE, ascension.getAscensionNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);
@@ -247,19 +207,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j <= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
-                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
-                                            if (otherSkillUp.getServantId() != skillUp.getServantId()) {
-                                                continue;
-                                            }
-                                            if (SkillUp.DONTCARE == otherSkillUp.getStatus()) {
-                                                otherSkillUp.setStatus(SkillUp.TRACKED);
-                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
-                                                notifyItemChanged(j);
-                                            }
-                                        }
-                                    }
+                                    Utilities.updateSkillUps(ServantRepository.getInstance().getServant(skillUp.getServantId()), SkillUp.TRACKED, skillUp.getDestSkillLevel(), skillUp.getSkillNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);
@@ -271,19 +220,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j >= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
-                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
-                                            if (otherSkillUp.getServantId() != skillUp.getServantId()) {
-                                                continue;
-                                            }
-                                            if (SkillUp.TRACKED == otherSkillUp.getStatus()) {
-                                                otherSkillUp.setStatus(SkillUp.DONTCARE);
-                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
-                                                notifyItemChanged(j);
-                                            }
-                                        }
-                                    }
+                                    Utilities.updateSkillUps(ServantRepository.getInstance().getServant(skillUp.getServantId()), SkillUp.DONTCARE, skillUp.getDestSkillLevel(), skillUp.getSkillNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setBackgroundResource(R.drawable.ic_check_black_24dp);
@@ -291,19 +229,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as completed?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j <= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
-                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
-                                            if (otherSkillUp.getServantId() != skillUp.getServantId()) {
-                                                continue;
-                                            }
-                                            if (SkillUp.TRACKED == otherSkillUp.getStatus()) {
-                                                otherSkillUp.setStatus(SkillUp.COMPLETED);
-                                                ServantRepository.getInstance().updateSkillUp(otherSkillUp);
-                                                notifyItemChanged(j);
-                                            }
-                                        }
-                                    }
+                                    Utilities.updateSkillUps(ServantRepository.getInstance().getServant(skillUp.getServantId()), SkillUp.COMPLETED, skillUp.getDestSkillLevel(), skillUp.getSkillNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.VISIBLE);
@@ -315,17 +242,8 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 .setTitle("Mark as un-tracked?")
                                 .setIcon(R.drawable.ic_warning_black_24dp)
                                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                                    for (int j = 0; j < items.size(); j++) {
-                                        if ((items.get(j) instanceof SkillUp) && (j >= position) && ((SkillUp) items.get(j)).getSkillNumber() == skillUp.getSkillNumber()) {
-                                            SkillUp otherSkillUp = (SkillUp) items.get(j);
-                                            if (otherSkillUp.getServantId() != skillUp.getServantId()) {
-                                                continue;
-                                            }
-                                            otherSkillUp.setStatus(SkillUp.DONTCARE);
-                                            ServantRepository.getInstance().updateSkillUp(otherSkillUp);
-                                            notifyItemChanged(j);
-                                        }
-                                    }
+                                    Utilities.updateSkillUps(ServantRepository.getInstance().getServant(skillUp.getServantId()), SkillUp.DONTCARE, skillUp.getDestSkillLevel(), skillUp.getSkillNumber());
+                                    refreser.refresh();
                                 })
                                 .setNegativeButton(android.R.string.no, null).show());
                         holder.trackButton2.setVisibility(View.GONE);

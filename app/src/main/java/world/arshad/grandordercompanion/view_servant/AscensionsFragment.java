@@ -36,9 +36,9 @@ public class AscensionsFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ButterKnife.bind(this, view);
 
-        adapter = new AscensionAdapter(getActivity(), viewModel.getServant().getAscensions());
-        ascensionList.setAdapter(adapter);
         ascensionList.setHasFixedSize(true);
         ascensionList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new AscensionAdapter(getActivity(), viewModel.getServant().getAscensions());
+        ascensionList.setAdapter(adapter);
     }
 }

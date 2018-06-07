@@ -9,8 +9,12 @@ import android.support.v7.graphics.Palette;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.List;
 
+import world.arshad.grandordercompanion.database.ServantRepository;
+import world.arshad.grandordercompanion.model.Ascension;
 import world.arshad.grandordercompanion.model.Servant;
+import world.arshad.grandordercompanion.model.SkillUp;
 
 /**
  * Created by arsha on 20/03/2018.
@@ -50,5 +54,43 @@ public final class Utilities {
         }
 
         return color;
+    }
+
+    public static void updateAscensions(Servant servant, int newStatus, int ascensionNumber) {
+        List<Ascension> ascensionList = servant.getAscensions();
+        Ascension current = ascensionList.get(ascensionNumber - 1);
+
+        if (newStatus > current.getStatus()) {
+            for (int i = ascensionNumber - 1; i >= 0; i--) {
+                Ascension a = ascensionList.get(i);
+                a.setStatus(newStatus);
+                ServantRepository.getInstance().updateAscension(a);
+            }
+        } else {
+            for (int i = ascensionNumber - 1; i < 4; i++) {
+                Ascension a = ascensionList.get(i);
+                a.setStatus(newStatus);
+                ServantRepository.getInstance().updateAscension(a);
+            }
+        }
+    }
+
+    public static void updateSkillUps(Servant servant, int newStatus, int destSkillLevel, int skillNumber) {
+        List<SkillUp> skillUpList = servant.getSkillUps(skillNumber);
+        SkillUp current = skillUpList.get(destSkillLevel - 2);
+
+        if (newStatus > current.getStatus()) {
+            for (int i = destSkillLevel - 2; i >= 0; i--) {
+                SkillUp a = skillUpList.get(i);
+                a.setStatus(newStatus);
+                ServantRepository.getInstance().updateSkillUp(a);
+            }
+        } else {
+            for (int i = destSkillLevel - 2; i < 9; i++) {
+                SkillUp a = skillUpList.get(i);
+                a.setStatus(newStatus);
+                ServantRepository.getInstance().updateSkillUp(a);
+            }
+        }
     }
 }

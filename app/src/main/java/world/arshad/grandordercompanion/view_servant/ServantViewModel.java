@@ -16,29 +16,18 @@ public class ServantViewModel extends ViewModel {
 
     public void setID(int servantId) {
         this.servantId = servantId;
-    }
 
-    /**
-     * Call this at the start of any method that is working with the data.
-     */
-    private void fetchData(){
         if (1 > servantId) {
             throw new RuntimeException("Servant ID not defined!");
         }
-        if (null == servant) {
-            servant = ServantRepository.getInstance().getServant(servantId);
-            skillNames[0] = servant.getSkill1();
-            skillNames[1] = servant.getSkill2();
-            skillNames[2] = servant.getSkill3();
-        }
-    }
 
-    public void refreshServant() {
-        servant = null;
+        servant = ServantRepository.getInstance().getServant(servantId);
+        skillNames[0] = servant.getSkill1();
+        skillNames[1] = servant.getSkill2();
+        skillNames[2] = servant.getSkill3();
     }
 
     public Servant getServant() {
-        fetchData();
         return servant;
     }
 

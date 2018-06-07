@@ -1,6 +1,7 @@
 package world.arshad.grandordercompanion.all_servants;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -19,6 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.SidebarActivity;
+import world.arshad.grandordercompanion.SplashActivity;
+import world.arshad.grandordercompanion.database.ServantRepository;
 import world.arshad.grandordercompanion.model.Servant;
 
 public class AllServantsActivity extends SidebarActivity implements SearchLiveo.OnSearchListener {
@@ -121,7 +125,6 @@ public class AllServantsActivity extends SidebarActivity implements SearchLiveo.
         adapter.setData(viewModel.getServants());
         servantInfoList.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
-
     }
 
     @Override
