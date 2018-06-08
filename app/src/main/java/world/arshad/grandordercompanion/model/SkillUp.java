@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -102,5 +103,14 @@ public class SkillUp {
         } else {
             return String.format("%d: %d ➜ %d", skillNumber, destSkillLevel - 1, destSkillLevel);
         }
+    }
+
+    public String contents() {
+        ArrayList<String> contents = new ArrayList<>();
+        int i = 0;
+        for (SkillUpEntry skillUpEntry : skillUpEntries) {
+            contents.add(String.format("%s x%d", skillUpEntry.getMaterial(), skillUpEntry.getCount()));
+        }
+        return String.join("\n", contents);
     }
 }

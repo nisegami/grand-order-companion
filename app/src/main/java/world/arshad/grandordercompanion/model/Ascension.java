@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,5 +72,14 @@ public class Ascension {
     @Override
     public String toString() {
         return String.format("Ascension #%d", ascensionNumber);
+    }
+
+    public String contents() {
+        ArrayList<String> contents = new ArrayList<>();
+        int i = 0;
+        for (AscensionEntry ascensionEntry : ascensionEntries) {
+            contents.add(String.format("%s x%d", ascensionEntry.getMaterial(), ascensionEntry.getCount()));
+        }
+        return String.join("\n", contents);
     }
 }

@@ -1,6 +1,7 @@
 package world.arshad.grandordercompanion.tracked_entries;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -134,10 +135,15 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 Ascension ascension = ((Ascension) items.get(position));
                 holder.ascensionLabel.setText(ascension.toString());
                 holder.ascensionLabel.setOnClickListener(view -> {
-                    Intent intent = new Intent(context, ServantActivity.class);
-                    intent.putExtra("servant_id", ascension.getServantId());
-                    intent.putExtra("screen_number", ServantActivity.ASCENSION);
-                    context.startActivity(intent);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle(ascension.toString());
+                    builder.setMessage(ascension.contents());
+                    builder.setNeutralButton("Dismiss", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    builder.create().show();
                 });
                 switch (ascension.getStatus()) {
                     case Ascension.DONTCARE: {
@@ -195,10 +201,15 @@ public class TrackedEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 SkillUp skillUp = ((SkillUp) items.get(position));
                 holder.skillUpLabel.setText(skillUp.getTitle());
                 holder.skillUpLabel.setOnClickListener(view -> {
-                    Intent intent = new Intent(context, ServantActivity.class);
-                    intent.putExtra("servant_id", skillUp.getServantId());
-                    intent.putExtra("screen_number", ServantActivity.SKILL_UP);
-                    context.startActivity(intent);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle(skillUp.toString());
+                    builder.setMessage(skillUp.contents());
+                    builder.setNeutralButton("Dismiss", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.create().show();
                 });
                 switch (skillUp.getStatus()) {
                     case SkillUp.DONTCARE: {
