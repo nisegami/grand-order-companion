@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" android:id="@+id/screens_group">
         <item
             android:id="@+id/nav_servant_list"
             android:icon="@drawable/ic_list_black_24px"
@@ -11,8 +11,15 @@
             android:icon="@drawable/ic_check_box_black_24dp"
             android:title="Needed Materials" />
         <item
-            android:id="@+id/tracked_entries"
-            android:icon="@drawable/ic_eye_black_24dp"
-            android:title="Tracked Entries" />
+                android:id="@+id/tracked_entries"
+                android:icon="@drawable/ic_eye_black_24dp"
+                android:title="Tracked Entries" />
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/meta_group">
+        <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="Settings" />
     </group>
 </menu>

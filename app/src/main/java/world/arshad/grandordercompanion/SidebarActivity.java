@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import world.arshad.grandordercompanion.all_servants.AllServantsActivity;
 import world.arshad.grandordercompanion.needed_materials.NeededMaterialsActivity;
+import world.arshad.grandordercompanion.settings.SettingsActivity;
 import world.arshad.grandordercompanion.tracked_entries.TrackedEntriesActivity;
 
 /**
@@ -89,6 +90,10 @@ public abstract class SidebarActivity extends ModelActivity
                 break;
             case R.id.tracked_entries:
                 showScreen(TrackedEntriesActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.settings:
+                showScreen(SettingsActivity.class);
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             default:

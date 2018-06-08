@@ -10,6 +10,7 @@
         android:id="@+id/servant_pager_title_strip"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_bar_height"
+        android:background="@android:color/background_light"
         app:pstsIndicatorColor="@color/colorPrimary"/>
 
     <android.support.v4.view.ViewPager

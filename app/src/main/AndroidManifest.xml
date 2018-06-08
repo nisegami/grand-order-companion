@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="world.arshad.grandordercompanion">
+          package="world.arshad.grandordercompanion">
 
     <application
-        android:name=".GOCApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".all_servants.AllServantsActivity"
+            android:name=".GOCApp"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTask">
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".all_servants.AllServantsActivity"
+                android:label="@string/app_name"
+                android:launchMode="singleTask"
+                android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".view_servant.ServantActivity"
-            android:label="@string/title_activity_servant"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTask">
+                android:name=".view_servant.ServantActivity"
+                android:label="@string/title_activity_servant"
+                android:launchMode="singleTask"
+                android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".needed_materials.NeededMaterialsActivity"
-            android:label="Needed Materials"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTask" />
+                android:name=".needed_materials.NeededMaterialsActivity"
+                android:label="Needed Materials"
+                android:launchMode="singleTask"
+                android:theme="@style/AppTheme"/>
         <activity
-            android:name=".tracked_entries.TrackedEntriesActivity"
-            android:label="Tracked Entries"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTask" />
+                android:name=".tracked_entries.TrackedEntriesActivity"
+                android:label="Tracked Entries"
+                android:launchMode="singleTask"
+                android:theme="@style/AppTheme"/>
         <activity
-            android:name=".exp_calculator.ExpActivity"
-            android:label="@string/title_activity_exp"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTask" />
+                android:name=".exp_calculator.ExpActivity"
+                android:label="@string/title_activity_exp"
+                android:launchMode="singleTask"
+                android:theme="@style/AppTheme"/>
         <activity
-            android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+                android:name=".SplashActivity"
+                android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".settings.SettingsActivity">
         </activity>
     </application>
 
