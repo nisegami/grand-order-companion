@@ -3,6 +3,7 @@ package world.arshad.grandordercompanion.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import com.google.common.base.Joiner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,6 @@ public class Ascension {
         for (AscensionEntry ascensionEntry : ascensionEntries) {
             contents.add(String.format("%s x%d", ascensionEntry.getMaterial(), ascensionEntry.getCount()));
         }
-        return String.join("\n", contents);
+        return Joiner.on("\n").join(contents);
     }
 }

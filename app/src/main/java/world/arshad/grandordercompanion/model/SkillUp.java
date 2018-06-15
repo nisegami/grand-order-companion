@@ -3,6 +3,7 @@ package world.arshad.grandordercompanion.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import com.google.common.base.Joiner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +112,6 @@ public class SkillUp {
         for (SkillUpEntry skillUpEntry : skillUpEntries) {
             contents.add(String.format("%s x%d", skillUpEntry.getMaterial(), skillUpEntry.getCount()));
         }
-        return String.join("\n", contents);
+        return Joiner.on("\n").join(contents);
     }
 }
