@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import android.util.Log;
 import world.arshad.grandordercompanion.database.ServantRepository;
 import world.arshad.grandordercompanion.R;
 import world.arshad.grandordercompanion.model.Servant;

@@ -33,7 +33,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
     private PostUpdateCallback callback;
     private ServantDao dao;
     @SuppressLint("StaticFieldLeak") //Only ever supplied with app context
-    private Context context;
+    private static Context context;
 
     public DatabaseUpdater(PostUpdateCallback callback, Context context, ServantDao dao) {
         this.callback = callback;
@@ -72,6 +72,18 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
             if (6 > currVersion) {
                 update(context.getAssets(),6);
                 currVersion = 6;
+            }
+            if (7 > currVersion) {
+                update(context.getAssets(),7);
+                currVersion = 7;
+            }
+            if (8 > currVersion) {
+                List<Servant> currentServants = dao.getAllServants();
+                for (Servant servant : currentServants) {
+                    servant.setColor(Utilities.getServantColor(servant, context));
+                    dao.updateServant(servant);
+                }
+                currVersion = 8;
             }
             return currVersion;
         } catch (IOException e) {
@@ -125,6 +137,10 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                     nextLine[20],
                     -1
             ));
+        }
+
+        for (Servant servant : servants) {
+            servant.setColor(Utilities.getServantColor(servant, context));
         }
 
         return servants;
