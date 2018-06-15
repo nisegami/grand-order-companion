@@ -55,12 +55,16 @@ public class AllServantsActivity extends SidebarActivity implements SearchLiveo.
 
     String[] sortOptions = {"ID", "Name", "Class", "Rarity", "Attack", "HP"};
 
+    private DividerItemDecoration itemDecor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_servants);
         super.setupSidebar(R.id.toolbar);
         ButterKnife.bind(this);
+
+        itemDecor = new DividerItemDecoration(c, DividerItemDecoration.HORIZONTAL);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -148,8 +152,10 @@ public class AllServantsActivity extends SidebarActivity implements SearchLiveo.
 
         if (showThumbnails) {
             adapter = new ServantAdapterWithThumbnails(this);
+            servantInfoList.removeItemDecoration(itemDecor);
         } else {
             adapter = new ServantAdapterNoThumbnails(this);
+            servantInfoList.addItemDecoration(itemDecor);
         }
 
         servantInfoList.setAdapter(adapter);
