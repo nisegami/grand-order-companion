@@ -5,9 +5,9 @@ android {
     defaultConfig {
         applicationId "world.arshad.grandordercompanion"
         minSdkVersion 23
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 19
-        versionName "5.3.2"
+        versionName "5.3.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

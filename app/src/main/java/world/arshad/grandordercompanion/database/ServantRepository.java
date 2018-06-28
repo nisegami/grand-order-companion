@@ -21,7 +21,7 @@ import world.arshad.grandordercompanion.model.SkillUpEntry;
 
 public final class ServantRepository implements ServantDatabaseInterface {
 
-    private final static int CURRENT_NA_CUTOFF = 117;
+    private final static int CURRENT_NA_CUTOFF = 126;
     private boolean NAOnly = true;
     private Map<Integer, Servant> servantCache;
 

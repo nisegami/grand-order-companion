@@ -48,10 +48,10 @@ public class NeededMaterialsViewModel extends ViewModel {
                 for (SkillUpEntry skillUpEntry : skillUp.getSkillUpEntries()) {
                     if (items.containsKey(skillUpEntry.getMaterial())) {
                         NeededMaterialEntry existingEntry = items.get(skillUpEntry.getMaterial());
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + skillUpEntry.getCount(), existingEntry.getText() + String.format("\n%s | %s | %d", ServantRepository.getInstance().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(existingEntry.getCount() + skillUpEntry.getCount(), existingEntry.getText() + String.format("\n%s | Skill %s | %d", ServantRepository.getInstance().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
                         items.put(skillUpEntry.getMaterial(), newEntry);
                     } else {
-                        NeededMaterialEntry newEntry = new NeededMaterialEntry(skillUpEntry.getCount(), String.format("%s | %s | %d", ServantRepository.getInstance().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
+                        NeededMaterialEntry newEntry = new NeededMaterialEntry(skillUpEntry.getCount(), String.format("%s | Skill %s | %d", ServantRepository.getInstance().getServantNameFromId(skillUpEntry.getServantId()), skillUp, skillUpEntry.getCount()));
                         items.put(skillUpEntry.getMaterial(), newEntry);
                     }
                 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 
+import android.util.Log;
 import com.opencsv.CSVReader;
 
 import java.io.IOException;
@@ -61,14 +62,7 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                 update(context.getAssets(),4);
                 currVersion = 4;
             }
-            if (5 > currVersion) {
-                List<Servant> currentServants = dao.getAllServants();
-                for (Servant servant : currentServants) {
-                    servant.setColor(Utilities.getServantColor(servant, context));
-                    dao.updateServant(servant);
-                }
-                currVersion = 5;
-            }
+            // 5 intentionally left out
             if (6 > currVersion) {
                 update(context.getAssets(),6);
                 currVersion = 6;
@@ -77,14 +71,12 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                 update(context.getAssets(),7);
                 currVersion = 7;
             }
-            if (8 > currVersion) {
-                List<Servant> currentServants = dao.getAllServants();
-                for (Servant servant : currentServants) {
-                    servant.setColor(Utilities.getServantColor(servant, context));
-                    dao.updateServant(servant);
-                }
-                currVersion = 8;
+            // 8 intentionally left out
+            if (9 > currVersion) {
+                update(context.getAssets(),9);
+                currVersion = 9;
             }
+            //DONT FORGET TO UPDATE THE NUMBER OF NA SERVANTS IN SERVANTREPO
             return currVersion;
         } catch (IOException e) {
             return currVersion;
@@ -215,5 +207,13 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
 
     public interface PostUpdateCallback {
         void onDatabaseUpdated(int newVersion);
+    }
+
+    private void colors() {
+        List<Servant> currentServants = dao.getAllServants();
+        for (Servant servant : currentServants) {
+            servant.setColor(Utilities.getServantColor(servant, context));
+            dao.updateServant(servant);
+        }
     }
 }
