@@ -72,9 +72,10 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                 currVersion = 7;
             }
             // 8 intentionally left out
-            if (9 > currVersion) {
-                update(context.getAssets(),9);
-                currVersion = 9;
+            // 9 intentionally left out, used to be camelot but I messed up skill names
+            if (10 > currVersion) {
+                update(context.getAssets(),10);
+                currVersion = 10;
             }
             //DONT FORGET TO UPDATE THE NUMBER OF NA SERVANTS IN SERVANTREPO
             return currVersion;
