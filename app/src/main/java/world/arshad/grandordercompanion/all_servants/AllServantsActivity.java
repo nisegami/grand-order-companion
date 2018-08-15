@@ -70,22 +70,22 @@ public class AllServantsActivity extends SidebarActivity implements SearchLiveo.
 
         SharedPreferences.Editor editor = prefs.edit();
 
-        // A few people have asked for this, so I'm informing them.
-        if (!prefs.getBoolean("thumbnail_setting_dialog_shown", false)) {
-            android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(a)
-                    .setTitle("New Setting")
-                    .setMessage("You can now disable servant thumbnails in the settings menu (in the sidebar).")
-                    .create();
-            alertDialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, "Dismiss",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            editor.putBoolean("thumbnail_setting_dialog_shown", true);
-            editor.apply();
-            alertDialog.show();
-        }
+        //A few people have asked for this, so I'm informing them.
+        //if (!prefs.getBoolean("thumbnail_setting_dialog_shown", false)) {
+        //    android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(a)
+        //            .setTitle("New Setting")
+        //            .setMessage("You can now disable servant thumbnails in the settings menu (in the sidebar).")
+        //            .create();
+        //    alertDialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, "Dismiss",
+        //            new DialogInterface.OnClickListener() {
+        //                public void onClick(DialogInterface dialog, int which) {
+        //                    dialog.dismiss();
+        //                }
+        //            });
+        //    editor.putBoolean("thumbnail_setting_dialog_shown", true);
+        //    editor.apply();
+        //    alertDialog.show();
+        //}
 
         showThumbnails = prefs.getBoolean("pref_thumbs", true);
 

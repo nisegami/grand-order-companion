@@ -87,10 +87,8 @@ public class SkillUpsFragment extends Fragment {
 
         skillFab.setOnChangeListener(new SpeedDialView.OnChangeListener() {
             @Override
-            public void onMainActionSelected() {
-                if (skillFab.isOpen()) {
-                    skillFab.close();
-                }
+            public boolean onMainActionSelected() {
+                return false;
             }
 
             @Override

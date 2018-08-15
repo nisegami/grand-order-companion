@@ -6,8 +6,8 @@ android {
         applicationId "world.arshad.grandordercompanion"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 21
-        versionName "5.3.4"
+        versionCode 23
+        versionName "5.3.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.astuetz:pagerslidingtabstrip:1.0.1'
-    implementation "com.leinardi.android:speed-dial:1.0-alpha04"
+    implementation "com.leinardi.android:speed-dial:1.0.2"
     implementation 'com.github.rudsonlive:searchliveo:1.1.2'
     api 'com.google.guava:guava:25.1-android'
 }

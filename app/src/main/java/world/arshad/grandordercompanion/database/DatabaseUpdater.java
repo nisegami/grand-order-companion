@@ -77,6 +77,14 @@ public class DatabaseUpdater extends AsyncTask<Integer, Void, Integer> {
                 update(context.getAssets(),10);
                 currVersion = 10;
             }
+            if (11 > currVersion) {
+                update(context.getAssets(),11);
+                currVersion = 11;
+            }
+            if (12 > currVersion) {
+                update(context.getAssets(),12);
+                currVersion = 12;
+            }
             //DONT FORGET TO UPDATE THE NUMBER OF NA SERVANTS IN SERVANTREPO
             return currVersion;
         } catch (IOException e) {

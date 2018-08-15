@@ -34,7 +34,7 @@ public enum Material {
     LAMP_OF_SEALED_EVIL("Lamp of Sealed Evil", "lamp_of_sealed_evil"),
     MAGICAL_CEREBROSPINAL_FLUID("Magical Cerebrospinal Fluid", "magical_cerebrospinal_fluid"),
     SCARAB_OF_WISDOM("Scarab of Wisdom", "scarab_of_wisdom"),
-    SHELL_OF_RECOLLECTION("Shell of Recollection", "shell_of_recollection"),
+    SHELL_OF_REMINISCENCE("Shell of Reminiscence", "shell_of_reminiscence"),
     STINGER_OF_CERTAIN_DEATH("Stinger of Certain Death", "stinger_of_certain_death"),
     ARCHER_PIECE("Archer Piece", "archer_piece"),
     ASSASSIN_PIECE("Assassin Piece", "assassin_piece"),
@@ -76,7 +76,8 @@ public enum Material {
     BUCKET_OF_CHICKEN("Bucket of Chicken", "bucket_of_chicken"),
     GOLDEN_SKULL("Golden Skull", "golden_skull"),
     CRYSTAL_BALL("Crystal Ball", "crystal_ball"),
-    GOLDEN_BEAR_LIGHTER("Golden Bear Lighter", "golden_bear_lighter");
+    GOLDEN_BEAR_LIGHTER("Golden Bear Lighter", "golden_bear_lighter"),
+    BELL_RINGING_BRANCH("Bell-Ringing Branch", "bell_ringing_branch");
 
     private String humanName;
     private String cleanName;
